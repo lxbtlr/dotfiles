@@ -45,6 +45,8 @@
 
     #ngspice
     #magic-vlsi
+    
+    obsidian
 
     telegram-desktop
     nodejs

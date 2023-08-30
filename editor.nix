@@ -12,6 +12,14 @@
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
 
+    {
+      plugin = alpha-nvim;
+      config = "lua 
+                config = function ()
+                require'alpha'.setup(require'alpha.themes.dashboard'.config)
+                end
+                lua << END";
+    }
       vim-visual-multi
       nvim-treesitter
       nvim-web-devicons
@@ -106,7 +114,7 @@
         component_separators = { left = '', right = ''},
         section_separators = { left = '', right = ''},
         disabled_filetypes = {
-          statusline = {},
+          statusline = {"neo-tree"},
           winbar = {},
         },
         ignore_focus = {},
@@ -141,6 +149,14 @@
     }
 
     neo_tree.setup({
+      close_if_last_window = true, 
+      popup_border_style = "rounded",
+      enable_git_status = true,
+      enable_diagnostics = true,
+      enable_normal_mode_for_inputs = false, 
+      open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, 
+      sort_case_insensitive = false, 
+      
       default_component_configs = {
         icon = {
           default = "",
