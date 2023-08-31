@@ -27,7 +27,7 @@
   home.packages = with pkgs; [
 
     obsidian
-
+    discordo
     telegram-desktop
     nodejs
     neofetch
