@@ -11,15 +11,7 @@
     enable = true;
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
-
-    {
-      plugin = alpha-nvim;
-      config = "lua 
-                config = function ()
-                require'alpha'.setup(require'alpha.themes.dashboard'.config)
-                end
-                lua << END";
-    }
+      alpha-nvim
       vim-visual-multi
       nvim-treesitter
       nvim-web-devicons
@@ -52,7 +44,8 @@
     extraPython3Packages = (ps: with ps; [
       jedi
     ]);
-    
+
+    # VimScript config TODO: move this into an import
     extraConfig = ''
       nnoremap <Up> <Nop>
       nnoremap <Down> <Nop>
@@ -85,7 +78,8 @@
       set cursorline              " highlight current cursorline
       set ttyfast                 " Speed up scrolling in Vim'';
 
-  extraLuaConfig = ''
+    # Lua config TODO: move this into an import
+    extraLuaConfig = ''
 
     local neo_tree = require("neo-tree") 
 
@@ -106,6 +100,11 @@
             }
       },
     }
+    
+
+    config = function ()
+    require'alpha'.setup(require'alpha.themes.dashboard'.config)
+    end
 
     require('lualine').setup {
       options = {
@@ -216,8 +215,6 @@
         },
       },
     })
-
-
 
     vim.cmd [[highlight IndentBlanklineIndent1 guifg=#000000 gui=nocombine]]
     vim.cmd [[highlight IndentBlanklineIndent2 guifg=#08bdba gui=nocombine]]

@@ -2,10 +2,20 @@
 {pkgs, ...}:
 {
   programs.bash = {
+    enable = true;
+
+    enableCompletion = true;
+    bashrcExtra = ''
+      export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
+    '';
     # interactiveShellInit = (builtins.readFile ./bash/bashrc);
     shellAliases = {
       pls = "sudo";
 
+      #rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#lxbtlr";
+      z = "zoxide";
+      za = "zoxide add" ;
+      zr = "zoxide remove";
       rebuild="sudo nixos-rebuild switch --flake $(pwd)#lxbtlr";
       #rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#lxbtlr";
       hist="history | fzf --tac";

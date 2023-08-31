@@ -8,18 +8,17 @@
 };
   outputs = inputs@{ nixpkgs, home-manager, ... }: {
     nixosConfigurations = {
-      # TODO please change the hostname to your own
+
       lxbtlr = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
-	  ({
-            config,
-            pkgs,
-            ...
-          }: {
-          })
-	  # make home-manager as a module of nixos
+	      ({
+           config,
+           pkgs,
+           ...
+          }: {})
+	      # make home-manager as a module of nixos
           # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
           home-manager.nixosModules.home-manager
           {
