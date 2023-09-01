@@ -13,7 +13,8 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
- 
+  hardware.bluetooth.enable = true;
+
   fonts = {
     fontDir.enable = true;
     enableDefaultPackages = false;

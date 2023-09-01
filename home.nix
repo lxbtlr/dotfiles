@@ -27,10 +27,18 @@
   home.packages = with pkgs; [
 
     obsidian
+    drawio
+
     discordo
     telegram-desktop
+
+    # remote gui desktop tools
+    rustdesk
+    libsForQt5.krdc
+
     nodejs
     neofetch
+    spotify
     nnn # terminal file manager
 
     # archives
