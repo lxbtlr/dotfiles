@@ -50,18 +50,19 @@ in
       {
         format = promptFormat;
         directory = {
-          format  = "[$path ](bg:#FFE74C fg:black) ";
+          format  = "[$path ](bg:#FFE74C fg:black)";
           truncation_length = 4;
           truncation_symbol = "…/";
         };
         git_branch = {
-          format = "[ $symbol$branch ](bold fg:white)";
+          format = "[ $symbol$branch ](bold bg:white fg:black)";
           truncation_length = 30;
         };
         character= {
-          format = "\n$symbol";
-          success_symbol = "[➜](bold green) ";
-          error_symbol = "[✗](bold red) ";
+          format = "\n$symbol ";
+#          success_symbol="[>](bold white)[>](bold purple)[>](bold green)";
+#          #success_symbol = "[➜](bold green) ";
+#          error_symbol = "[ ✗ ](bold red) ";
         };
 
         username = {

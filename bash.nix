@@ -11,15 +11,13 @@
     # interactiveShellInit = (builtins.readFile ./bash/bashrc);
     shellAliases = {
       pls = "sudo";
-
-      #rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#lxbtlr";
+      ls="exa --icons -F -H --group-directories-first --git -1";  
       z = "zoxide";
       za = "zoxide add" ;
       zr = "zoxide remove";
       rebuild="sudo nixos-rebuild switch --flake $(pwd)#lxbtlr";
       #rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#lxbtlr";
       hist="history | fzf --tac";
-      #repro="";
       #TODO: fix me 
       #repro="sudo nixos-rebuild switch -I nixos-config=configuration.nix#lxbtlr";
       };
@@ -48,13 +46,6 @@
         fi
       }
      
-      repro ()
-      {
-        CURRENT_DIR=$(pwd)
-        #echo "the pwd is: $CURRENT_DIR"
-        sudo nixos-rebuild switch --flake $CURRENT_DIR#lxbtlr
-      }
-
       eval "$(zoxide init bash)"
       eval "$(starship init bash)"    
       '';

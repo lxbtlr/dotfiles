@@ -16,6 +16,7 @@
 	      ({
            config,
            pkgs,
+           lib,
            ...
           }: {})
 	      # make home-manager as a module of nixos
