@@ -24,17 +24,16 @@
 
         normal.family = "JetBrainsMono";
         bold.family = "JetBrainsMono";
-        italic.family = "jetBrainsMono";
+        italic.family = "JetBrainsMono";
       };
 
       cursor.style = "Beam";
 
       shell = {
         program = "bash";
-        args = [
-          "-C"
-          "neofetch"
-        ];
+       # args = [
+       #   "neofetch"
+       # ];
       };
 
       colors = {

@@ -45,7 +45,7 @@
           echo "'$1' is not a valid file"
         fi
       }
-     
+      eval "$(direnv hook bash)"    
       eval "$(zoxide init bash)"
       eval "$(starship init bash)"    
       '';

@@ -9,6 +9,7 @@
     ./starship.nix 
     ./editor.nix
     ./alacritty.nix
+    ./direnv.nix
   ];
 
   # set cursor size and dpi for 4k monitor
@@ -29,7 +30,7 @@
 
     obsidian
     drawio
-
+    cachix
     discordo
     telegram-desktop
 

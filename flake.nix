@@ -5,8 +5,9 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    devenv.url = "github:cachix/devenv";
 };
-  outputs = inputs@{ nixpkgs, home-manager, ... }: {
+  outputs = inputs@{ nixpkgs, home-manager, devenv, ... }: {
     nixosConfigurations = {
 
       lxbtlr = nixpkgs.lib.nixosSystem {

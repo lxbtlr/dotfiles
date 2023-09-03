@@ -50,12 +50,12 @@ in
       {
         format = promptFormat;
         directory = {
-          format  = "[$path ](bg:#FFE74C fg:black)";
+          format  = "[$path ](bg:#ffe97b fg:black)";
           truncation_length = 4;
           truncation_symbol = "…/";
         };
         git_branch = {
-          format = "[ $symbol$branch ](bold bg:white fg:black)";
+          format = "[ $symbol$branch ](bg:white fg:black)";
           truncation_length = 30;
         };
         character= {
@@ -66,7 +66,7 @@ in
         };
 
         username = {
-          format ="[ $user](bg:#6BF178 fg:black)[░▒▓█](fg:#FFE74C bg:#6BF178)";
+          format ="[ $user](bg:#42be65 fg:black)[░▒▓█](fg:#ffe97b bg:#42be65)";
           style_root = "bg:white bold fg:black"; 
           style_user = "fg:white bold bg:black"; 
           disabled = false;
