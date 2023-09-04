@@ -27,10 +27,14 @@
 
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
+    # email
+    protonmail-bridge
+    electron-mail
 
     obsidian
     drawio
     cachix
+
     discordo
     telegram-desktop
 
