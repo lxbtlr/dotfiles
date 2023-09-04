@@ -12,23 +12,27 @@
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
 
+      todo-comments-nvim
+      
       telescope-nvim
       telescope-zoxide
       vim-visual-multi
       nvim-treesitter
       nvim-web-devicons
+      
       coc-nvim
       coc-python
       coc-pyright
+      
       which-key-nvim
       neo-tree-nvim
       {
         plugin = oxocarbon-nvim;
-    	config = "colorscheme oxocarbon";
+        config = "colorscheme oxocarbon";
       }
       {
       	plugin = indent-blankline-nvim;
-    	config = ''let g:indent_blankline_use_treesitter=v:true'';
+        config = ''let g:indent_blankline_use_treesitter=v:true'';
       }
       
       {
@@ -90,161 +94,175 @@
 
     # Lua config TODO: move this into an import
     extraLuaConfig = ''
-    local neo_tree = require("neo-tree") 
+      local neo_tree = require("neo-tree") 
 
-    require('bufferline').setup {
-      options = {
-        numbers = 'buffer_id',
-        diagnostics = 'nvim_lsp',
-        seperator_style = 'slant' or 'padded_slant',
-        show_tab_indicators = true,
-        show_buffer_close_icons = false,
-        show_close_icon = false,
-        offsets= {
-            filetype= "neo-tree",
-            text= "File Explorer",
-            highlight= "Directory",
-            separator_style = "slant",
-            text_align= "left"
-            }
-      },
-    }
-    
+      local wk = require("which-key")
+      wk.register(mappings, opts)
+     
+      vim.api.nvim_create_augroup("neotree", {})
+      vim.api.nvim_create_autocmd("VimEnter", {
+        desc = "Open Neotree automatically",
+        group = "neotree",
+        callback = function()
+          if vim.fn.argc() == 0 and not vim.fn.exists "s:std_in" then
+            vim.cmd "Neotree toggle"
+          end
+        end,
+      })
 
-    require('lualine').setup {
-      options = {
-        icons_enabled = true,
-        theme = 'auto',
-        component_separators = { left = '', right = ''},
-        section_separators = { left = '', right = ''},
-        disabled_filetypes = {
-          statusline = {"neo-tree"},
-          winbar = {},
+      require('bufferline').setup {
+        options = {
+          numbers = 'buffer_id',
+          diagnostics = 'nvim_lsp',
+          seperator_style = 'slant' or 'padded_slant',
+          show_tab_indicators = true,
+          show_buffer_close_icons = false,
+          show_close_icon = false,
+          offsets= {
+              filetype= "neo-tree",
+              text= "File Explorer",
+              highlight= "Directory",
+              separator_style = "slant",
+              text_align= "left"
+              }
         },
-        ignore_focus = {},
-        always_divide_middle = true,
-        globalstatus = false,
-        refresh = {
-          statusline = 1000,
-          tabline = 1000,
-          winbar = 1000,
-        }
-      },
-      sections = {
-        lualine_a = {'mode'},
-        lualine_b = {'branch', 'diff', 'diagnostics'},
-        lualine_c = {'filename'},
-        lualine_x = {'encoding', 'fileformat', 'filetype'},
-        lualine_y = {'progress'},
-        lualine_z = {'location'}
-      },
-      inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = {'filename'},
-        lualine_x = {'location'},
-        lualine_y = {},
-        lualine_z = {}
-      },
-      tabline = {},
-      winbar = {},
-      inactive_winbar = {},
-      extensions = {}
-    }
-
-    neo_tree.setup({
-      close_if_last_window = true, 
-      popup_border_style = "rounded",
-      enable_git_status = true,
-      enable_diagnostics = true,
-      enable_normal_mode_for_inputs = false, 
-      open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, 
-      sort_case_insensitive = false, 
+      }
       
-      default_component_configs = {
-        icon = {
-          default = "",
+      
+      require('lualine').setup {
+        options = {
+          icons_enabled = true,
+          theme = 'auto',
+          component_separators = { left = '', right = ''},
+          section_separators = { left = '', right = ''},
+          disabled_filetypes = {
+            statusline = {"neo-tree"},
+            winbar = {},
+          },
+          ignore_focus = {},
+          always_divide_middle = true,
+          globalstatus = false,
+          refresh = {
+            statusline = 1000,
+            tabline = 1000,
+            winbar = 1000,
+          }
         },
-      },
-      event_handlers = {
-        {
-          event = "file_opened",
-          handler = function()
-            require("neo-tree.command").execute({ action = "close" })
-          end,
+        sections = {
+          lualine_a = {'mode'},
+          lualine_b = {'branch', 'diff', 'diagnostics'},
+          lualine_c = {'filename'},
+          lualine_x = {'encoding', 'fileformat', 'filetype'},
+          lualine_y = {'progress'},
+          lualine_z = {'location'}
         },
-      },
-      filesystem = {
-        commands = {
-          system_open = function(state)
-            local path = state.tree:get_node():get_id()
-            vim.loop.spawn(
-              "@xdg_utils@/bin/xdg-open",
-              { args = { path } },
-              function(code)
-                if code ~= 0 then
-                  vim.notify(
-                    "xdg-open " .. path .. " exited with code " .. code,
-                    vim.log.levels.WARN
-                  )
-                end
-              end
-            )
-          end,
+        inactive_sections = {
+          lualine_a = {},
+          lualine_b = {},
+          lualine_c = {'filename'},
+          lualine_x = {'location'},
+          lualine_y = {},
+          lualine_z = {}
         },
-        filtered_items = {
-          hide_by_name = { ".git" },
-          hide_dotfiles = false,
-          show_hidden_count = false,
-          use_libuv_file_watcher = true,
-        },
-        find_by_full_path_words = true,
-        window = {
-          mappings = {
-            ["<c-_>"] = "clear_filter",
+        tabline = {},
+        winbar = {},
+        inactive_winbar = {},
+        extensions = {}
+      }
+
+      neo_tree.setup({
+        close_if_last_window = true, 
+        popup_border_style = "rounded",
+        enable_git_status = true,
+        enable_diagnostics = true,
+        enable_normal_mode_for_inputs = false, 
+        open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, 
+        sort_case_insensitive = false, 
+        
+        default_component_configs = {
+          icon = {
+            default = "",
           },
         },
-      },
-      popup_border_style = "single",
-      use_popups_for_input = false,
-      window = {
-        width = 32,
-        mappings = {
-          S = "noop",
-          ["<c-v>"] = "open_vsplit",
-          ["<c-x>"] = "open_split",
-          ["<cr>"] = "open_drop",
-          o = "system_open",
-          s = "noop",
-          t = "noop",
+        event_handlers = {
+          {
+            event = "file_opened",
+            handler = function()
+              require("neo-tree.command").execute({ action = "close" })
+            end,
+          },
         },
-      },
-    })
+        filesystem = {
+          commands = {
+            system_open = function(state)
+              local path = state.tree:get_node():get_id()
+              vim.loop.spawn(
+                "@xdg_utils@/bin/xdg-open",
+                { args = { path } },
+                function(code)
+                  if code ~= 0 then
+                    vim.notify(
+                      "xdg-open " .. path .. " exited with code " .. code,
+                      vim.log.levels.WARN
+                    )
+                  end
+                end
+              )
+            end,
+          },
+          filtered_items = {
+            hide_by_name = { ".git" },
+            hide_dotfiles = false,
+            show_hidden_count = false,
+            use_libuv_file_watcher = true,
+          },
+          find_by_full_path_words = true,
+          window = {
+            mappings = {
+              ["<c-_>"] = "clear_filter",
+            },
+          },
+        },
+        popup_border_style = "single",
+        use_popups_for_input = false,
+        window = {
+          width = 32,
+          mappings = {
+            S = "noop",
+            ["<c-v>"] = "open_vsplit",
+            ["<c-x>"] = "open_split",
+            ["<cr>"] = "open_drop",
+            o = "system_open",
+            s = "noop",
+            t = "noop",
+          },
+        },
+      })
 
-    vim.cmd [[highlight IndentBlanklineIndent1 guifg=#000000 gui=nocombine]]
-    vim.cmd [[highlight IndentBlanklineIndent2 guifg=#08bdba gui=nocombine]]
-    vim.cmd [[highlight IndentBlanklineIndent3 guifg=#ee5396 gui=nocombine]]
-    vim.cmd [[highlight IndentBlanklineIndent4 guifg=#42be65 gui=nocombine]]
-    vim.cmd [[highlight IndentBlanklineIndent5 guifg=#78a9ff gui=nocombine]]
-    vim.cmd [[highlight IndentBlanklineIndent6 guifg=#000000 gui=nocombine]]
-    
-    vim.opt.list = true
-    vim.opt.listchars:append "space:⋅"
-    vim.opt.listchars:append "eol:↴"
-    
-    require("indent_blankline").setup { 
-        show_current_context = true,
-        show_current_context_start = true,
-        space_char_blankline = " ",
-        char_highlight_list = {
-            "IndentBlanklineIndent1",
-            "IndentBlanklineIndent2",
-            "IndentBlanklineIndent3",
-            "IndentBlanklineIndent4",
-            "IndentBlanklineIndent5",
-            "IndentBlanklineIndent6",
-        },
-    }
-    '';
+      vim.cmd [[highlight IndentBlanklineIndent1 guifg=#000000 gui=nocombine]]
+      vim.cmd [[highlight IndentBlanklineIndent2 guifg=#08bdba gui=nocombine]]
+      vim.cmd [[highlight IndentBlanklineIndent3 guifg=#ee5396 gui=nocombine]]
+      vim.cmd [[highlight IndentBlanklineIndent4 guifg=#42be65 gui=nocombine]]
+      vim.cmd [[highlight IndentBlanklineIndent5 guifg=#78a9ff gui=nocombine]]
+      vim.cmd [[highlight IndentBlanklineIndent6 guifg=#000000 gui=nocombine]]
+      
+      vim.opt.list = true
+      vim.opt.listchars:append "space:⋅"
+      vim.opt.listchars:append "eol:↴"
+      
+      require("indent_blankline").setup { 
+          show_current_context = true,
+          show_current_context_start = true,
+          space_char_blankline = " ",
+          char_highlight_list = {
+              "IndentBlanklineIndent1",
+              "IndentBlanklineIndent2",
+              "IndentBlanklineIndent3",
+              "IndentBlanklineIndent4",
+              "IndentBlanklineIndent5",
+              "IndentBlanklineIndent6",
+          },
+      }
+      '';
   };
 }
