@@ -11,12 +11,15 @@
     enable = true;
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
-      alpha-nvim
+
+      telescope-nvim
+      telescope-zoxide
       vim-visual-multi
       nvim-treesitter
       nvim-web-devicons
       coc-nvim
       coc-python
+      coc-pyright
       which-key-nvim
       neo-tree-nvim
       {
@@ -47,11 +50,18 @@
 
     # VimScript config TODO: move this into an import
     extraConfig = ''
+      nnoremap <SPACE> <Nop>
+      let mapleader=" "
+      nnoremap <leader>ff <cmd>Telescope find_files<cr>
+      nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+      nnoremap <leader>fb <cmd>Telescope buffers<cr>
+      nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
       nnoremap <Up> <Nop>
       nnoremap <Down> <Nop>
       nnoremap <Left> <Nop>
       nnoremap <Right> <Nop>      
-      
+     
       inoremap <Up> <Nop>
       inoremap <Down> <Nop>
       inoremap <Left> <Nop>
@@ -63,7 +73,7 @@
       set mouse=v                 " middle-click paste with 
       set hlsearch                " highlight search 
       set incsearch               " incremental search
-      set tabstop=4               " number of columns occupied by a tab 
+      set tabstop=2               " number of columns occupied by a tab 
       set softtabstop=4           " see multiple spaces as tabstops so <BS> does the right thing
       set expandtab               " converts tabs to white space
       set shiftwidth=4            " width for autoindents
@@ -80,7 +90,6 @@
 
     # Lua config TODO: move this into an import
     extraLuaConfig = ''
-
     local neo_tree = require("neo-tree") 
 
     require('bufferline').setup {
@@ -101,10 +110,6 @@
       },
     }
     
-
-    config = function ()
-    require'alpha'.setup(require'alpha.themes.dashboard'.config)
-    end
 
     require('lualine').setup {
       options = {
