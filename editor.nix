@@ -58,8 +58,10 @@
       let mapleader=" "
       nnoremap <leader>ff <cmd>Telescope find_files<cr>
       nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-      nnoremap <leader>fb <cmd>Telescope buffers<cr>
+      nnoremap <leader><leader> <cmd>Telescope buffers<cr>
       nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+      nnoremap <leader>t  <cmd>Neotree<cr>
+
 
       nnoremap <Up> <Nop>
       nnoremap <Down> <Nop>
@@ -100,7 +102,7 @@
       wk.register(mappings, opts)
      
       vim.api.nvim_create_augroup("neotree", {})
-      vim.api.nvim_create_autocmd("VimEnter", {
+      vim.api.nvim_create_autocmd("UiEnter", {
         desc = "Open Neotree automatically",
         group = "neotree",
         callback = function()
