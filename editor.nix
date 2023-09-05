@@ -61,7 +61,10 @@
       nnoremap <leader><leader> <cmd>Telescope buffers<cr>
       nnoremap <leader>fh <cmd>Telescope help_tags<cr>
       nnoremap <leader>t  <cmd>Neotree<cr>
-
+     
+      inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+      inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
+      inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
 
       nnoremap <Up> <Nop>
       nnoremap <Down> <Nop>
@@ -97,6 +100,7 @@
     # Lua config TODO: move this into an import
     extraLuaConfig = ''
       local neo_tree = require("neo-tree") 
+      require("todo-comments").setup()
 
       local wk = require("which-key")
       wk.register(mappings, opts)
