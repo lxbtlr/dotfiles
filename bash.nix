@@ -11,7 +11,7 @@
     # interactiveShellInit = (builtins.readFile ./bash/bashrc);
     shellAliases = {
       pls = "sudo";
-      ls="exa --icons -F -H --group-directories-first --git -1";  
+      ls="eza --icons -F -H --group-directories-first --git -1";  
       z = "zoxide";
       za = "zoxide add" ;
       zr = "zoxide remove";
