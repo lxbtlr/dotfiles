@@ -10,6 +10,7 @@
     ./editor.nix
     ./alacritty.nix
     ./direnv.nix
+    ./tmux.nix
   ];
 
   # set cursor size and dpi for 4k monitor
