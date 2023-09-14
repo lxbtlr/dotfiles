@@ -8,6 +8,7 @@ pkgs.mkShell {
       ps.plotly
       ps.pygame
       ps.matplotlib
+      ps.seaborn
     ]))
 
   ];
