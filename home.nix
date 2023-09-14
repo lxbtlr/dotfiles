@@ -44,7 +44,7 @@
     # remote gui desktop tools
     rustdesk
     libsForQt5.krdc
-    tmux
+    
     nodejs
     neofetch
     spotify
