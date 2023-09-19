@@ -2,7 +2,6 @@
 pkgs.mkShell {
   packages = [
     (pkgs.python311.withPackages (ps: [
-
       ps.numpy
       ps.pandas
       ps.requests
