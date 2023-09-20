@@ -1,11 +1,38 @@
 {pkgs, ...}:
+
+# let 
+# 
+# {
+# 
+# 
+# }
+# in
 {   
   programs.tmux = {
     enable =true;
     clock24 = true;
+    plugins = with pkgs.tmuxPlugins; [
+        sensible
+        yank
+        {
+          plugin = dracula;
+          extraConfig = ''
+            set -g @dracula-show-battery false
+            set -g @dracula-show-powerline true
+            set -g @dracula-refresh-rate 10
+            set -g @dracula-plugins "cpu-usage gpu-usage ram-usage"
+          '';
+        }
+      ];
     extraConfig = '' 
-        
+
+        #set-option -g status-left ' #[fg=white]#P #S  #W  #[fg=white] '
+        #set-option -g status-right ' ' #'#H #[fg=black]%I:%M #[fg=black]%m.%d.%Y'
+
+        set-option -g pane-active-border-style fg=blue
+        set-option -g status-position top       
         set -g default-terminal "screen-256color"
+
         # Set Better default prefix
         unbind C-b
         set-option -g prefix C-Space
