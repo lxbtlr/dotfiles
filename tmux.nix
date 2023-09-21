@@ -32,7 +32,7 @@
           set -g @catppuccin_window_right_separator "█ "
           set -g @catppuccin_window_number_position "right"
           set -g @catppuccin_window_middle_separator " | "
-      
+          set -g @catppuccin_window_current_text "#W"   # "#{b:pane_current_path}" # use "#W" for application instead of directory
           set -g @catppuccin_window_default_fill "none"
       
           set -g @catppuccin_window_current_fill "all"

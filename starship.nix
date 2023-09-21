@@ -50,16 +50,16 @@ in
       {
         format = promptFormat;
         directory = {
-          format  = "[$path ](bg:#ffe97b fg:black)";
+          format  = "[$path ](fg:#ffe97b)";
           truncation_length = 4;
-          truncation_symbol = "…/";
+          truncation_symbol = "../";
         };
         git_branch = {
-          format = "[ $symbol$branch ](bg:white fg:black)";
+          format = "[ $symbol$branch ](fg:white)";
           truncation_length = 30;
         };
         character= {
-          format = "\n$symbol ";
+          format = "\n$symbol $symbol ";
 #          success_symbol="[>](bold white)[>](bold purple)[>](bold green)";
 #          #success_symbol = "[➜](bold green) ";
 #          error_symbol = "[ ✗ ](bold red) ";
@@ -69,7 +69,7 @@ in
           format ="[ $user](bg:#42be65 fg:black)[░▒▓█](fg:#ffe97b bg:#42be65)";
           style_root = "bg:white bold fg:black"; 
           style_user = "fg:white bold bg:black"; 
-          disabled = false;
+          disabled = true;
           show_always = true;
 	};
 
