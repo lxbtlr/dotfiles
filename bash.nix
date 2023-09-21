@@ -15,6 +15,7 @@
       z = "zoxide";
       za = "zoxide add" ;
       zr = "zoxide remove";
+      tx = "tmuxinator";
       rebuild="sudo nixos-rebuild switch --flake $(pwd)#lxbtlr";
       #rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#lxbtlr";
       hist="history | fzf --tac";
