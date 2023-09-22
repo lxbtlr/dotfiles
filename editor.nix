@@ -11,16 +11,11 @@
     enable = true;
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
-
+      hydra-nvim
+      gitsigns-nvim
+      neogit
       todo-comments-nvim
-      {
-        plugin = glow-nvim;
-        config = ''require('glow').setup({
-                   style = "dark",
-                   width = 120,
-                   })'';
-      
-      }
+      glow-nvim
       telescope-nvim
       telescope-zoxide
       vim-visual-multi
@@ -108,6 +103,12 @@
     extraLuaConfig = ''
       local neo_tree = require("neo-tree") 
       require("todo-comments").setup()
+      local neogit = require('neogit')
+      neogit.setup {}
+      require('glow').setup({
+	  style = "dark",
+	  width = 120,
+      })
 
       local wk = require("which-key")
       wk.register(mappings, opts)
