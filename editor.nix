@@ -13,7 +13,14 @@
     plugins = with pkgs.vimPlugins; [
 
       todo-comments-nvim
+      {
+        plugin = glow-nvim;
+        config = ''require('glow').setup({
+                   style = "dark",
+                   width = 120,
+                   })'';
       
+      }
       telescope-nvim
       telescope-zoxide
       vim-visual-multi

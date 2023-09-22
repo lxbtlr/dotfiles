@@ -23,6 +23,11 @@
       #repro="sudo nixos-rebuild switch -I nixos-config=configuration.nix#lxbtlr";
       };
     initExtra = ''
+      howmany ()
+      {
+        ls -1 $1 | wc -l
+      }
+
       # # ex - archive extractor
       # # usage: ex \<file\>
       ex ()
