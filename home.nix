@@ -8,6 +8,7 @@
     ./bash.nix
     ./starship.nix 
     ./editor.nix
+    ./hydra-nvim.nix
     ./alacritty.nix
     ./direnv.nix
     ./tmux.nix
@@ -31,11 +32,13 @@
     # email
     protonmail-bridge
     electron-mail
-
+    htop-vim
     obsidian
     drawio
     cachix
-
+    visidata
+    
+    flameshot   
     discordo
     discord
     telegram-desktop

@@ -14,6 +14,7 @@
     plugins = with pkgs.tmuxPlugins; [
         sensible
         yank
+        sidebar
         #{
         #  plugin = fingers;
         #  extraConfig = ''
