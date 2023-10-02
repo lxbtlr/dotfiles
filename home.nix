@@ -12,6 +12,7 @@
     ./alacritty.nix
     ./direnv.nix
     ./tmux.nix
+    #./fuzzel.nix
   ];
 
   # set cursor size and dpi for 4k monitor
@@ -35,15 +36,16 @@
     htop-vim
     obsidian
     drawio
+    zoom-us
     cachix
     visidata
-    
+    fuzzel    
     flameshot   
     discordo
     discord
     telegram-desktop
     pandoc
-
+    ocs-url
     # remote gui desktop tools
     rustdesk
     libsForQt5.krdc
