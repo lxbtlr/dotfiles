@@ -44,12 +44,15 @@
 
 
 
- # programs.hyprland = {
- #   enable = true;
- #   # nvidiaPatches = true;
- #   xwayland.enable = true;
- # };
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
+  programs.hyprland = {
+    enable = true;
+    # nvidiaPatches = true;
+    xwayland.enable = true;
+  };
+
+  environment.sessionVariables.NIXOS_OZONE_WL = "1"; 
+  environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
+  
   nix.settings = {
     substituters = ["https://hyprland.cachix.org"];
     trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
@@ -57,7 +60,7 @@
   
 
   networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  #:networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -126,8 +129,6 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       firefox
-      kate
-    #  thunderbird
     ];
   };
 
@@ -141,8 +142,6 @@
      wget
      curl
      git  
-     # Install Helix from the `helix` input
-     #helix.packages."${pkgs.system}".helix
   ];
   environment.variables.EDITOR = "nvim";
   # Some programs need SUID wrappers, can be configured further or are

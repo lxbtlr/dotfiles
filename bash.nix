@@ -12,6 +12,8 @@
     shellAliases = {
       pls = "sudo";
       ls="eza --icons -F -H --group-directories-first --git -1";  
+      whereami="pwd";
+      vd="visidata";
       z = "zoxide";
       za = "zoxide add" ;
       zr = "zoxide remove";

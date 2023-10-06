@@ -31,8 +31,6 @@
   # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     # email
-    protonmail-bridge
-    electron-mail
     htop-vim
     obsidian
     drawio
@@ -116,6 +114,39 @@
     ethtool
     pciutils # lspci
     usbutils # lsusb 
+
+    # hyprland flakes
+    polkit_gnome
+    libva-utils
+    fuseiso
+    udiskie
+    gnome.adwaita-icon-theme
+    gnome.gnome-themes-extra
+    nvidia-vaapi-driver
+    gsettings-desktop-schemas
+    swaynotificationcenter
+    wlr-randr
+    ydotool
+    hyprland-share-picker
+    hyprland-protocols
+    hyprpicker
+    swayidle
+    swaylock
+    xdg-desktop-portal-hyprland
+    hyprpaper
+    wofi
+    swww
+    grim
+    xdg-utils
+    xdg-desktop-portal
+    xdg-desktop-portal-gtk
+    qt5.qtwayland
+    qt6.qmake
+    qt6.qtwayland
+    adwaita-qt
+    adwaita-qt6
+
+
   ];
 
 
