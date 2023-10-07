@@ -142,7 +142,19 @@
      wget
      curl
      git  
+     waybar
+     dunst
+     libnotify
+     
   ];
+
+
+  
+  # XDG portal
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  
+
   environment.variables.EDITOR = "nvim";
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
