@@ -12,6 +12,7 @@
     ./alacritty.nix
     ./direnv.nix
     ./tmux.nix
+    #./gsettings.nix
     #./fuzzel.nix
   ];
 
@@ -53,6 +54,10 @@
     spotify
     nnn # terminal file manager
 
+    gsettings-desktop-schemas
+    
+    newsflash
+    processing
     # archives
     zip
     xz
@@ -116,6 +121,7 @@
     usbutils # lsusb 
 
     # hyprland flakes
+    kitty
     polkit_gnome
     libva-utils
     fuseiso
