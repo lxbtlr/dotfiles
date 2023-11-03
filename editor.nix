@@ -11,8 +11,10 @@
     enable = true;
     withPython3 = true;
     plugins = with pkgs.vimPlugins; [
-      #hydra-nvim
-      #gitsigns-nvim
+      hydra-nvim
+      gitsigns-nvim
+      venn-nvim
+      
       neogit
       todo-comments-nvim
       glow-nvim

@@ -40,6 +40,7 @@
     visidata
     fuzzel    
     flameshot   
+    webex
     discordo
     discord
     telegram-desktop
@@ -49,6 +50,8 @@
     rustdesk
     libsForQt5.krdc
     
+    ffmpeg_6
+
     nodejs
     neofetch
     spotify
