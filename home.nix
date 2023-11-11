@@ -40,7 +40,14 @@
     visidata
     fuzzel    
     flameshot   
-    webex
+    
+    orca-c
+    sonic-pi
+    ardour
+
+    logisim
+    f3d
+
     discordo
     discord
     telegram-desktop

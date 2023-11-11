@@ -38,7 +38,7 @@
             set -g @catppuccin_window_format_directory_text "#{pane_current_path}"
 
             set -g @catppuccin_window_default_fill "number"
-            set -g @catppuccin_window_default_text "#W"
+            
             
             set -g @catppuccin_window_current_fill "number"
             set -g @catppuccin_window_current_text "#W"

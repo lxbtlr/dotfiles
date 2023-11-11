@@ -19,6 +19,7 @@
       zr = "zoxide remove";
       tx = "tmuxinator";
       rebuild="sudo nixos-rebuild switch --flake $(pwd)#lxbtlr";
+      #mkjp = "$$ && cd $_";
       #rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#lxbtlr";
       hist="history | fzf --tac";
       #TODO: fix me 
@@ -29,6 +30,12 @@
       {
         ls -1 $1 | wc -l
       }
+
+
+      mkjp () {
+          mkdir "$1" && z "$1"
+      }
+
 
       # # ex - archive extractor
       # # usage: ex \<file\>
