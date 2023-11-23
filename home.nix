@@ -6,7 +6,7 @@
 
   imports = [
     ./bash.nix
-    ./starship.nix 
+    ./starship.nix
     ./editor.nix
     ./hydra-nvim.nix
     ./alacritty.nix
@@ -38,15 +38,17 @@
     zoom-us
     cachix
     visidata
-    fuzzel    
-    flameshot   
-    
+    fuzzel
+    flameshot
+
     orca-c
     sonic-pi
     ardour
 
     logisim
     f3d
+
+    wl-color-picker
 
     discordo
     discord
@@ -56,7 +58,9 @@
     # remote gui desktop tools
     rustdesk
     libsForQt5.krdc
-    
+
+
+
     ffmpeg_6
 
     nodejs
@@ -65,7 +69,7 @@
     nnn # terminal file manager
 
     gsettings-desktop-schemas
-    
+
     newsflash
     processing
     # archives
@@ -122,13 +126,13 @@
     strace # system call monitoring
     ltrace # library call monitoring
     lsof # list open files
-    
+
     # system tools
     sysstat
     lm_sensors # for `sensors` command
     ethtool
     pciutils # lspci
-    usbutils # lsusb 
+    usbutils # lsusb
 
     # hyprland flakes
     kitty
@@ -162,6 +166,19 @@
     adwaita-qt
     adwaita-qt6
 
+    # hyprland packages 2
+    waybar
+    swaybg
+    wlogout
+    wf-recorder
+    slurp
+    mako
+
+    alsa-utils
+    mpd
+    mpc-cli
+    ncmpcpp
+    networkmanagerapplet
 
   ];
 
@@ -174,6 +191,12 @@
   # You can update home Manager without changing this value. See
   # the home Manager release notes for a list of state version
   # changes in each release.
+
+  wayland.windowManager.hyprland = {
+  enable = true;
+  extraConfig = import ./hypr_config.nix {};
+  };
+
   home.stateVersion = "23.05";
 
   # Let home Manager install and manage itself.
