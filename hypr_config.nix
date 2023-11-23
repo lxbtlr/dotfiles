@@ -21,10 +21,10 @@ exec-once = swww init & sleep 0.5 && exec wallpaper_random
 
 # Input config
 input {
-    kb_layout = br,us
+    kb_layout = us
     kb_variant =
     kb_model =
-    kb_options =
+    kb_options = caps:ctrl_modifier
     kb_rules =
 
     follow_mouse = 1
