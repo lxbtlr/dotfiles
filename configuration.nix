@@ -46,16 +46,18 @@
     enable = true;
     # nvidiaPatches = true;
     xwayland.enable = true;
+
   };
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1"; 
+
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
 
   nix.settings = {
     substituters = ["https://hyprland.cachix.org"];
     trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
   };
-  
+
 
   networking.hostName = "bigfin"; # Define your hostname.
   #:networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -141,19 +143,33 @@
      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
      wget
      curl
-     git  
+     git
      waybar
      dunst
+     hyprland
+     swww
+     xdg-desktop-portal-gtk
+     xdg-desktop-portal-hyprland
+     xwayland
      libnotify
      gtk3
   ];
 
+  nixpkgs.overlays = [
+    (self: super: {
+        waybar =
+        super.waybar.overrideAttrs
+        (oldAttrs: {
+            mesonFlags =
+        oldAttrs.mesonFlags ++ [ "-Dexperimental=true"];
+        });
+    })
+  ];
 
-  
   # XDG portal
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  
+
 
   environment.variables.EDITOR = "nvim";
   # Some programs need SUID wrappers, can be configured further or are

@@ -12,6 +12,7 @@
     ./alacritty.nix
     ./direnv.nix
     ./tmux.nix
+    ./waybar.nix
     #./gsettings.nix
     #./fuzzel.nix
   ];
@@ -40,7 +41,7 @@
     visidata
     fuzzel
     flameshot
-
+    waybar
     orca-c
     sonic-pi
     ardour
@@ -60,7 +61,7 @@
     libsForQt5.krdc
 
 
-
+    rofi-wayland
     ffmpeg_6
 
     nodejs
@@ -167,7 +168,6 @@
     adwaita-qt6
 
     # hyprland packages 2
-    waybar
     swaybg
     wlogout
     wf-recorder
@@ -191,7 +191,6 @@
   # You can update home Manager without changing this value. See
   # the home Manager release notes for a list of state version
   # changes in each release.
-
   wayland.windowManager.hyprland = {
   enable = true;
   extraConfig = import ./hypr_config.nix {};

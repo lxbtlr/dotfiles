@@ -10,19 +10,22 @@
     '';
     # interactiveShellInit = (builtins.readFile ./bash/bashrc);
     shellAliases = {
-      pls = "sudo";
-      ls="eza --icons -F -H --group-directories-first --git -1";  
+      pls="sudo";
+      ls="eza --icons -F -H --group-directories-first --git -1";
       whereami="pwd";
       vd="visidata";
-      z = "zoxide";
-      za = "zoxide add" ;
-      zr = "zoxide remove";
-      tx = "tmuxinator";
-      rebuild="sudo nixos-rebuild switch --flake $(pwd)#lxbtlr";
-      #mkjp = "$$ && cd $_";
-      #rebuild = "sudo nixos-rebuild switch --flake /etc/nixos#lxbtlr";
+      z="zoxide";
+      za="zoxide add" ;
+      zr="zoxide remove";
+      tx="tmuxinator";
+      rebuild2="sudo nixos-rebuild switch --flake $(pwd)#lxbtlr";
+      rebuild="sudo nixos-rebuild switch --flake /home/lxbtlr/dotfiles/#lxbtlr";
+      py="nix-shell /home/lxbtlr/dotfiles/shell.nix";
+      clear="clear; neofetch";
+      gc="nix-collect-garbage -d";
+      #mkjp="$$; cd $_";
       hist="history | fzf --tac";
-      #TODO: fix me 
+      #TODO: fix
       #repro="sudo nixos-rebuild switch -I nixos-config=configuration.nix#lxbtlr";
       };
     initExtra = ''
@@ -60,11 +63,11 @@
           echo "'$1' is not a valid file"
         fi
       }
-      eval "$(direnv hook bash)"    
+      eval "$(direnv hook bash)"
       eval "$(zoxide init bash)"
-      eval "$(starship init bash)"    
+      eval "$(starship init bash)"
       '';
-    
+
   };
 }
 
