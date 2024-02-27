@@ -45,10 +45,12 @@
     orca-c
     sonic-pi
     ardour
+    zathura
 
     logisim
     f3d
 
+    qimgv
     wl-color-picker
 
     discordo

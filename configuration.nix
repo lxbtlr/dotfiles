@@ -3,14 +3,16 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs,  ... }:
-
 {
+  nix.nixPath = [
+        "nixpkgs=${pkgs.path}"
+        ];
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
   nix.settings.experimental-features = ["nix-command" "flakes"];
-  # Bootloader.
+# Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   hardware.bluetooth.enable = true;
@@ -165,7 +167,7 @@
         });
     })
   ];
-
+  programs.kdeconnect.enable = true;
   # XDG portal
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];

@@ -23,6 +23,7 @@
       py="nix-shell /home/lxbtlr/dotfiles/shell.nix";
       clear="clear; neofetch";
       gc="nix-collect-garbage -d";
+      q="qimgv";
       #mkjp="$$; cd $_";
       hist="history | fzf --tac";
       #TODO: fix
@@ -33,7 +34,11 @@
       {
         ls -1 $1 | wc -l
       }
-
+      png2mp4 ()
+      {
+        # convert all pngs in dir to video
+        ffmpeg -pattern_type glob -framerate $1/1.2 -i "$2/*.png" -vcodec mpeg4 -pix_fmt yuv420p $3.mp4
+      }
 
       mkjp () {
           mkdir "$1" && z "$1"
