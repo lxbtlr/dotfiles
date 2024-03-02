@@ -45,10 +45,15 @@
     orca-c
     sonic-pi
     ardour
+    # pdf viewer
     zathura
 
+    # digital logic
     logisim
     f3d
+
+    # nix code formatter
+    alejandra
 
     qimgv
     wl-color-picker
