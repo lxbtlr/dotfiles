@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   home.username = "lxbtlr";
   home.homeDirectory = "/home/lxbtlr";
 
@@ -67,7 +70,6 @@
     rustdesk
     libsForQt5.krdc
 
-
     rofi-wayland
     ffmpeg_6
 
@@ -97,12 +99,12 @@
     # networking tools
     mtr # A network diagnostic tool
     iperf3
-    dnsutils  # `dig` + `nslookup`
+    dnsutils # `dig` + `nslookup`
     ldns # replacement of `dig`, it provide the command `drill`
     aria2 # A lightweight multi-protocol & multi-source command-line download utility
     socat # replacement of openbsd-netcat
     nmap # A utility for network discovery and security auditing
-    ipcalc  # it is a calculator for the IPv4/v6 addresses
+    ipcalc # it is a calculator for the IPv4/v6 addresses
     tmuxinator
     # misc
     zoxide
@@ -126,7 +128,7 @@
     hugo # static site generator
     glow # markdown previewer in terminal
 
-    btop  # replacement of htop/nmon
+    btop # replacement of htop/nmon
     iotop # io monitoring
     iftop # network monitoring
 
@@ -186,9 +188,7 @@
     mpc-cli
     ncmpcpp
     networkmanagerapplet
-
   ];
-
 
   # This value determines the home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -199,8 +199,8 @@
   # the home Manager release notes for a list of state version
   # changes in each release.
   wayland.windowManager.hyprland = {
-  enable = true;
-  extraConfig = import ./hypr_config.nix {};
+    enable = true;
+    extraConfig = import ./hypr_config.nix {};
   };
 
   home.file.".config/hypr/colors".text = ''
@@ -223,7 +223,7 @@
     $color13 = rgba(7BC7DDee)
     $color14 = rgba(9CB4E3ee)
     $color15 = rgba(c3dde7ee)
-    '';
+  '';
 
   home.stateVersion = "23.05";
 
