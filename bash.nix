@@ -20,8 +20,8 @@
       zr = "zoxide remove";
       tx = "tmuxinator";
       rebuild2 = "sudo nixos-rebuild switch --flake $(pwd)#lxbtlr";
-      rebuild = "sudo nixos-rebuild switch --flake /home/lxbtlr/dotfiles/#lxbtlr";
-      py = "nix-shell /home/lxbtlr/dotfiles/shell.nix";
+      rebuild = "sudo nixos-rebuild switch --flake /home/lxbtlr/dotfiles/nixos/#lxbtlr";
+      #py = "nix-shell /home/lxbtlr/dotfiles/shell.nix";
       clear = "clear; neofetch";
       gc = "nix-collect-garbage -d";
       q = "qimgv";
