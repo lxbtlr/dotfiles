@@ -1,9 +1,13 @@
 # direnv.nix
-{config, lib, pkgs, ...}:
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   programs.direnv = {
     enable = true;
-    enableBashIntegration = true; 
+    enableBashIntegration = true;
     nix-direnv.enable = true;
   };
 }

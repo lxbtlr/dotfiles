@@ -1,9 +1,12 @@
-{config, lib, pkgs,...}:
 {
-
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   # alacritty program settings / config
   programs.alacritty = {
-    enable=true;
+    enable = true;
     # custom settings
     settings = {
       env = {
@@ -31,9 +34,9 @@
 
       shell = {
         program = "bash";
-       # args = [
-       #   "neofetch"
-       # ];
+        # args = [
+        #   "neofetch"
+        # ];
       };
 
       colors = {
@@ -45,26 +48,26 @@
 
         # Normal colors
         normal = {
-          black     = "#262626";
-          magenta   = "#ff7eb6";
-          green     = "#42be65";
-          yellow    = "#ffe97b";
-          blue      = "#33b1ff";
-          red       = "#ee5396";
-          cyan      = "#3ddbd9";
-          white     = "#dde1e6";
+          black = "#262626";
+          magenta = "#ff7eb6";
+          green = "#42be65";
+          yellow = "#ffe97b";
+          blue = "#33b1ff";
+          red = "#ee5396";
+          cyan = "#3ddbd9";
+          white = "#dde1e6";
         };
 
         # Bright colors
         bright = {
-        black       = "#393939";
-        magenta     = "#ff7eb6";
-        green       = "#42be65";
-        yellow      = "#ffe97b";
-        blue        = "#33b1ff";
-        red         = "#ee5396";
-        cyan        = "#3ddbd9";
-        white       = "#ffffff";
+          black = "#393939";
+          magenta = "#ff7eb6";
+          green = "#42be65";
+          yellow = "#ffe97b";
+          blue = "#33b1ff";
+          red = "#ee5396";
+          cyan = "#3ddbd9";
+          white = "#ffffff";
         };
       };
     };

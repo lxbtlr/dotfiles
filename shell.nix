@@ -1,4 +1,4 @@
-{ pkgs ? import <nixpkgs> {} }:
+{pkgs ? import <nixpkgs> {}}:
 pkgs.mkShell {
   packages = [
     (pkgs.python311.withPackages (ps: [
@@ -8,7 +8,5 @@ pkgs.mkShell {
       ps.pygame
       ps.matplotlib
     ]))
-
   ];
-
 }

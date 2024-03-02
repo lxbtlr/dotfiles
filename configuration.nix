@@ -1,18 +1,20 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs,  ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   nix.nixPath = [
-        "nixpkgs=${pkgs.path}"
-        ];
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+    "nixpkgs=${pkgs.path}"
+  ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
   nix.settings.experimental-features = ["nix-command" "flakes"];
-# Bootloader.
+  # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   hardware.bluetooth.enable = true;
@@ -28,7 +30,7 @@
       noto-fonts-cjk
       noto-fonts-emoji
       liberation_ttf
-      (nerdfonts.override { fonts = [ "VictorMono" "RobotoMono" "JetBrainsMono" "Hack" ]; })
+      (nerdfonts.override {fonts = ["VictorMono" "RobotoMono" "JetBrainsMono" "Hack"];})
       lexend
       roboto
       roboto-mono
@@ -37,10 +39,10 @@
       manrope
     ];
     fontconfig.defaultFonts = {
-      serif     = [ "DejaVu Serif" "Noto Color Emoji" ];
-      sansSerif = [ "DejaVu Sans" "Noto Color Emoji" ];
-      monospace = [ "JetBrains Mono Medium Nerd Font Complete" ];
-      emoji     = [ "Noto Color Emoji" ];
+      serif = ["DejaVu Serif" "Noto Color Emoji"];
+      sansSerif = ["DejaVu Sans" "Noto Color Emoji"];
+      monospace = ["JetBrains Mono Medium Nerd Font Complete"];
+      emoji = ["Noto Color Emoji"];
     };
   };
 
@@ -48,9 +50,7 @@
     enable = true;
     # nvidiaPatches = true;
     xwayland.enable = true;
-
   };
-
 
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
@@ -59,7 +59,6 @@
     substituters = ["https://hyprland.cachix.org"];
     trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
   };
-
 
   networking.hostName = "bigfin"; # Define your hostname.
   #:networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -70,8 +69,6 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
-
-
 
   # Set your time zone.
   time.timeZone = "America/New_York";
@@ -130,7 +127,7 @@
   users.users.lxbtlr = {
     isNormalUser = true;
     description = "alex butler";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       firefox
     ];
@@ -142,36 +139,35 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     wget
-     curl
-     git
-     waybar
-     dunst
-     hyprland
-     swww
-     xdg-desktop-portal-gtk
-     xdg-desktop-portal-hyprland
-     xwayland
-     libnotify
-     gtk3
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wget
+    curl
+    git
+    waybar
+    dunst
+    hyprland
+    swww
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal-hyprland
+    xwayland
+    libnotify
+    gtk3
   ];
 
   nixpkgs.overlays = [
     (self: super: {
-        waybar =
+      waybar =
         super.waybar.overrideAttrs
         (oldAttrs: {
-            mesonFlags =
-        oldAttrs.mesonFlags ++ [ "-Dexperimental=true"];
+          mesonFlags =
+            oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
         });
     })
   ];
   programs.kdeconnect.enable = true;
   # XDG portal
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 
   environment.variables.EDITOR = "nvim";
   # Some programs need SUID wrappers, can be configured further or are
@@ -200,5 +196,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
-
 }

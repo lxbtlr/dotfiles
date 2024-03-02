@@ -6,27 +6,31 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     devenv.url = "github:cachix/devenv";
-};
-  outputs = inputs@{ nixpkgs, home-manager, devenv, ... }: {
+  };
+  outputs = inputs @ {
+    nixpkgs,
+    home-manager,
+    devenv,
+    ...
+  }: {
     nixosConfigurations = {
-
       lxbtlr = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
-	      ({
-           config,
-           pkgs,
-           lib,
-           ...
+          ({
+            config,
+            pkgs,
+            lib,
+            ...
           }: {})
-	      # make home-manager as a module of nixos
+          # make home-manager as a module of nixos
           # so that home-manager configuration will be deployed automatically when executing `nixos-rebuild switch`
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-		
+
             home-manager.users.lxbtlr = import ./home.nix;
 
             # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
