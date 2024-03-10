@@ -40,6 +40,7 @@
     obsidian
     drawio
     zoom-us
+    webex
     cachix
     visidata
     fuzzel
@@ -50,6 +51,12 @@
     ardour
     # pdf viewer
     zathura
+
+    # notes & bibliographies
+    zettlr
+
+    # research & notes
+    zotero
 
     # digital logic
     logisim
