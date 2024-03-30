@@ -17,6 +17,7 @@ with builtins; let
   starshipPackage = pkgs.starship;
   promptOrder = [
     "username"
+    "os"
     "directory"
     "git_branch"
     "git_commit"
@@ -60,14 +61,14 @@ in {
           truncation_length = 30;
         };
         character = {
-          format = "\n$symbol $symbol ";
+          format = "\n $symbol ";
           #          success_symbol="[>](bold white)[>](bold purple)[>](bold green)";
           #          #success_symbol = "[➜](bold green) ";
           #          error_symbol = "[ ✗ ](bold red) ";
         };
 
         username = {
-          format = "[ $user](bg:#42be65 fg:black)[░▒▓█](fg:#ffe97b bg:#42be65)";
+          format = "[ $user](fg:white)[@](fg:#7EBAE4)";
           style_root = "bg:white bold fg:black";
           style_user = "fg:white bold bg:black";
           disabled = true;
