@@ -41,6 +41,8 @@
         ffmpeg -pattern_type glob -framerate $1/1.2 -i "$2/*.png" -vcodec mpeg4 -pix_fmt yuv420p $3.mp4
       }
 
+      test -r /home/lxbtlr/.opam/opam-init/init.sh && . /home/lxbtlr/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
+
       mkjp () {
           mkdir "$1" && z "$1"
       }

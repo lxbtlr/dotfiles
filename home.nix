@@ -95,6 +95,13 @@
     unzip
     p7zip
 
+    # C compiler
+    gcc9
+
+    # Ocaml packages
+    opam
+    ocaml
+
     # utils
     wl-clipboard
     ripgrep # recursively searches directories for a regex pattern
