@@ -8,28 +8,48 @@
   ...
 }: {
   home.packages = with pkgs; [
-    # email
-    htop-vim
+
+    # notes & reading
     obsidian
+    tmuxinator
+    zathura
+    zettlr
+    zotero
+    kitty
+    pandoc
+    newsflash
+
+    # av
     drawio
+    sonic-pi
+    orca-c
+    qimgv
+    ffmpeg_6
+    ardour
+
+    # data
+    visidata
+    gnused
+    gnutar
+    gawk
+    zstd
+
+    # meetings / comms
     zoom-us
     webex
-    cachix
-    visidata
-    fuzzel
-    flameshot
-    waybar
-    orca-c
-    sonic-pi
-    ardour
-    # pdf viewer
-    zathura
+    rustdesk
+    discordo
+    discord
+    telegram-desktop
 
-    # notes & bibliographies
-    zettlr
+    # langs
+    processing
+    gcc9 # C compiler
 
-    # research & notes
-    zotero
+    nodejs
+
+    opam
+    ocaml
 
     # digital logic
     logisim
@@ -37,54 +57,21 @@
 
     # managing nix documentation
     manix
+    cachix
+    alejandra # nix code formatter
+    nix-output-monitor
 
-    # nix code formatter
-    alejandra
-
-    qimgv
+    #wayland
+    wl-clipboard
     wl-color-picker
-
-    discordo
-    discord
-    telegram-desktop
-    pandoc
-    ocs-url
-    # remote gui desktop tools
-    rustdesk
-    libsForQt5.krdc
-
+    waybar
     rofi-wayland
-    ffmpeg_6
 
-    nodejs
-    neofetch
-    spotify
-    nnn # terminal file manager
-
-    gsettings-desktop-schemas
-
-    newsflash
-    processing
     # archives
     zip
     xz
     unzip
     p7zip
-
-    # C compiler
-    gcc9
-
-    # Ocaml packages
-    opam
-    ocaml
-
-    # utils
-    wl-clipboard
-    ripgrep # recursively searches directories for a regex pattern
-    jq # A lightweight and flexible command-line JSON processor
-    yq-go # yaml processer https://github.com/mikefarah/yq
-    eza # A modern replacement for ‘ls’
-    fzf # A command-line fuzzy finder
 
     # networking tools
     mtr # A network diagnostic tool
@@ -95,32 +82,37 @@
     socat # replacement of openbsd-netcat
     nmap # A utility for network discovery and security auditing
     ipcalc # it is a calculator for the IPv4/v6 addresses
-    tmuxinator
-    # misc
-    zoxide
+
+    # misc & utils
+    ocs-url
+    libsForQt5.krdc
     cowsay
+    gsettings-desktop-schemas
+    neofetch
+    spotify
+    nnn # terminal file manager
+    fuzzel
+    flameshot
+    ripgrep # recursively searches directories for a regex pattern
+    jq # A lightweight and flexible command-line JSON processor
+    yq-go # yaml processer https://github.com/mikefarah/yq
+    eza # A modern replacement for ‘ls’
+    fzf # A command-line fuzzy finder
+    zoxide
     file
     which
     tree
-    gnused
-    gnutar
-    gawk
-    zstd
     gnupg
 
-    # nix related
-    #
-    # it provides the command `nom` works just like `nix`
-    # with more details log output
-    nix-output-monitor
+    # diagnostic
+    htop-vim
+    btop # replacement of htop/nmon
+    iotop # io monitoring
+    iftop # network monitoring
 
     # productivity
     hugo # static site generator
     glow # markdown previewer in terminal
-
-    btop # replacement of htop/nmon
-    iotop # io monitoring
-    iftop # network monitoring
 
     # system call monitoring
     strace # system call monitoring
@@ -135,7 +127,6 @@
     usbutils # lsusb
 
     # hyprland flakes
-    kitty
     polkit_gnome
     libva-utils
     fuseiso
