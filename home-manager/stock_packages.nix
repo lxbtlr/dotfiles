@@ -1,39 +1,12 @@
 {
+  inputs,
+  outputs,
   config,
   lib,
   pkgs,
+  nixpkgs,
   ...
 }: {
-  home.username = "lxbtlr";
-  home.homeDirectory = "/home/lxbtlr";
-
-  imports = [
-    ./bash.nix
-    ./starship.nix
-    ./editor.nix
-    ./hydra-nvim.nix
-    ./alacritty.nix
-    ./direnv.nix
-    ./tmux.nix
-    ./waybar.nix
-    #./gsettings.nix
-    #./fuzzel.nix
-  ];
-
-  # set cursor size and dpi for 4k monitor
-  xresources.properties = {
-    "Xcursor.size" = 16;
-    "Xft.dpi" = 172;
-  };
-
-  # basic configuration of git, please change to your own
-  programs.git = {
-    enable = true;
-    userName = "Alex Butler";
-    userEmail = "lxbtlr@pm.me";
-  };
-
-  # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     # email
     htop-vim
@@ -61,6 +34,9 @@
     # digital logic
     logisim
     f3d
+
+    # managing nix documentation
+    manix
 
     # nix code formatter
     alejandra
@@ -203,44 +179,4 @@
     ncmpcpp
     networkmanagerapplet
   ];
-
-  # This value determines the home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update home Manager without changing this value. See
-  # the home Manager release notes for a list of state version
-  # changes in each release.
-  wayland.windowManager.hyprland = {
-    enable = true;
-    extraConfig = import ./hypr_config.nix {};
-  };
-
-  home.file.".config/hypr/colors".text = ''
-    $background = rgba(1d192bee)
-    $foreground = rgba(c3dde7ee)
-
-    $color0 = rgba(1d192bee)
-    $color1 = rgba(465EA7ee)
-    $color2 = rgba(5A89B6ee)
-    $color3 = rgba(6296CAee)
-    $color4 = rgba(73B3D4ee)
-    $color5 = rgba(7BC7DDee)
-    $color6 = rgba(9CB4E3ee)
-    $color7 = rgba(c3dde7ee)
-    $color8 = rgba(889aa1ee)
-    $color9 = rgba(465EA7ee)
-    $color10 = rgba(5A89B6ee)
-    $color11 = rgba(6296CAee)
-    $color12 = rgba(73B3D4ee)
-    $color13 = rgba(7BC7DDee)
-    $color14 = rgba(9CB4E3ee)
-    $color15 = rgba(c3dde7ee)
-  '';
-
-  home.stateVersion = "23.05";
-
-  # Let home Manager install and manage itself.
-  programs.home-manager.enable = true;
 }

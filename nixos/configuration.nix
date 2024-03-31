@@ -2,6 +2,8 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
+  inputs,
+  outputs,
   config,
   pkgs,
   ...
@@ -17,8 +19,8 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  hardware.bluetooth.enable = true;
 
+  # TODO: move fonts to their own file
   fonts = {
     fontDir.enable = true;
     enableDefaultPackages = false;
@@ -52,8 +54,30 @@
     xwayland.enable = true;
   };
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
+  environment = {
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+      WLR_NO_HARDWARE_CURSORS = "1";
+    };
+
+    systemPackages = with pkgs; [
+      vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      wget
+      curl
+      git
+      waybar
+      dunst
+      hyprland
+      swww
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland
+      xwayland
+      libnotify
+      gtk3
+    ];
+
+    variables.EDITOR = "nvim";
+  };
 
   nix.settings = {
     substituters = ["https://hyprland.cachix.org"];
@@ -105,7 +129,10 @@
 
   # Enable sound with pipewire.
   sound.enable = true;
-  hardware.pulseaudio.enable = false;
+  hardware = {
+    pulseaudio.enable = false;
+    bluetooth.enable = true;
+  };
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -123,7 +150,6 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.lxbtlr = {
     isNormalUser = true;
     description = "alex butler";
@@ -133,43 +159,25 @@
     ];
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    overlays = [
+      (self: super: {
+        waybar =
+          super.waybar.overrideAttrs
+          (oldAttrs: {
+            mesonFlags =
+              oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
+          });
+      })
+    ];
+  };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    curl
-    git
-    waybar
-    dunst
-    hyprland
-    swww
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-hyprland
-    xwayland
-    libnotify
-    gtk3
-  ];
-
-  nixpkgs.overlays = [
-    (self: super: {
-      waybar =
-        super.waybar.overrideAttrs
-        (oldAttrs: {
-          mesonFlags =
-            oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
-        });
-    })
-  ];
   programs.kdeconnect.enable = true;
   # XDG portal
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
-
-  environment.variables.EDITOR = "nvim";
+  xdg.portal = {
+    enable = true;
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
