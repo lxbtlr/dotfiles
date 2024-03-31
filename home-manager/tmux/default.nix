@@ -11,6 +11,7 @@
     enable = true;
     clock24 = true;
     plugins = with pkgs.tmuxPlugins; [
+        # TODO: break out custom plugin configs into separate files
       sensible
       yank
       sidebar

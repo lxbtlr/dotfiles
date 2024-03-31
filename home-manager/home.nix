@@ -8,13 +8,10 @@
 }: {
   imports = [
     # import other parts of home-manager config + other modules
-    ./bash.nix
-    ./starship.nix
-    ./nvim.nix
-    ./alacritty.nix
-    ./direnv.nix
-    ./tmux.nix
-    ./waybar.nix
+    ./term
+    ./nvim
+    ./tmux
+    ./waybar
     ./stock_packages.nix
     # inputs.nix-colors.homeManagerModules.default
   ];
