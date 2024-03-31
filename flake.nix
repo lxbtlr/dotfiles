@@ -15,23 +15,24 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
-      url = "github:hyprwn/hyprland";
+      url = "github:hyprwm/hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprwn-contrib = {
-      url = "github:hyprwn/contrib";
+      url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland = {
-      url = "github:hyprwn/hyprland-plugins";
-      inputs.nixpkgs.follows = "hyprland";
-    };
+    # hyprland-plugins = {
+    #   url = "github:hyprwm/hyprland-plugins";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
 
     devenv.url = "github:cachix/devenv";
   };
   outputs = {
+    self,
     nixpkgs,
     home-manager,
     devenv,
@@ -40,7 +41,11 @@
     inherit (self) outputs;
     # supported systems
     systems = [
+      "aarch64-linux"
+      "i686-linux"
       "x86_64-linux"
+      "aarch64-darwin"
+      "x86_64-darwin"
     ];
     # function generates an attribute by calling a function passed to it, with each system as an argument
     forAllSystems = nixpkgs.lib.genAttrs systems;
@@ -67,16 +72,6 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/configuration.nix
-        ];
-      };
-    };
-    # homemanager entrypoint
-    homeConfigurations = {
-      "lxbtlr@bigfin" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        extraSpecialArgs = {inherit inputs outputs;};
-        modules = [
-          ./home-manager/home.nix
         ];
       };
     };

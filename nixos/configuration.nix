@@ -14,11 +14,20 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+inputs.home-manager.nixosModules.home-manager
   ];
   nix.settings.experimental-features = ["nix-command" "flakes"];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  home-manager = {
+	extraSpecialArgs = { inherit inputs outputs; };
+users = {
+	lxbtlr = import ../home-manager/home.nix;
+};
+};
+
 
   # TODO: move fonts to their own file
   fonts = {
