@@ -138,8 +138,8 @@
     swaynotificationcenter
     wlr-randr
     ydotool
-    hyprland-share-picker
-    hyprland-protocols
+    #hyprland-share-picker
+    #hyprland-protocols
     hyprpicker
     swayidle
     swaylock

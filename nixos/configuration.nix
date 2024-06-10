@@ -89,7 +89,7 @@ users = {
   };
 
   nix.settings = {
-    substituters = ["https://hyprland.cachix.org"];
+    substituters = ["https://hyprland.cachix.org"  "https://aseipp-nix-cache.global.ssl.fastly.net"  ];
     trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
   };
 
@@ -125,13 +125,13 @@ users = {
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
+  services.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us";
-    xkbVariant = "";
+    variant = "";
   };
   # Enable CUPS to print documents.
   services.printing.enable = true;
