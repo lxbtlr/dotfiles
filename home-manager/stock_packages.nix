@@ -9,6 +9,8 @@
 }: {
   home.packages = with pkgs; [
 
+    marksman
+
     # notes & reading
     obsidian
     tmuxinator

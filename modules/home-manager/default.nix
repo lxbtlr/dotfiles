@@ -2,5 +2,4 @@
 {
     # List modules here
     # module = import ./my-module.nix
-
 }

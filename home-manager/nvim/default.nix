@@ -24,8 +24,8 @@ in {
     # basic plugins
 
     plugins = with pkgs.vimPlugins; [
+      fidget-nvim
       hydra-nvim
-
       venn-nvim
       neogit
       todo-comments-nvim
@@ -117,6 +117,13 @@ in {
       set ttyfast                 " Speed up scrolling in Vim'';
 
     extraLuaConfig = ''
+          require'fidget'.setup({
+            notification = {
+              window = {
+                winblend = 0
+              },
+            },
+          })
           require("todo-comments").setup()
           local neogit = require('neogit')
           neogit.setup {}

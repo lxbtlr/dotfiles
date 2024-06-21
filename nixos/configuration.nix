@@ -16,6 +16,7 @@
     ./hardware-configuration.nix
 inputs.home-manager.nixosModules.home-manager
   ];
+
   nix.settings.experimental-features = ["nix-command" "flakes"];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;

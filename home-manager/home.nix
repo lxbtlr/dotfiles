@@ -5,7 +5,9 @@
   config,
   pkgs,
   ...
-}: {
+}:
+
+{
   imports = [
     # import other parts of home-manager config + other modules
     ./term
@@ -34,7 +36,6 @@
     username = "lxbtlr";
     homeDirectory = "/home/lxbtlr";
   };
-
   # TODO: make this a machine specific thing (for bigfin)
   # set cursor size and dpi for 4k monitor
   xresources.properties = {
