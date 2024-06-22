@@ -8,6 +8,7 @@
 }: {
   imports = [
     inputs.nixvim.homeManagerModules.nixvim
+    ./dashboard.nix
     ./bufferline.nix
     ./lualine.nix
     ./blankline.nix
@@ -32,7 +33,7 @@
         nvim-autopairs.enable = true;
         neo-tree.enable = true;
         treesitter.enable = true;
-        telescope.enable = true; 
+        telescope.enable = true;
         todo-comments.enable = true;
         #can add telescope options here if ya want with extraOptions.keymaps
         fidget.enable = true;
@@ -69,7 +70,13 @@
       coc-nvim
       coc-python
       coc-pyright
-
+      {
+        plugin = vim-autoformat;
+        config = "au BufWrite * :Autoformat
+                let g:autoformat_autoindent=0
+                let g:autoformat_retab = 0
+                let g:autoformat_remove_trailing_spaces = 1";
+      }
     ];
   };
 }
