@@ -12,7 +12,8 @@
 
     nixvim = {
         url = "github:nix-community/nixvim";
-        inputs.nixpkgs.follows = "nixpkgs";
+        # unfollowing nixpkgs for compatibility with bash lsp
+        #inputs.nixpkgs.follows = "nixpkgs";
     };
 
     home-manager = {
