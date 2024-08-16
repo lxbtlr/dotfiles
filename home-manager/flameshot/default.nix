@@ -4,14 +4,12 @@
   pkgs,
   ...
 }: {
-  programs.flameshot = {
+  services.flameshot = {
     enable = true;
-    settings = {
-      settings.General = {
-        showStartupLaunchMessage = false;
-        saveLastRegion = true;
-        startupLaunch = true;
-      };
+    settings.General = {
+      showStartupLaunchMessage = false;
+      saveLastRegion = true;
+      startupLaunch = true;
     };
   };
 }
