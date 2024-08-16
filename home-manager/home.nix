@@ -13,6 +13,7 @@
     ./tmux
     ./waybar
     ./stock_packages.nix
+    ./rofi.nix
     # inputs.nix-colors.homeManagerModules.default
   ];
 
@@ -37,7 +38,7 @@
   # TODO: make this a machine specific thing (for bigfin)
   # set cursor size and dpi for 4k monitor
   xresources.properties = {
-    "Xcursor.size" = 16;
+    "Xcursor.size" = 36;
     "Xft.dpi" = 172;
   };
 
@@ -47,7 +48,9 @@
     userEmail = "lxbtlr@pm.me";
   };
 
-  programs.home-manager.enable = true;
+  programs.home-manager = {
+    enable = true;
+  };
 
   home.stateVersion = "23.05";
 }

@@ -66,7 +66,8 @@
     wl-clipboard
     wl-color-picker
     waybar
-    rofi-wayland
+    #rofi.override {plugins = [rofi-calc rofi-emoji rofi-systemd];};
+    #rofi-wayland
 
     # archives
     zip

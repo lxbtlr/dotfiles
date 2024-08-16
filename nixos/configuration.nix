@@ -14,7 +14,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-inputs.home-manager.nixosModules.home-manager
+    inputs.home-manager.nixosModules.home-manager
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -23,12 +23,12 @@ inputs.home-manager.nixosModules.home-manager
   boot.loader.efi.canTouchEfiVariables = true;
 
   home-manager = {
-	extraSpecialArgs = { inherit inputs outputs; };
-users = {
-	lxbtlr = import ../home-manager/home.nix;
-};
-};
-
+    backupFileExtension = "backup";
+    extraSpecialArgs = {inherit inputs outputs;};
+    users = {
+      lxbtlr = import ../home-manager/home.nix;
+    };
+  };
 
   # TODO: move fonts to their own file
   fonts = {
@@ -90,7 +90,7 @@ users = {
   };
 
   nix.settings = {
-    substituters = ["https://hyprland.cachix.org"  "https://aseipp-nix-cache.global.ssl.fastly.net"  ];
+    substituters = ["https://hyprland.cachix.org" "https://aseipp-nix-cache.global.ssl.fastly.net"];
     trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
   };
 
@@ -138,7 +138,7 @@ users = {
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
+  #sound.enable = true;
   hardware = {
     pulseaudio.enable = false;
     bluetooth.enable = true;
