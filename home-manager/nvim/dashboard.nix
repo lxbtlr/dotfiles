@@ -1,6 +1,5 @@
 {
-
-programs.nixvim.plugins.alpha = {
+  programs.nixvim.plugins.alpha = {
     enable = true;
     theme = null;
     iconsEnabled = true;
@@ -29,29 +28,28 @@ programs.nixvim.plugins.alpha = {
           #"      ░        ░  ░   ░    ░ ░              "
           #"                                            "
           #"                                            "
-	        "                                   "
-	        "                                   "
-	        "                                   "
-	        "   ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣿⣶⣿⣦⣼⣆          "
-	        "    ⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦       "
-	        "          ⠈⢿⣿⣟⠦ ⣾⣿⣿⣷    ⠻⠿⢿⣿⣧⣄     "
-	        "           ⣸⣿⣿⢧ ⢻⠻⣿⣿⣷⣄⣀⠄⠢⣀⡀⠈⠙⠿⠄    "
-	        "          ⢠⣿⣿⣿⠈    ⣻⣿⣿⣿⣿⣿⣿⣿⣛⣳⣤⣀⣀   "
-	        "   ⢠⣧⣶⣥⡤⢄ ⣸⣿⣿⠘  ⢀⣴⣿⣿⡿⠛⣿⣿⣧⠈⢿⠿⠟⠛⠻⠿⠄  "
-	        "  ⣰⣿⣿⠛⠻⣿⣿⡦⢹⣿⣷   ⢊⣿⣿⡏  ⢸⣿⣿⡇ ⢀⣠⣄⣾⠄   "
-	        " ⣠⣿⠿⠛ ⢀⣿⣿⣷⠘⢿⣿⣦⡀ ⢸⢿⣿⣿⣄ ⣸⣿⣿⡇⣪⣿⡿⠿⣿⣷⡄  "
-	        " ⠙⠃   ⣼⣿⡟  ⠈⠻⣿⣿⣦⣌⡇⠻⣿⣿⣷⣿⣿⣿ ⣿⣿⡇ ⠛⠻⢷⣄ "
-	        "      ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆     "
-	        "       ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃     "
-	        "                                   "
-
+          "                                   "
+          "                                   "
+          "                                   "
+          "   ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣿⣶⣿⣦⣼⣆          "
+          "    ⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦       "
+          "          ⠈⢿⣿⣟⠦ ⣾⣿⣿⣷    ⠻⠿⢿⣿⣧⣄     "
+          "           ⣸⣿⣿⢧ ⢻⠻⣿⣿⣷⣄⣀⠄⠢⣀⡀⠈⠙⠿⠄    "
+          "          ⢠⣿⣿⣿⠈    ⣻⣿⣿⣿⣿⣿⣿⣿⣛⣳⣤⣀⣀   "
+          "   ⢠⣧⣶⣥⡤⢄ ⣸⣿⣿⠘  ⢀⣴⣿⣿⡿⠛⣿⣿⣧⠈⢿⠿⠟⠛⠻⠿⠄  "
+          "  ⣰⣿⣿⠛⠻⣿⣿⡦⢹⣿⣷   ⢊⣿⣿⡏  ⢸⣿⣿⡇ ⢀⣠⣄⣾⠄   "
+          " ⣠⣿⠿⠛ ⢀⣿⣿⣷⠘⢿⣿⣦⡀ ⢸⢿⣿⣿⣄ ⣸⣿⣿⡇⣪⣿⡿⠿⣿⣷⡄  "
+          " ⠙⠃   ⣼⣿⡟  ⠈⠻⣿⣿⣦⣌⡇⠻⣿⣿⣷⣿⣿⣿ ⣿⣿⡇ ⠛⠻⢷⣄ "
+          "      ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆     "
+          "       ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃     "
+          "                                   "
         ];
       }
       (padding 2)
       {
         type = "button";
         val = "  Find File";
-        on_press.raw = "require('telescope.builtin').find_files";
+        #on_press.raw = "require('telescope.builtin').find_files";
         opts = {
           # hl = "comment";
           keymap = [
@@ -77,7 +75,7 @@ programs.nixvim.plugins.alpha = {
       {
         type = "button";
         val = "  New File";
-        on_press.__raw = "function() vim.cmd[[ene]] end";
+        #on_press.__raw = "function() vim.cmd[[ene]] end";
         opts = {
           # hl = "comment";
           keymap = [
@@ -103,7 +101,7 @@ programs.nixvim.plugins.alpha = {
       {
         type = "button";
         val = "󰈚  Recent Files";
-        on_press.raw = "require('telescope.builtin').oldfiles";
+        #on_press.raw = "require('telescope.builtin').oldfiles";
         opts = {
           # hl = "comment";
           keymap = [
@@ -129,7 +127,7 @@ programs.nixvim.plugins.alpha = {
       {
         type = "button";
         val = "󰈭  Find Word";
-        on_press.raw = "require('telescope.builtin').live_grep";
+        #on_press.raw = "require('telescope.builtin').live_grep";
         opts = {
           # hl = "comment";
           keymap = [
@@ -155,7 +153,7 @@ programs.nixvim.plugins.alpha = {
       {
         type = "button";
         val = "  Restore Session";
-        on_press.raw = "require('persistence').load()";
+        #on_press.raw = "require('persistence').load()";
         opts = {
           # hl = "comment";
           keymap = [
@@ -181,7 +179,7 @@ programs.nixvim.plugins.alpha = {
       {
         type = "button";
         val = "  Quit Neovim";
-        on_press.__raw = "function() vim.cmd[[qa]] end";
+        #on_press.__raw = "function() vim.cmd[[qa]] end";
         opts = {
           # hl = "comment";
           keymap = [

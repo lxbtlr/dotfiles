@@ -11,7 +11,7 @@
     enable = true;
     clock24 = true;
     plugins = with pkgs.tmuxPlugins; [
-        # TODO: break out custom plugin configs into separate files
+      # TODO: break out custom plugin configs into separate files
       sensible
       yank
       sidebar
@@ -31,9 +31,10 @@
       {
         plugin = catppuccin;
         extraConfig = ''
-          set -g @catppuccin_window_right_separator "█ "
+          set -g @catppuccin_window_left_separator "█"
+          set -g @catppuccin_window_right_separator "█ "
           set -g @catppuccin_window_number_position "right"
-          set -g @catppuccin_window_middle_separator " | "
+          set -g @catppuccin_window_middle_separator " █"
 
           set -g @catppuccin_window_format_directory_text "#{pane_current_path}"
 
@@ -41,7 +42,7 @@
 
 
           set -g @catppuccin_window_current_fill "number"
-          set -g @catppuccin_window_current_text "#W"
+          set -g @catppuccin_window_current_text "#W |#P|"
 
           set -g @catppuccin_status_modules_right "directory user host session"
 

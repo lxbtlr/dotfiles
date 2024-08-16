@@ -22,6 +22,8 @@
       rebuild2 = "sudo nixos-rebuild switch --flake $(pwd)#lxbtlr";
       rebuild = "sudo nixos-rebuild switch --flake /home/lxbtlr/dotfiles/.#bigfin";
       #py = "nix-shell /home/lxbtlr/dotfiles/shell.nix";
+
+      flakeup = "nix flake update --flake /home/lxbtlr/dotfiles/.#bigfin";
       clear = "clear; neofetch";
       gc = "nix-collect-garbage -d";
       q = "qimgv";
