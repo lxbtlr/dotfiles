@@ -57,7 +57,6 @@
       emoji = ["Noto Color Emoji"];
     };
   };
-
   programs.hyprland = {
     enable = true;
     # nvidiaPatches = true;
@@ -71,7 +70,11 @@
     };
 
     systemPackages = with pkgs; [
+      # Add zen-browser from flake
+      inputs.zen-browser.packages."${system}".specific
+
       vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      devenv
       wget
       curl
       git
@@ -90,9 +93,14 @@
   };
 
   nix.settings = {
-    substituters = ["https://hyprland.cachix.org" "https://aseipp-nix-cache.global.ssl.fastly.net"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    trusted-users = ["root" "lxbtlr"];
+    substituters = ["https://devenv.cachix.org" "https://hyprland.cachix.org" "https://aseipp-nix-cache.global.ssl.fastly.net"];
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="];
   };
+  #nix.extraOptions = ''
+  #  extra-substituters = https://devenv.cachix.org;
+  #  extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=;
+  #'';
 
   networking.hostName = "bigfin"; # Define your hostname.
   #:networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -105,7 +113,7 @@
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = "America/New_York";
+  time.timeZone = "America/Chicago";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
