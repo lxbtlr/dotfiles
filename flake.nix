@@ -11,9 +11,9 @@
     # end of unused
 
     nixvim = {
-        url = "github:nix-community/nixvim";
-        # unfollowing nixpkgs for compatibility with bash lsp
-        #inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/nixvim";
+      # unfollowing nixpkgs for compatibility with bash lsp
+      #inputs.nixpkgs.follows = "nixpkgs";
     };
 
     home-manager = {
@@ -30,6 +30,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    zen-browser.url = "github:MarceColl/zen-browser-flake";
     # hyprland-plugins = {
     #   url = "github:hyprwm/hyprland-plugins";
     #   inputs.hyprland.follows = "hyprland";
