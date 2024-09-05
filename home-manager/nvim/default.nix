@@ -19,7 +19,7 @@
     #./git.nix
 
     ./lsp/lspsaga.nix
-    ./lsp/lsp.nix
+     ./lsp/lsp.nix
     ./lsp/fidget.nix
     ./lsp/cmp.nix
     ./lsp/conform.nix
@@ -43,6 +43,8 @@
       telescope.enable = true;
       todo-comments.enable = true;
       #can add telescope options here if ya want with extraOptions.keymaps
+
+      mini.enable = true;
       fidget.enable = true;
       neogit = {
         enable = true;

@@ -4,6 +4,7 @@
     lsp = {
       enable = true;
       servers = {
+        clangd = {enable = true;};
         lua-ls = {enable = true;};
         nil-ls = {enable = true;};
         marksman = {enable = true;};

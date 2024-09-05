@@ -8,6 +8,7 @@
 }: {
   imports = [
     # import other parts of home-manager config + other modules
+    ./direnv
     ./term
     ./nvim
     ./tmux
