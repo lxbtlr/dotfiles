@@ -13,6 +13,7 @@
   ];
   imports = [
     # Include the results of the hardware scan.
+    ./../../modules/nixos/fonts.nix
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.home-manager
   ];
@@ -26,37 +27,11 @@
     backupFileExtension = "backup";
     extraSpecialArgs = {inherit inputs outputs;};
     users = {
-      lxbtlr = import ../home-manager/home.nix;
+      # this is where we can add more hm-users / separate configs for user spaces
+      lxbtlr = import ../../home-manager/home.nix;
     };
   };
 
-  # TODO: move fonts to their own file
-  fonts = {
-    fontDir.enable = true;
-    enableDefaultPackages = false;
-    packages = with pkgs; [
-      material-icons
-      material-design-icons
-      victor-mono
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-      liberation_ttf
-      (nerdfonts.override {fonts = ["VictorMono" "RobotoMono" "JetBrainsMono" "Hack"];})
-      lexend
-      roboto
-      roboto-mono
-      jetbrains-mono
-      hack-font
-      manrope
-    ];
-    fontconfig.defaultFonts = {
-      serif = ["DejaVu Serif" "Noto Color Emoji"];
-      sansSerif = ["DejaVu Sans" "Noto Color Emoji"];
-      monospace = ["JetBrains Mono Medium Nerd Font Complete"];
-      emoji = ["Noto Color Emoji"];
-    };
-  };
   programs.hyprland = {
     enable = true;
     # nvidiaPatches = true;
