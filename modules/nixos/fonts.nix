@@ -1,4 +1,4 @@
-{pkgs}: {
+{pkgs, ...}: {
   # TODO: move fonts to their own file
   fonts = {
     fontDir.enable = true;

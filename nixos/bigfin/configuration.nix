@@ -13,8 +13,13 @@
   ];
   imports = [
     # Include the results of the hardware scan.
-    ./../../modules/nixos/fonts.nix
     ./hardware-configuration.nix
+    # import fonts
+    ./../../modules/nixos/fonts.nix
+    # import kde plasma5 settings
+    ./../../modules/nixos/plasma5.nix
+    # import hm flake
+    ./../../modules/home-manager/hyprland/default.nix
     inputs.home-manager.nixosModules.home-manager
   ];
 
@@ -32,12 +37,6 @@
     };
   };
 
-  programs.hyprland = {
-    enable = true;
-    # nvidiaPatches = true;
-    xwayland.enable = true;
-  };
-
   environment = {
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
@@ -53,13 +52,8 @@
       wget
       curl
       git
-      waybar
       dunst
-      hyprland
-      swww
       xdg-desktop-portal-gtk
-      xdg-desktop-portal-hyprland
-      xwayland
       libnotify
       gtk3
     ];
@@ -69,13 +63,9 @@
 
   nix.settings = {
     trusted-users = ["root" "lxbtlr"];
-    substituters = ["https://devenv.cachix.org" "https://hyprland.cachix.org" "https://aseipp-nix-cache.global.ssl.fastly.net"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="];
+    substituters = ["https://devenv.cachix.org" "https://aseipp-nix-cache.global.ssl.fastly.net"];
+    trusted-public-keys = ["devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="];
   };
-  #nix.extraOptions = ''
-  #  extra-substituters = https://devenv.cachix.org;
-  #  extra-trusted-public-keys = devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=;
-  #'';
 
   networking.hostName = "bigfin"; # Define your hostname.
   #:networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -107,11 +97,6 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";

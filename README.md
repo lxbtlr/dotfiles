@@ -21,21 +21,20 @@
 ./
  home-manager/
     - currently, adv configs for packages (themes, binds, etc), and stock packages
+    - ought to be where user specific configs live (home.nix?, imports from modules)
  modules/
      home-manager/
-        - currently unused, but ought to be where package configs are
+        - currently unused, but ought to be where package modules (and their confs) are
      nixos/
-        - currently unused, but ought to be where nixos modules are
+        - currently unused, but ought to be where nixos modules are (kde plasma, hyprland, etc)
  nixos/
-    - Currently where machine specs (config, hw-conf) are stored
+    - Currently where machine specs (config, hw-conf) are stored, imports from modules
  overlays/
     - unused, but for overlays (specific c toolchain etc)
  pkgs/
     - pkg import, may be worth using as a staging area for new flakes
  templates/
     - stores template .nix / project files that can easily be copied into another dir, should be generic
- users/
-    - unused, ought to be where user specific configs live (home.nix?)
  flake.lock*
  flake.nix*
  README.md
