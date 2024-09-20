@@ -15,9 +15,9 @@
     ./../../modules/home-manager/nvim
     ./../../modules/home-manager/tmux
     ./../../modules/home-manager/waybar
+    ./../../modules/home-manager/rofi
     # change this
     ./../../modules/home-manager/stock_packages.nix
-    ./../../modules/home-manager/rofi.nix
     # inputs.nix-colors.homeManagerModules.default
   ];
 
