@@ -5,6 +5,8 @@
 
     enableCompletion = true;
     bashrcExtra = ''
+      export DIRENV_LOG_FORMAT="$(printf "\033[2mdirenv: %%s\033[0m")"
+      eval "$(direnv hook bash)"
       export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
     '';
     # interactiveShellInit = (builtins.readFile ./bash/bashrc);
