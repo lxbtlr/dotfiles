@@ -3,6 +3,10 @@
 - add templates for different languages
   - add direnv templates too
 - change `rebuild` script so it appropriately chooses the correct hostname to rebuild on _any_ machine
+- add more keymaps to xremap
+    - [x] capslock -> ctrl
+    - [ ]
+- move xremap out of `cuttlefish/configuration.nix`
 
 # Notes to self:
 - When setting up a new machine:

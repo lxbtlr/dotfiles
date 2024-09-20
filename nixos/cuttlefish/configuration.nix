@@ -17,11 +17,15 @@
     # import fonts
     ./../../modules/nixos/fonts.nix
     # import kde plasma5 settings
-    ./../../modules/nixos/plasma5.nix
+    ./../../modules/nixos/plasma6.nix
     # import hm flake
     #./../../modules/home-manager/hyprland/default.nix
     inputs.home-manager.nixosModules.home-manager
   ];
+
+  hardware.uinput.enable = true;
+  users.groups.uinput.members = ["lxbtlr"];
+  users.groups.input.members = ["lxbtlr"];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   # Bootloader.
@@ -167,5 +171,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
+  system.stateVersion = "24.11"; # Did you read the comment?
 }

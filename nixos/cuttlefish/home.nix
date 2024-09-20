@@ -19,7 +19,26 @@
     # change this
     ./../../modules/home-manager/stock_packages.nix
     # inputs.nix-colors.homeManagerModules.default
+
+    # import proton mail wrapper
+    ../../modules/home-manager/protonmail.nix
+    # import xremap
+    inputs.xremap-flake.homeManagerModules.default
   ];
+
+  services.xremap = {
+    enable = true;
+    config = {
+      modmap = [
+        {
+          name = "main remaps";
+          remap = {
+            "CapsLock" = "ctrl_L";
+          };
+        }
+      ];
+    };
+  };
 
   nixpkgs = {
     # add overlays here

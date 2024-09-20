@@ -10,6 +10,8 @@
     nix-colors.url = "github:misterio77/nix-colors";
     # end of unused
 
+    xremap-flake.url = "github:xremap/nix-flake";
+
     nixvim = {
       url = "github:nix-community/nixvim";
       # unfollowing nixpkgs for compatibility with bash lsp
