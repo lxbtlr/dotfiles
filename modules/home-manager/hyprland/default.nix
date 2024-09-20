@@ -14,8 +14,32 @@
     xwayland.enable = true;
   };
   environment.systemPackages = with pkgs; [
-    hyprland
+    #hyprland-share-picker
+    #hyprland-protocols
+    hyprpicker
+    swayidle
+    swaylock
     xdg-desktop-portal-hyprland
+    hyprpaper
+    wofi
+    grim
+    xdg-utils
+    xdg-desktop-portal
+    xdg-desktop-portal-gtk
+    qt5.qtwayland
+    qt6.qmake
+    qt6.qtwayland
+    adwaita-qt
+    adwaita-qt6
+
+    # hyprland packages 2
+    swaybg
+    wlogout
+    wf-recorder
+    slurp
+    mako
+
+    hyprland
     xwayland
     #waybar
     swww

@@ -75,10 +75,17 @@
     # Lets begin the nixos configuration entrypoint
 
     nixosConfigurations = {
+      # add entry for cuttlefish
       bigfin = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         modules = [
-          ./nixos/configuration.nix
+          ./nixos/bigfin/configuration.nix
+        ];
+      };
+      cuttlefish = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs outputs;};
+        modules = [
+          ./nixos/cuttlefish/configuration.nix
         ];
       };
     };

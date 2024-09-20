@@ -33,7 +33,7 @@
     extraSpecialArgs = {inherit inputs outputs;};
     users = {
       # this is where we can add more hm-users / separate configs for user spaces
-      lxbtlr = import ../../home-manager/home.nix;
+      lxbtlr = import ./home.nix;
     };
   };
 
@@ -137,20 +137,6 @@
     ];
   };
 
-  nixpkgs = {
-    overlays = [
-      (self: super: {
-        waybar =
-          super.waybar.overrideAttrs
-          (oldAttrs: {
-            mesonFlags =
-              oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
-          });
-      })
-    ];
-  };
-
-  programs.kdeconnect.enable = true;
   # XDG portal
   xdg.portal = {
     enable = true;

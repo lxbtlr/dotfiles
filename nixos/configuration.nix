@@ -26,7 +26,7 @@
     backupFileExtension = "backup";
     extraSpecialArgs = {inherit inputs outputs;};
     users = {
-      lxbtlr = import ../home-manager/home.nix;
+      lxbtlr = import ../../home-manager/home.nix;
     };
   };
 
