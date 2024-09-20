@@ -20,8 +20,8 @@
     ./../../modules/home-manager/stock_packages.nix
     # inputs.nix-colors.homeManagerModules.default
 
-    # import proton mail wrapper
-    ../../modules/home-manager/protonmail.nix
+    # import proton mail wrapper -- not working
+    #../../modules/home-manager/protonmail.nix
     # import xremap
     inputs.xremap-flake.homeManagerModules.default
   ];
