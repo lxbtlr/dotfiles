@@ -5,6 +5,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     hardware.url = "github:nixos/nixos-hardware";
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     # unused ATM
     impermanence.url = "github:nix-community/impermanence";
     nix-colors.url = "github:misterio77/nix-colors";
@@ -45,6 +46,8 @@
     nixpkgs,
     home-manager,
     devenv,
+    hardware,
+    nixos-hardware,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -88,6 +91,8 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/cuttlefish/configuration.nix
+
+          nixos-hardware.nixosModules.framework-13-7040-amd
         ];
       };
     };

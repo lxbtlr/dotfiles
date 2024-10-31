@@ -10,6 +10,7 @@
         marksman = {enable = true;};
         pyright = {enable = true;};
         yamlls = {enable = true;};
+        verible = {enable = true;};
       };
       keymaps = {
         silent = true;

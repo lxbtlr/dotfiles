@@ -36,7 +36,8 @@
           set -g @catppuccin_window_number_position "right"
           set -g @catppuccin_window_middle_separator " █"
 
-          set -g @catppuccin_window_format_directory_text "#{pane_current_path}"
+          set -g @catppuccin_window_format_directory_text "#W"
+          # "#{pane_current_path}"
 
           set -g @catppuccin_window_default_fill "number"
 
@@ -95,7 +96,9 @@
       unbind w    #DEFAULT KEY: change current window interactively
 
       bind n command-prompt "rename-window '%%'"
-      bind w new-window -c "#{pane_current_path}"
+      #bind-key C new-window \; command-prompt -p "Name for this new window: " "rename-window '%%'"
+      # bind w new-window -c "#{pane_current_path}"
+      bind w new-window \; command-prompt -p "Name for this new window: " "rename-window '%%'"
 
       ## vim-esk window movement
       bind -n M-j previous-window

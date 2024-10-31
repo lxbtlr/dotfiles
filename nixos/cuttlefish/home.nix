@@ -14,6 +14,8 @@
     ./../../modules/home-manager/starship
     ./../../modules/home-manager/nvim
     ./../../modules/home-manager/tmux
+    # add sioyek config once created
+    ./../../modules/home-manager/sioyek
     #./../../modules/home-manager/waybar
     ./../../modules/home-manager/rofi
     # change this
@@ -25,7 +27,7 @@
     # import xremap
     inputs.xremap-flake.homeManagerModules.default
   ];
-
+  #TODO: move this to its own module
   services.xremap = {
     enable = true;
     config = {
@@ -39,7 +41,6 @@
       ];
     };
   };
-
   nixpkgs = {
     # add overlays here
     overlays = [
@@ -50,7 +51,7 @@
 
     config = {
       allowUnfree = true;
-      allowUnfreePredicate = _: true;
+      #allowUnfreePredicate = _: true;
     };
   };
 

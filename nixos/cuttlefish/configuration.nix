@@ -13,6 +13,7 @@
   ];
   imports = [
     # Include the results of the hardware scan.
+    #<nixos-hardware/framework/13-inch/7040-amd>
     ./hardware-configuration.nix
     # import fonts
     ./../../modules/nixos/fonts.nix
@@ -27,6 +28,15 @@
   users.groups.uinput.members = ["lxbtlr"];
   users.groups.input.members = ["lxbtlr"];
 
+  #services.envfs.enable = true;
+  #TODO: finger print reader -- testing
+  services.fprintd.enable = true;
+  services.power-profiles-daemon.enable = true;
+  #services.printing.drivers = [
+  #  pkgs.gutenprint
+  #  (writeTextDir "share/cups/model/Ricoh-IM_C4510-Postscript-Ricoh.ppd" (builtins.readFile ./Ricoh-IM_C4510-Postscript-Ricoh.ppd))
+  #];
+
   nix.settings.experimental-features = ["nix-command" "flakes"];
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -40,8 +50,9 @@
       lxbtlr = import ./home.nix;
     };
   };
-
+  nixpkgs.config.allowUnfree = true;
   environment = {
+    plasma6.excludePackages = [pkgs.kdePackages.baloo];
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
       WLR_NO_HARDWARE_CURSORS = "1";
@@ -107,7 +118,7 @@
     variant = "";
   };
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  #services.printing.enable = true;
 
   # Enable sound with pipewire.
   #sound.enable = true;
