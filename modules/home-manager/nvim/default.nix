@@ -17,6 +17,9 @@
     ./keybinds.nix
     ./sets.nix
     #./git.nix
+    #./git.nix
+    #./git.nix
+    #./git.nix
 
     ./lsp/lspsaga.nix
      ./lsp/lsp.nix
@@ -89,6 +92,15 @@
                 let g:autoformat_remove_trailing_spaces = 1";
       }
     ];
+    extraConfigVim = ''
+      " delete without yanking
+      nnoremap <leader>d "_d
+      vnoremap <leader>d "_d
+
+      " replace currently selected text with default register
+      " without yanking it
+      vnoremap <leader>p "_dP
+    '';
     extraConfigLua = ''
       require('telekasten').setup({
         home = vim.fn.expand("~/notes/"),

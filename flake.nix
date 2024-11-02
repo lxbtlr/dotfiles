@@ -5,6 +5,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     hardware.url = "github:nixos/nixos-hardware";
 
+    nix-ld.url = "github:Mic92/nix-ld";
+    # this line assume that you also have nixpkgs as an input
+    nix-ld.inputs.nixpkgs.follows = "nixpkgs";
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     # unused ATM
     impermanence.url = "github:nix-community/impermanence";
@@ -44,6 +48,7 @@
   outputs = {
     self,
     nixpkgs,
+    nix-ld,
     home-manager,
     devenv,
     hardware,
@@ -91,7 +96,11 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/cuttlefish/configuration.nix
+          nix-ld.nixosModules.nix-ld
 
+          # The module in this repository defines a new module under (programs.nix-ld.dev) instead of (programs.nix-ld)
+          # to not collide with the nixpkgs version.
+          { programs.nix-ld.dev.enable = true; }
           nixos-hardware.nixosModules.framework-13-7040-amd
         ];
       };

@@ -5,8 +5,8 @@
     #  lsp_fallback = true;
     #  timeout_ms = 500;
     #};
-    notifyOnError = true;
-    formattersByFt = {
+    settings.notify_on_error = true;
+    settings.formatters_by_ft = {
       liquidsoap = ["liquidsoap-prettier"];
       html = [["prettierd" "prettier"]];
       css = [["prettierd" "prettier"]];

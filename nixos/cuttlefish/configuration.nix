@@ -28,7 +28,8 @@
   users.groups.uinput.members = ["lxbtlr"];
   users.groups.input.members = ["lxbtlr"];
 
-  #services.envfs.enable = true;
+  #programs.nix-ld.enable = true;
+  services.envfs.enable = true;
   #TODO: finger print reader -- testing
   services.fprintd.enable = true;
   services.power-profiles-daemon.enable = true;
@@ -36,6 +37,12 @@
   #  pkgs.gutenprint
   #  (writeTextDir "share/cups/model/Ricoh-IM_C4510-Postscript-Ricoh.ppd" (builtins.readFile ./Ricoh-IM_C4510-Postscript-Ricoh.ppd))
   #];
+
+programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc
+    zlib
+    fuse3
+];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   # Bootloader.

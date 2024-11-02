@@ -1,26 +1,28 @@
 {
+  programs.nixvim.plugins.web-devicons.enable= true;
   programs.nixvim.plugins.lualine = {
+
     enable = true;
-    iconsEnabled = true;
-    alwaysDivideMiddle = true;
-    globalstatus = false;
-    ignoreFocus = ["neo-tree"];
-    extensions = ["fzf"];
-    theme = "auto";
-    componentSeparators = {
+    settings.options.icons_enabled = true;
+    settings.options.always_divide_middle = true;
+    settings.options.globalstatus = false;
+    settings.options.ignore_focus = ["neo-tree"];
+    settings.options.theme = "auto";
+    settings.options.component_separators = {
       left = "";
       right = "";
     };
-    sectionSeparators = {
+    settings.options.section_separators = {
       left = "";
       right = "";
     };
-    refresh = {
+    settings.options.refresh = {
       statusline = 1000;
       tabline = 1000;
       winbar = 1000;
     };
-    sections = {
+    settings.extensions = ["fzf"];
+    settings.sections = {
       lualine_a = ["mode"];
       lualine_b = [
         {
@@ -35,7 +37,7 @@
       lualine_y = ["progress"];
       lualine_z = ["loaction"];
     };
-    inactiveSections = {
+    settings.inactive_sections = {
       lualine_a = [];
       lualine_b = [];
       lualine_c = ["filename"];
