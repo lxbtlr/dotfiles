@@ -11,6 +11,8 @@
     '';
     # interactiveShellInit = (builtins.readFile ./bash/bashrc);
     shellAliases = {
+# make slack work like it should on wayland
+      slack = "NIXOS_OZONE_WL=1 slack";
       pls = "sudo";
       ls = "eza --icons -F -H --group-directories-first --git -1";
       whereami = "pwd";
@@ -19,12 +21,12 @@
       za = "zoxide add";
       zr = "zoxide remove";
       tx = "tmuxinator";
-      rebuild2 = "sudo nixos-rebuild switch --flake $(pwd)#lxbtlr";
-      rebuild = "sudo nixos-rebuild switch --flake /home/lxbtlr/dotfiles/.#bigfin";
+      #rebuild2 = "sudo nixos-rebuild switch --flake $(pwd)#lxbtlr";
+      #rebuild = "sudo nixos-rebuild switch --flake /home/lxbtlr/dotfiles/.#bigfin";
       #py = "nix-shell /home/lxbtlr/dotfiles/shell.nix";
 
       flakeup = "nix flake update --flake /home/lxbtlr/dotfiles/.#bigfin";
-      clear = "clear; neofetch";
+      clear = "clear";
       gc = "nix-collect-garbage -d";
       q = "qimgv";
       #mkjp="$$; cd $_";

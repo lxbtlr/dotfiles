@@ -36,6 +36,9 @@
           set -g @catppuccin_window_number_position "right"
           set -g @catppuccin_window_middle_separator " █"
 
+          set -g @catppuccin_window_default_text "#W" # use "#W" for application instead of directory
+          set -ogq @catppuccin_window_text " #W"
+
           set -g @catppuccin_window_format_directory_text "#W"
           #"#{pane_current_path}"
 
@@ -43,7 +46,7 @@
 
 
           set -g @catppuccin_window_current_fill "number"
-          set -g @catppuccin_window_current_text "#W |#P|"
+          #set -g @catppuccin_window_current_text "#W |#P|"
 
           set -g @catppuccin_status_modules_right "directory user host session"
 
@@ -74,8 +77,10 @@
       unbind h
       unbind %    # Split vertically
       unbind '"'  # Split horizontally
-      bind v split-window -h -c "#{pane_current_path}"
-      bind h split-window -v -c "#{pane_current_path}"
+      bind v split-window -h
+      #-c "#{pane_current_path}"
+      bind h split-window -v
+      #-c "#{pane_current_path}"
 
       # Move like Vim
 
@@ -96,7 +101,8 @@
       unbind w    #DEFAULT KEY: change current window interactively
 
       bind n command-prompt "rename-window '%%'"
-      bind w new-window #-c "#{pane_current_path}"
+      bind w new-window
+      #-c "#{pane_current_path}"
 
       ## vim-esk window movement
       bind -n M-j previous-window

@@ -20,6 +20,10 @@
     pandoc
     newsflash
 
+    poppler_utils
+
+    protonvpn-gui
+
     # av
     drawio
     sonic-pi
