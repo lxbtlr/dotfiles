@@ -19,6 +19,8 @@
     ./../../modules/nixos/fonts.nix
     # import kde plasma5 settings
     ./../../modules/nixos/plasma6.nix
+    # background
+    ./../../modules/home-manager/background
     # import hm flake
     #./../../modules/home-manager/hyprland/default.nix
     inputs.home-manager.nixosModules.home-manager
@@ -68,7 +70,8 @@ programs.nix-ld.libraries = with pkgs; [
     systemPackages = with pkgs; [
       # Add zen-browser from flake
       inputs.zen-browser.packages."${system}".specific
-
+      slack
+      #slack.override { nss = pkgs.nss_3_44; }
       vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
       devenv
       wget
@@ -78,6 +81,7 @@ programs.nix-ld.libraries = with pkgs; [
       xdg-desktop-portal-gtk
       libnotify
       gtk3
+
     ];
 
     variables.EDITOR = "nvim";
@@ -134,6 +138,7 @@ programs.nix-ld.libraries = with pkgs; [
     bluetooth.enable = true;
   };
   security.rtkit.enable = true;
+  security.protectKernelImage = false;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
