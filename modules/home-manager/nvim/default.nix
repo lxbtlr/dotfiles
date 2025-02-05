@@ -46,6 +46,18 @@
       telescope.enable = true;
       todo-comments.enable = true;
       #can add telescope options here if ya want with extraOptions.keymaps
+      vimtex = {
+        enable = true;
+        settings = {
+          compiler_method = "pdflatex";
+          view_method = "sioyek";
+          quickfix = 0;
+          tex_conceal = "abdmg";
+        };
+        texlivePackage = null;
+      };
+
+
 
       mini.enable = true;
       fidget.enable = true;
@@ -89,13 +101,17 @@
         config = "au BufWrite * :Autoformat
                 let g:autoformat_autoindent=0
                 let g:autoformat_retab = 0
-                let g:autoformat_remove_trailing_spaces = 1";
+                let g:autoformat_remove_trailing_spaces = 0";
       }
     ];
     extraConfigVim = ''
       " delete without yanking
       nnoremap <leader>d "_d
       vnoremap <leader>d "_d
+
+      set foldmethod=manual
+      nnoremap <cr> za
+      vnoremap <cr> za
 
       " replace currently selected text with default register
       " without yanking it

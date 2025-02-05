@@ -6,7 +6,7 @@ pkgs,
 }: {
   programs.kitty = {
     enable = true;
-    theme = "Tokyo Night";
+    themeFile = "tokyo_night_moon";
     settings = {
       window_border_width = -0;
       draw_minimal_borders = "no";

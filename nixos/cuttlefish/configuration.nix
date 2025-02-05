@@ -81,6 +81,7 @@ programs.nix-ld.libraries = with pkgs; [
       xdg-desktop-portal-gtk
       libnotify
       gtk3
+      texliveFull
 
     ];
 

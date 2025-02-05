@@ -14,12 +14,15 @@
     ./../../modules/home-manager/starship
     ./../../modules/home-manager/nvim
     ./../../modules/home-manager/tmux
+    # notification system
+    ./../../modules/home-manager/mako
     # add sioyek config once created
     ./../../modules/home-manager/sioyek
     #./../../modules/home-manager/waybar
     ./../../modules/home-manager/rofi
     # change this
     ./../../modules/home-manager/stock_packages.nix
+    #./../../modules/home-manager/texlive.nix
     # inputs.nix-colors.homeManagerModules.default
 
     # import proton mail wrapper -- not working
@@ -35,7 +38,8 @@
         {
           name = "main remaps";
           remap = {
-            "CapsLock" = "ctrl_L";
+            "CapsLock" = "ctrl_R";
+            #"CapsLock" = "ctrl";
           };
         }
       ];
