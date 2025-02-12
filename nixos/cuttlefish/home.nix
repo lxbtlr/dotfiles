@@ -74,6 +74,9 @@
     enable = true;
     userName = "Alex Butler";
     userEmail = "lxbtlr@pm.me";
+    configExtra = {
+      init.defaultBranch = "main";
+    };
   };
 
   programs.home-manager = {
