@@ -89,6 +89,7 @@ programs.nix-ld.libraries = with pkgs; [
   };
 
   nix.settings = {
+    auto-optimise-store = true; # let the gc run automagically
     trusted-users = ["root" "lxbtlr"];
     substituters = ["https://devenv.cachix.org" "https://aseipp-nix-cache.global.ssl.fastly.net"];
     trusted-public-keys = ["devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="];
