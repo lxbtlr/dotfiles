@@ -46,8 +46,11 @@
 
 
           set -g @catppuccin_window_current_fill "number"
-          #set -g @catppuccin_window_current_text "#W |#P|"
+          set -g @catppuccin_window_current_text "#W"
 
+
+          #set -ag status-right "#{E:@catppuccin_status_uptime}"
+          
           set -g @catppuccin_status_modules_right "directory user host session"
 
           set -g @catppuccin_status_left_separator "█"

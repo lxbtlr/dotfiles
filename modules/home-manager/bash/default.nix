@@ -21,11 +21,17 @@
       za = "zoxide add";
       zr = "zoxide remove";
       tx = "tmuxinator";
+
+      # NOTE: tmuxinator envs to jump into
+      jumpbarrier = "tmuxinator jumpbarrier";
+      quantum = "tmuxinator qcs";
+      cronus = "tmuxinator qcs";
+
       #rebuild2 = "sudo nixos-rebuild switch --flake $(pwd)#lxbtlr";
       #rebuild = "sudo nixos-rebuild switch --flake /home/lxbtlr/dotfiles/.#bigfin";
       #py = "nix-shell /home/lxbtlr/dotfiles/shell.nix";
 
-      flakeup = "nix flake update --flake /home/lxbtlr/dotfiles/.#bigfin";
+      #flakeup = "nix flake update --flake /home/lxbtlr/dotfiles/.#bigfin";
       clear = "clear";
       gc = "nix-collect-garbage -d";
       q = "qimgv";

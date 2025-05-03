@@ -9,7 +9,9 @@
 }: {
   home.packages = with pkgs; [
     marksman
-
+  
+    firewalld
+    libvirt
     # notes & reading
     obsidian
     tmuxinator

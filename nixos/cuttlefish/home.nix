@@ -21,6 +21,7 @@
     #./../../modules/home-manager/waybar
     ./../../modules/home-manager/rofi
     # change this
+    ./../../modules/home-manager/vms
     ./../../modules/home-manager/stock_packages.nix
     #./../../modules/home-manager/texlive.nix
     # inputs.nix-colors.homeManagerModules.default
@@ -59,6 +60,14 @@
     };
   };
 
+dconf.settings = {
+  "org/virt-manager/virt-manager/connections" = {
+    autoconnect = ["qemu:///system"];
+    uris = ["qemu:///system"];
+  };
+};
+
+
   home = {
     username = "lxbtlr";
     homeDirectory = "/home/lxbtlr";
@@ -74,7 +83,7 @@
     enable = true;
     userName = "Alex Butler";
     userEmail = "lxbtlr@pm.me";
-    configExtra = {
+    extraConfig = {
       init.defaultBranch = "main";
     };
   };
