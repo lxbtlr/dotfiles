@@ -16,6 +16,12 @@
     ./../../modules/home-manager/tmux
     ./../../modules/home-manager/waybar
     ./../../modules/home-manager/rofi
+
+    # notification system
+    ./../../modules/home-manager/mako
+    # add sioyek config once created
+    ./../../modules/home-manager/sioyek
+
     # change this
     ./../../modules/home-manager/stock_packages.nix
     # inputs.nix-colors.homeManagerModules.default

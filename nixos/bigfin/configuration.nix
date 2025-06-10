@@ -45,7 +45,7 @@
 
     systemPackages = with pkgs; [
       # Add zen-browser from flake
-      inputs.zen-browser.packages."${system}".specific
+      inputs.zen-browser.packages."${system}".default
 
       vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
       devenv
@@ -62,6 +62,7 @@
   };
 
   nix.settings = {
+    auto-optimise-store = true; # let the gc run automagically
     trusted-users = ["root" "lxbtlr"];
     substituters = ["https://devenv.cachix.org" "https://aseipp-nix-cache.global.ssl.fastly.net"];
     trusted-public-keys = ["devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="];
@@ -98,6 +99,7 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   # Configure keymap in X11
+  services.touchegg.enable = true;
   services.xserver.xkb = {
     layout = "us";
     variant = "";
