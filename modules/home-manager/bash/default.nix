@@ -22,6 +22,10 @@
       zr = "zoxide remove";
       tx = "tmuxinator";
 
+      intel = "less +34266g ~/Documents/intel_arch_x86.pdf";
+      amd = "less +68030g ~/Documents/amd64_1_2_3_4_5.pdf";
+      arm = "less +101645g ~/Documents/armv8.pdf";
+
       # NOTE: tmuxinator envs to jump into
       jumpbarrier = "tmuxinator jumpbarrier";
       quantum = "tmuxinator qcs";

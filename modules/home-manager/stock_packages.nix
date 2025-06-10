@@ -9,7 +9,10 @@
 }: {
   home.packages = with pkgs; [
     marksman
-  
+
+    #music
+    tidal-hifi
+
     firewalld
     libvirt
     # notes & reading
@@ -42,11 +45,6 @@
     zstd
 
     # meetings / comms
-    zoom-us
-    #webex
-    #rustdesk
-    discordo
-    discord
     telegram-desktop
 
     # langs

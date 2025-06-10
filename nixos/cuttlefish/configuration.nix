@@ -33,18 +33,33 @@
   #programs.nix-ld.enable = true;
   services.envfs.enable = true;
   #TODO: finger print reader -- testing
-  services.fprintd.enable = true;
-  services.power-profiles-daemon.enable = true;
+  services.fprintd.enable = false;
+  services.power-profiles-daemon.enable = false;
   #services.printing.drivers = [
   #  pkgs.gutenprint
   #  (writeTextDir "share/cups/model/Ricoh-IM_C4510-Postscript-Ricoh.ppd" (builtins.readFile ./Ricoh-IM_C4510-Postscript-Ricoh.ppd))
   #];
+  #programs.ssh = {forwardX11 = true;};
+  programs.nix-ld.libraries = with pkgs; [
+      stdenv.cc.cc
+      zlib
+      fuse3
+  ];
 
-programs.nix-ld.libraries = with pkgs; [
-    stdenv.cc.cc
-    zlib
-    fuse3
-];
+  users.groups.libvirtd.members = ["lxbtlr" "root"];
+
+  virtualisation.libvirtd.enable = true;
+  
+  virtualisation.spiceUSBRedirection.enable = true;
+
+  #home.packages = with pkgs; [
+  #programs.virt-manager = {
+  #  enable = true;
+  #};
+
+
+  programs.virt-manager.enable = true;
+
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   # Bootloader.
@@ -82,6 +97,7 @@ programs.nix-ld.libraries = with pkgs; [
       libnotify
       gtk3
       texliveFull
+      qemu
 
     ];
 
