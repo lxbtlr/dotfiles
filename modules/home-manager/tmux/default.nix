@@ -28,46 +28,47 @@
           set -g @thumbs-key F
         '';
       }
-      {
-        plugin = catppuccin;
-        extraConfig = ''
-          set -g @catppuccin_window_left_separator "█"
-          set -g @catppuccin_window_right_separator "█ "
-          set -g @catppuccin_window_number_position "right"
-          set -g @catppuccin_window_middle_separator " █"
+      #{
+      #  plugin = catppuccin;
+      #  extraConfig = ''
+      #    set -g @catppuccin_flavor "mocha"
 
-          set -g @catppuccin_window_default_text "#W" # use "#W" for application instead of directory
-          set -ogq @catppuccin_window_text " #W"
+      #    set -g @catppuccin_window_default_text "#W" # use "#W" for application instead of directory
+      #    set -g @catppuccin_window_format_directory_text "#W"
+      #    set -g @catppuccin_window_default_fill "number"
+      #    set -g @catppuccin_window_current_text "#W"
+      #    set -ogq @catppuccin_window_text " #W"
+      #   
 
-          set -g @catppuccin_window_format_directory_text "#W"
-          #"#{pane_current_path}"
-
-          set -g @catppuccin_window_default_fill "number"
-
-
-          set -g @catppuccin_window_current_fill "number"
-          set -g @catppuccin_window_current_text "#W"
+      #    set -g @catppuccin_window_left_separator "█"
+      #    set -g @catppuccin_window_right_separator "█ "
+      #    set -g @catppuccin_window_number_position "right"
+      #    set -g @catppuccin_window_middle_separator " █"
 
 
-          #set -ag status-right "#{E:@catppuccin_status_uptime}"
-          
-          set -g @catppuccin_status_modules_right "directory user host session"
+      #    set -g @catppuccin_window_current_fill "number"
 
-          set -g @catppuccin_status_left_separator "█"
-          set -g @catppuccin_status_right_separator "█"
+      #    #set -ag status-right "#{E:@catppuccin_status_uptime}"
+      #    
+      #    set -g @catppuccin_status_modules_right "directory user host session"
 
-          set -g @catppuccin_date_time_text "%Y-%m-%d %H:%M:%S"
-        '';
-      }
+      #    set -g @catppuccin_status_left_separator "█"
+      #    set -g @catppuccin_status_right_separator "█"
+
+      #    set -g @catppuccin_date_time_text "%Y-%m-%d %H:%M:%S"
+      #  '';
+      #}
     ];
     extraConfig = ''
 
       #set-option -g status-left ' #[fg=white]#P #S  #W  #[fg=white] '
-      #set-option -g status-right ' ' #'#H #[fg=black]%I:%M #[fg=black]%m.%d.%Y'
+      set-option -g status-right ' ' #'#H #[fg=white]%I:%M #[fg=white]%m.%d.%Y'
 
       set-option -g pane-active-border-style fg=blue
-      set-option -g status-position top
+      set-option -g status-position bottom
       set -g default-terminal "screen-256color"
+
+      set -g status-left-length 20
 
       # Set Better default prefix
       unbind C-b
@@ -123,7 +124,6 @@
 
       # Fix NVIM  / tmux cursor problem
       set -g -a terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'
-
     '';
   };
 }
