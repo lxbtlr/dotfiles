@@ -5,11 +5,15 @@
 
     enableCompletion = true;
     bashrcExtra = ''
+      export OPENROUTER_API_KEY=$(cat ~/dotfiles/modules/home-manager/bash/openrouter.secret)
       export DIRENV_LOG_FORMAT="$(printf "\033[2mdirenv: %%s\033[0m")"
       eval "$(direnv hook bash)"
       export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
     '';
     # interactiveShellInit = (builtins.readFile ./bash/bashrc);
+    sessionVariables = {
+      EDITOR = "nvim";  
+    };
     shellAliases = {
 # make slack work like it should on wayland
       slack = "NIXOS_OZONE_WL=1 slack";
@@ -22,6 +26,8 @@
       zr = "zoxide remove";
       tx = "tmuxinator";
 
+      rst_nw = "pls modprobe -r mt7921e && pls modprobe mt7921e";
+
       intel = "less +34266g ~/Documents/intel_arch_x86.pdf";
       amd = "less +68030g ~/Documents/amd64_1_2_3_4_5.pdf";
       arm = "less +101645g ~/Documents/armv8.pdf";
@@ -30,12 +36,14 @@
       jumpbarrier = "tmuxinator jumpbarrier";
       quantum = "tmuxinator qcs";
       cronus = "tmuxinator qcs";
+      notebook = "ssh -L 8080:localhost:8080 dubliner";
 
       #rebuild2 = "sudo nixos-rebuild switch --flake $(pwd)#lxbtlr";
       #rebuild = "sudo nixos-rebuild switch --flake /home/lxbtlr/dotfiles/.#bigfin";
       #py = "nix-shell /home/lxbtlr/dotfiles/shell.nix";
 
       #flakeup = "nix flake update --flake /home/lxbtlr/dotfiles/.#bigfin";
+
       clear = "clear";
       gc = "nix-collect-garbage -d";
       q = "qimgv";
