@@ -7,7 +7,7 @@
   config,
   pkgs,
   ...
-}: {
+}:{
   nix.nixPath = [
     "nixpkgs=${pkgs.path}"
   ];
@@ -85,6 +85,8 @@
     systemPackages = with pkgs; [
       # Add zen-browser from flake
       inputs.zen-browser.packages."${system}".default
+
+      inputs.quickshell.packages."${system}".default
       slack
       #slack.override { nss = pkgs.nss_3_44; }
       vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
@@ -98,7 +100,7 @@
       gtk3
       texliveFull
       qemu
-
+      #(import ./../../pkgs/ask.nix) #todo: fix
     ];
 
     variables.EDITOR = "nvim";
@@ -120,6 +122,9 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.networkmanager.wifi.powersave = false;
+
+  networking.networkmanager.wifi.backend = "iwd";
 
   # Set your time zone.
   time.timeZone = "America/Chicago";
@@ -152,11 +157,11 @@
   # Enable sound with pipewire.
   #sound.enable = true;
   hardware = {
-    pulseaudio.enable = false;
     bluetooth.enable = true;
   };
   security.rtkit.enable = true;
   security.protectKernelImage = false;
+  services.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
     alsa.enable = true;

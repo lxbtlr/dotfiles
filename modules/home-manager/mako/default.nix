@@ -1,8 +1,10 @@
 {pkgs, ...}: {
   services.mako = {
     enable = true;
-    backgroundColor = "#222436";
-    borderColor = "#1e1e2e";
+    settings = {
+      background-color = "#222436";
+      border-color = "#1e1e2e";
+    };
 };
 
 }

@@ -11,7 +11,11 @@
       noto-fonts-cjk-sans
       noto-fonts-emoji
       liberation_ttf
-      (nerdfonts.override {fonts = ["VictorMono" "RobotoMono" "JetBrainsMono" "Hack"];})
+      nerd-fonts.victor-mono 
+      nerd-fonts.roboto-mono
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.hack
+      #(nerdfonts.override {fonts = ["VictorMono" "RobotoMono" "JetBrainsMono" "Hack"];})
       lexend
       roboto
       roboto-mono

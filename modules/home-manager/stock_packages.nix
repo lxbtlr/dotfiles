@@ -19,6 +19,8 @@
     #photo editor (FOSS lightroom)
     darktable
 
+    #gemini-cli
+
     #music
     tidal-hifi
 
@@ -59,7 +61,7 @@
     # langs
     devenv
     processing
-    gcc9 # C compiler
+    #gcc9 # C compiler
 
     nodejs
 
@@ -101,7 +103,7 @@
 
     # misc & utils
     ocs-url
-    libsForQt5.krdc
+    #libsForQt5.krdc
     cowsay
     gsettings-desktop-schemas
     neofetch
