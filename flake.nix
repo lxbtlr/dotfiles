@@ -5,9 +5,9 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     hardware.url = "github:nixos/nixos-hardware";
 
-    nix-ld.url = "github:Mic92/nix-ld";
+    #nix-ld.url = "github:Mic92/nix-ld";
     # this line assume that you also have nixpkgs as an input
-    nix-ld.inputs.nixpkgs.follows = "nixpkgs";
+    #nix-ld.inputs.nixpkgs.follows = "nixpkgs";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     # unused ATM
@@ -37,18 +37,26 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    zen-browser.url ="github:0xc000022070/zen-browser-flake"; # OLD: "github:MarceColl/zen-browser-flake";
+    zen-browser.url = "github:0xc000022070/zen-browser-flake"; # OLD: "github:MarceColl/zen-browser-flake";
     # hyprland-plugins = {
     #   url = "github:hyprwm/hyprland-plugins";
     #   inputs.hyprland.follows = "hyprland";
     # };
+    quickshell = {
+      # add ?ref=<tag> to track a tag
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+
+      # THIS IS IMPORTANT
+      # Mismatched system dependencies will lead to crashes and other issues.
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     devenv.url = "github:cachix/devenv";
   };
   outputs = {
     self,
     nixpkgs,
-    nix-ld,
+    #nix-ld,
     home-manager,
     devenv,
     hardware,
@@ -96,11 +104,10 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/cuttlefish/configuration.nix
-          nix-ld.nixosModules.nix-ld
-
+          #nix-ld.nixosModules.nix-ld
           # The module in this repository defines a new module under (programs.nix-ld.dev) instead of (programs.nix-ld)
           # to not collide with the nixpkgs version.
-          { programs.nix-ld.dev.enable = true; }
+          #{ programs.nix-ld.dev.enable = true; }
           nixos-hardware.nixosModules.framework-13-7040-amd
         ];
       };

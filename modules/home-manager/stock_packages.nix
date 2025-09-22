@@ -10,6 +10,15 @@
   home.packages = with pkgs; [
     marksman
 
+    # qt
+    libsForQt5.qt5.qtsvg         #: support for SVG image loading (bundled with most packages)
+    libsForQt5.qt5.qtimageformats# : support for WEBP images as well as some less common ones
+    libsForQt5.qt5.qtmultimedia  # : support for playing videos, audio, etc
+    kdePackages.qt5compat     # : extra visual effects, notably gaussian blur. MultiEffect is usually preferable
+
+    #photo editor (FOSS lightroom)
+    darktable
+
     #music
     tidal-hifi
 
