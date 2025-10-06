@@ -96,6 +96,7 @@
           echo "'$1' is not a valid file"
         fi
       }
+      export _ZO_DOCTOR=0
       eval "$(direnv hook bash)"
       eval "$(zoxide init bash)"
       eval "$(starship init bash)"
