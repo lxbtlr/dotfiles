@@ -22,10 +22,16 @@
       #    set -g @fingers-key F
       #  '';
       #}
+      #{
+      #  plugin = tmux-thumbs;
+      #  extraConfig = ''
+      #    set -g @thumbs-key F
+      #  '';
+      #}
       {
-        plugin = tmux-thumbs;
+        plugin = tmux-fzf;
         extraConfig = ''
-          set -g @thumbs-key F
+          set -g @tmux-fzf F
         '';
       }
       #{
