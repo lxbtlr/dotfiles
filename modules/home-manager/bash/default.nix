@@ -25,6 +25,7 @@
       za = "zoxide add";
       zr = "zoxide remove";
       tx = "tmuxinator";
+      ngit = "nvim +Neogit";
 
       rst_nw = "pls modprobe -r mt7921e && pls modprobe mt7921e";
 
@@ -37,17 +38,14 @@
       quantum = "tmuxinator qcs";
       cronus = "tmuxinator qcs";
       notebook = "ssh -L 8080:localhost:8080 dubliner";
-
-      #rebuild2 = "sudo nixos-rebuild switch --flake $(pwd)#lxbtlr";
-      #rebuild = "sudo nixos-rebuild switch --flake /home/lxbtlr/dotfiles/.#bigfin";
-      #py = "nix-shell /home/lxbtlr/dotfiles/shell.nix";
-
-      #flakeup = "nix flake update --flake /home/lxbtlr/dotfiles/.#bigfin";
+      
+      #NOTE: this should only work in dotfiles repo for now, consider adding a env var for the dotfile loc
+      rebuild="sudo nixos-rebuild switch --flake .#$(hostname) --option eval-cache false --show-trace";
 
       clear = "clear";
       gc = "nix-collect-garbage -d";
       q = "qimgv";
-      #mkjp="$$; cd $_";
+
       hist = "history | fzf --tac";
       #TODO: fix
       #repro="sudo nixos-rebuild switch -I nixos-config=configuration.nix#lxbtlr";
