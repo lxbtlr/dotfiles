@@ -18,8 +18,8 @@
 
     #photo editor (FOSS lightroom)
     darktable
-
-    #gemini-cli
+    
+    gemini-cli
 
     #music
     tidal-hifi
@@ -47,6 +47,9 @@
     qimgv
     ffmpeg_6
     ardour
+
+    zoom
+
 
     # data
     visidata
