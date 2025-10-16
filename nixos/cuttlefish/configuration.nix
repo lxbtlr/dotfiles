@@ -34,6 +34,7 @@
   services.envfs.enable = true;
   #TODO: finger print reader -- testing
   services.fprintd.enable = false;
+  services.fwupd.enable = true; 
   services.power-profiles-daemon.enable = false;
   #services.printing.drivers = [
   #  pkgs.gutenprint
@@ -124,7 +125,7 @@
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = false;
 
-  networking.networkmanager.wifi.backend = "iwd";
+  #networking.networkmanager.wifi.backend = "iwd";
 
   # Set your time zone.
   time.timeZone = "America/Chicago";
