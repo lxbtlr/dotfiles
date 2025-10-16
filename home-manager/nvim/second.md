@@ -1,2 +1,0 @@
-# Second note
-parent: [[second]]
