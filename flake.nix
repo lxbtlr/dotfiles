@@ -22,7 +22,7 @@
       # unfollowing nixpkgs for compatibility with bash lsp
       #inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    claude-code.url = "github:sadjow/claude-code-nix";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,6 +34,11 @@
 
     hyprwn-contrib = {
       url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    kwin-effects-forceblur = {
+      url = "github:taj-ny/kwin-effects-forceblur";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -58,6 +63,7 @@
     nixpkgs,
     #nix-ld,
     home-manager,
+    claude-code,
     devenv,
     hardware,
     nixos-hardware,
@@ -82,8 +88,7 @@
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
     # custom packages and modifications, exported as overlays
-    overlays = import ./overlays {inherit inputs;};
-
+    #overlays = import ./overlays {inherit inputs;}; #// claude-code.overlays.default;
     # reusable nixos modules
     nixosModules = import ./modules/nixos;
 
@@ -104,6 +109,9 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/cuttlefish/configuration.nix
+          {
+            nixpkgs.overlays = [claude-code.overlays.default];
+          }
           #nix-ld.nixosModules.nix-ld
           # The module in this repository defines a new module under (programs.nix-ld.dev) instead of (programs.nix-ld)
           # to not collide with the nixpkgs version.
