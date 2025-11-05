@@ -68,6 +68,8 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   home-manager = {
+    #useGlobalPkgs = true;
+    #useUserPackages = true;
     backupFileExtension = "backup";
     extraSpecialArgs = {inherit inputs outputs;};
     users = {
@@ -86,11 +88,12 @@
     systemPackages = with pkgs; [
       # Add zen-browser from flake
       inputs.zen-browser.packages."${system}".default
-
+      inputs.kwin-effects-forceblur.packages.${pkgs.system}.default # Wayland
       inputs.quickshell.packages."${system}".default
       slack
       #slack.override { nss = pkgs.nss_3_44; }
       vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+      claude-code
       devenv
       wget
       curl
