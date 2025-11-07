@@ -72,7 +72,7 @@
 
       set-option -g pane-active-border-style fg=blue
       set-option -g status-position bottom
-      set -g default-terminal "screen-256color"
+      set -g default-terminal "xterm-256color"
 
       set -g status-left-length 20
 

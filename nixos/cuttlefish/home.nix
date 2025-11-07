@@ -16,6 +16,7 @@
     ./../../modules/home-manager/starship
     ./../../modules/home-manager/nvim
     ./../../modules/home-manager/tmux
+    ./../../modules/home-manager/ghostty
     # notification system
     ./../../modules/home-manager/mako
     # add sioyek config once created
