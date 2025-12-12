@@ -1,14 +1,60 @@
-{
+let
+
+cmp-pState = true;
+
+
+in {
   programs.nixvim = {
   plugins = {
-    cmp-emoji = {enable = true;};
-    cmp-nvim-lsp = {enable = true;}; # lsp
-    cmp-buffer = {enable = true;};
-    cmp-path = {enable = true;}; # file system paths
-    cmp_luasnip = {enable = true;}; # snippets
+    
+    blink-cmp = {
+      enable = true;
+      settings = {
+        appearance = {
+          nerd_font_variant = "normal";
+          use_nvim_cmp_as_default = true;
+        };
+        completion = {
+          accept = {
+            auto_brackets = {
+              enabled = true;
+              semantic_token_resolution = {
+                enabled = false;
+              };
+            };
+          };
+          documentation = {
+            auto_show = true;
+          };
+        };
+        keymap = {
+          preset = "super-tab";
+        };
+        signature = {
+          enabled = true;
+        };
+        sources = {
+          cmdline = [ ];
+          providers = {
+            buffer = {
+              score_offset = -7;
+            };
+            lsp = {
+              fallbacks = [ ];
+            };
+          };
+        };
+      };
+    };
+    
+    cmp-emoji = {enable = cmp-pState;};
+    cmp-nvim-lsp = {enable = cmp-pState;}; # lsp
+    cmp-buffer = {enable = cmp-pState;};
+    cmp-path = {enable = cmp-pState;}; # file system paths
+    cmp_luasnip = {enable = cmp-pState;}; # snippets
     cmp-cmdline = {enable = false;}; # autocomplete for cmdline
     cmp = {
-      enable = true;
+      enable = cmp-pState;
       settings = {
         autoEnableSources = true;
         experimental = {ghost_text = true;};
@@ -43,7 +89,7 @@
         };
 
         mapping = {
-          "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+          #"<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
           "<C-j>" = "cmp.mapping.select_next_item()";
           "<C-k>" = "cmp.mapping.select_prev_item()";
           "<C-e>" = "cmp.mapping.abort()";
@@ -59,7 +105,7 @@
     extraConfigLua = ''
 require'cmp'.setup {
   sources = {
-    { name = 'nvim_lsp' }
+    { name = 'nvim_lsp' },
   }
 }
 

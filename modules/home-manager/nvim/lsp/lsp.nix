@@ -7,12 +7,12 @@
         clangd = {enable = true;};
         lua_ls = {enable = true;};
         nil_ls = {enable = true;};
-        marksman = {enable = true;};
+        marksman = {enable = false;};
         pyright = {enable = true;};
         yamlls = {enable = true;};
       };
       keymaps = {
-        silent = true;
+        silent = false;#true;
         lspBuf = {
           gd = {
             action = "definition";

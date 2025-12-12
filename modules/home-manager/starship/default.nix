@@ -33,8 +33,7 @@ with builtins; let
   promptFormat = concatStrings (map (s: "\$${s}") promptOrder);
   modulesSources = readDir "${starshipPackage.src}/src/modules";
   enabledModules = disableModules false promptOrder; # <== enabled all modules used in the prompt are enabled
-  disabledModules = pipe modulesSources [
-    # <== from starship's sources...
+  disabledModules = pipe modulesSources [# <== from starship's sources...
     (filterAttrs isRustFile) # <== keep only Rust files...
     attrNames # <== get the filenames...
     (map (removeSuffix ".rs")) # <== remove Rust source extension...
@@ -48,7 +47,7 @@ in {
     enableBashIntegration = true;
     settings = mergeAllAttrSets [
       enabledModules
-      disabledModules
+      #disabledModules
       {
         format = promptFormat;
         directory = {
@@ -72,7 +71,7 @@ in {
           style_root = "bg:white bold fg:black";
           style_user = "fg:white bold bg:black";
           disabled = true;
-          show_always = true;
+          #show_always = true;
         };
       }
     ];

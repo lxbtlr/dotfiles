@@ -15,14 +15,14 @@
       };
       diagnostic = {
         borderFollow = true;
-        diagnosticOnlyCurrent = false;
+        diagnosticOnlyCurrent = true;
         showCodeAction = true;
       };
       symbolInWinbar = {
         enable = true; # Breadcrumbs
       };
       codeAction = {
-        extendGitSigns = false;
+        extendGitSigns = true;
         showServerName = true;
         onlyInCursor = true;
         numShortcut = true;

@@ -15,6 +15,7 @@
       sensible
       yank
       sidebar
+      vim-tmux-navigator
       #{
       #  plugin = fingers;
       #  extraConfig = ''
@@ -72,7 +73,8 @@
 
       set-option -g pane-active-border-style fg=blue
       set-option -g status-position bottom
-      set -g default-terminal "xterm-256color"
+      
+      ##set -g default-terminal "xterm-256color"
 
       set -g status-left-length 20
 
@@ -130,6 +132,7 @@
 
       # Fix NVIM  / tmux cursor problem
       set -g -a terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'
+      bind r source-file ~/.config/tmux/tmux.conf
     '';
   };
 }

@@ -28,7 +28,7 @@
     ./lsp/conform.nix
     ./lsp/luasnip.nix
   ];
-
+  
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
@@ -37,7 +37,8 @@
     vimAlias = true;
 
     luaLoader.enable = true;
-    colorschemes.tokyonight.enable = true;
+    #colorschemes.tokyonight.enable = true;
+    colorschemes.oxocarbon.enable = true;
     # nixvim packages with (little to) no config
     plugins = {
       nvim-autopairs.enable = true;
@@ -67,7 +68,7 @@
           keymaps = [
             {
               mode = "n";
-              key = "<leader>gg";
+              key = "<leader>jj";
               action = "<cmd>Neogit<CR>";
             }
           ];
@@ -85,7 +86,8 @@
 
     # catch all for non nixvim implemented packages
     extraPlugins = with pkgs.vimPlugins; [
-      telekasten-nvim
+      vim-tmux-clipboard
+      #telekasten-nvim
       hydra-nvim
       venn-nvim
       glow-nvim
@@ -118,10 +120,6 @@
       vnoremap <leader>p "_dP
     '';
     extraConfigLua = ''
-      require('telekasten').setup({
-        home = vim.fn.expand("~/notes/"),
-        -- Put the name of your notes directory here
-        })
       require('glow').setup({
               style = "dark",
               width = 120,
