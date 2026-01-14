@@ -51,6 +51,8 @@
       #repro="sudo nixos-rebuild switch -I nixos-config=configuration.nix#lxbtlr";
     };
     initExtra = ''
+      bind 'TAB:menu-complete'
+      bind 'set show-all-if-ambiguous on'
       howmany ()
       {
         ls -1 $1 | wc -l

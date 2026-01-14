@@ -45,6 +45,7 @@
       neo-tree.enable = true;
       treesitter.enable = true;
       telescope.enable = true;
+      render-markdown.enable=true;
       todo-comments.enable = true;
       #can add telescope options here if ya want with extraOptions.keymaps
       vimtex = {

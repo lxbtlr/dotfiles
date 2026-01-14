@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     hardware.url = "github:nixos/nixos-hardware";
-
+    
     #nix-ld.url = "github:Mic92/nix-ld";
     # this line assume that you also have nixpkgs as an input
     #nix-ld.inputs.nixpkgs.follows = "nixpkgs";
@@ -47,14 +47,14 @@
     #   url = "github:hyprwm/hyprland-plugins";
     #   inputs.hyprland.follows = "hyprland";
     # };
-    quickshell = {
-      # add ?ref=<tag> to track a tag
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+    #quickshell = {
+    #  # add ?ref=<tag> to track a tag
+    #  url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
 
-      # THIS IS IMPORTANT
-      # Mismatched system dependencies will lead to crashes and other issues.
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #  # THIS IS IMPORTANT
+    #  # Mismatched system dependencies will lead to crashes and other issues.
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
 
     devenv.url = "github:cachix/devenv";
   };
@@ -117,6 +117,11 @@
           # to not collide with the nixpkgs version.
           #{ programs.nix-ld.dev.enable = true; }
           nixos-hardware.nixosModules.framework-13-7040-amd
+          # ({pkgs,...}:{
+          #   environment.systemPackages = [
+          #     ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
+          #   ];
+          #  })
         ];
       };
     };

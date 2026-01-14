@@ -103,7 +103,7 @@ in {
     };
   };
     extraConfigLua = ''
-require'cmp'.setup {
+require('cmp').setup {
   sources = {
     { name = 'nvim_lsp' },
   }

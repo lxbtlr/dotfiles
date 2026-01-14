@@ -83,9 +83,10 @@ dconf.settings = {
 
   programs.git = {
     enable = true;
-    userName = "Alex Butler";
-    userEmail = "lxbtlr@pm.me";
-    extraConfig = {
+    settings = {
+
+      user.name = "Alex Butler";
+      user.email = "lxbtlr@pm.me";
       init.defaultBranch = "main";
     };
   };
