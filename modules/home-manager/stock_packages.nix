@@ -10,6 +10,8 @@
   home.packages = with pkgs; [
     marksman
     racket
+    claude-code
+    antigravity
     # qt
     libsForQt5.qt5.qtsvg         #: support for SVG image loading (bundled with most packages)
     libsForQt5.qt5.qtimageformats# : support for WEBP images as well as some less common ones
