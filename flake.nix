@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     hardware.url = "github:nixos/nixos-hardware";
-    
+    eden.url = "github:daaboulex/eden-nix";
     #nix-ld.url = "github:Mic92/nix-ld";
     # this line assume that you also have nixpkgs as an input
     #nix-ld.inputs.nixpkgs.follows = "nixpkgs";
@@ -22,7 +22,7 @@
       # unfollowing nixpkgs for compatibility with bash lsp
       #inputs.nixpkgs.follows = "nixpkgs";
     };
-    claude-code.url = "github:sadjow/claude-code-nix";
+    claude-code.url = "github:sadjow/claude-code-nix?ref=v2.1.71";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,12 +36,11 @@
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     kwin-effects-forceblur = {
       url = "github:taj-ny/kwin-effects-forceblur";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    niri.url = "github:sodiboo/niri-flake";
     zen-browser.url = "github:0xc000022070/zen-browser-flake"; # OLD: "github:MarceColl/zen-browser-flake";
     # hyprland-plugins = {
     #   url = "github:hyprwm/hyprland-plugins";
@@ -60,12 +59,14 @@
   };
   outputs = {
     self,
+    niri,
     nixpkgs,
     #nix-ld,
     home-manager,
     claude-code,
     devenv,
     hardware,
+    eden,
     nixos-hardware,
     ...
   } @ inputs: let
@@ -81,6 +82,8 @@
     # function generates an attribute by calling a function passed to it, with each system as an argument
     forAllSystems = nixpkgs.lib.genAttrs systems;
   in {
+
+    nixpkgs.overlays = [claude-code.overlays.default];
     # custom pkgs
     packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
 
@@ -100,6 +103,8 @@
     nixosConfigurations = {
       # add entry for cuttlefish
       bigfin = nixpkgs.lib.nixosSystem {
+
+        extraSpecialArgs = {inherit inputs outputs;};
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/bigfin/configuration.nix
@@ -109,14 +114,21 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/cuttlefish/configuration.nix
+          niri.nixosModules.niri
           {
             nixpkgs.overlays = [claude-code.overlays.default];
           }
+          ({ pkgs, ... }: {
+          environment.systemPackages = [ 
+            eden.packages.${pkgs.system}.eden ];
+          })
+
           #nix-ld.nixosModules.nix-ld
           # The module in this repository defines a new module under (programs.nix-ld.dev) instead of (programs.nix-ld)
           # to not collide with the nixpkgs version.
           #{ programs.nix-ld.dev.enable = true; }
           nixos-hardware.nixosModules.framework-13-7040-amd
+
           # ({pkgs,...}:{
           #   environment.systemPackages = [
           #     ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default

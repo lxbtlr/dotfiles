@@ -61,6 +61,7 @@
 
   programs.virt-manager.enable = true;
 
+  programs.niri.enable = true;
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
   # Bootloader.
