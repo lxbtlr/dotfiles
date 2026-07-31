@@ -8,14 +8,26 @@
   ...
 }: {
   home.packages = with pkgs; [
+    bat
+    glib
+    csvlens
+    cmus
     marksman
     racket
-    claude-code
-    antigravity
+    #claude-code
+
+    brightnessctl
+    gp-saml-gui
+    openconnect
+    harmonoid
+    
+
+    antigravity-ide
+    rpi-imager
     # qt
-    libsForQt5.qt5.qtsvg         #: support for SVG image loading (bundled with most packages)
-    libsForQt5.qt5.qtimageformats# : support for WEBP images as well as some less common ones
-    libsForQt5.qt5.qtmultimedia  # : support for playing videos, audio, etc
+    qt5.qtsvg         #: support for SVG image loading (bundled with most packages)
+    qt5.qtimageformats# : support for WEBP images as well as some less common ones
+    qt5.qtmultimedia  # : support for playing videos, audio, etc
     kdePackages.qt5compat     # : extra visual effects, notably gaussian blur. MultiEffect is usually preferable
 
     # logitech functionality
@@ -27,7 +39,7 @@
     gemini-cli
 
     #music
-    tidal-hifi
+    #tidal-hifi
 
     firewalld
     libvirt
@@ -43,7 +55,7 @@
 
     poppler-utils
 
-    protonvpn-gui
+    proton-vpn
 
     # av
     drawio
@@ -53,7 +65,7 @@
     ffmpeg_6
     ardour
 
-    zoom
+    #zoom
 
 
     # data
@@ -114,7 +126,7 @@
     #libsForQt5.krdc
     cowsay
     gsettings-desktop-schemas
-    neofetch
+    hyfetch
     spotify
     spotify-player
     nnn # terminal file manager
@@ -156,7 +168,7 @@
     # hyprland flakes
     polkit_gnome
     libva-utils
-    fuseiso
+    #fuseiso
     udiskie
     adwaita-icon-theme
     gnome-themes-extra
@@ -173,7 +185,7 @@
     xdg-desktop-portal-hyprland
     hyprpaper
     wofi
-    swww
+    awww
     grim
     xdg-utils
     xdg-desktop-portal
