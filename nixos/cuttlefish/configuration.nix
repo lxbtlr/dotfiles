@@ -19,6 +19,7 @@
     ./../../modules/nixos/fonts.nix
     # import kde plasma5 settings
     ./../../modules/nixos/plasma6.nix
+    ./kanata
     # background
     ./../../modules/home-manager/background
     # import hm flake
@@ -88,9 +89,9 @@
 
     systemPackages = with pkgs; [
       # Add zen-browser from flake
-      inputs.zen-browser.packages."${system}".default
-      inputs.kwin-effects-forceblur.packages.${pkgs.system}.default # Wayland
-      inputs.quickshell.packages."${system}".default
+      inputs.zen-browser.packages."${pkgs.system}".default
+      #inputs.kwin-effects-forceblur.packages.${pkgs.system }.default # Wayland
+      #inputs.quickshell.packages."${system}".default
       slack
       #slack.override { nss = pkgs.nss_3_44; }
       vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.

@@ -30,6 +30,7 @@
     # change this
     ./../../modules/home-manager/vms
     ./../../modules/home-manager/stock_packages.nix
+
     #./../../modules/home-manager/texlive.nix
     # inputs.nix-colors.homeManagerModules.default
 
@@ -88,13 +89,11 @@
   programs.git = {
     enable = true;
     settings = {
-
       user.name = "Alex Butler";
       user.email = "lxbtlr@pm.me";
       init.defaultBranch = "main";
     };
   };
-
   programs.home-manager = {
     enable = true;
   };

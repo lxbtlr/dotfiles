@@ -21,6 +21,21 @@
     # write their own paths.
     screenshot-path = "~/Pictures/Screenshots/Screenshot_%Y-%m-%d %H-%M-%S.png";
 
+
+    ############################################################
+    # switch-events
+    ############################################################
+
+
+    switch-events = {
+       lid-close.action.spawn = [ "niri" "msg" "output" "eDP-1" "off" ];
+       lid-open.action.spawn = [ "niri" "msg" "output" "eDP-1" "on" ];
+    };
+
+
+
+
+
     ############################################################
     # Input
     ############################################################

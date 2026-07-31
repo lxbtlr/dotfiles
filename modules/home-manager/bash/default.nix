@@ -5,6 +5,8 @@
 
     enableCompletion = true;
     bashrcExtra = ''
+      export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+      export MANROFFOPT="-c"
       export OPENROUTER_API_KEY=$(cat ~/dotfiles/modules/home-manager/bash/openrouter.secret)
       export DIRENV_LOG_FORMAT="$(printf "\033[2mdirenv: %%s\033[0m")"
       eval "$(direnv hook bash)"
@@ -26,7 +28,6 @@
       zr = "zoxide remove";
       tx = "tmuxinator";
       ngit = "nvim +Neogit";
-
       rst_nw = "pls modprobe -r mt7921e && pls modprobe mt7921e";
 
       intel = "less +34266g ~/Documents/intel_arch_x86.pdf";
@@ -51,6 +52,7 @@
       #repro="sudo nixos-rebuild switch -I nixos-config=configuration.nix#lxbtlr";
     };
     initExtra = ''
+
       bind 'TAB:menu-complete'
       bind 'set show-all-if-ambiguous on'
       howmany ()
@@ -96,6 +98,8 @@
           echo "'$1' is not a valid file"
         fi
       }
+      export QT_PLUGIN_PATH="$HOME/.local/lib/qt6/plugins:$QT_PLUGIN_PATH"
+      export XDG_DATA_DIRS="$HOME/.local/share:$XDG_DATA_DIRS"
       export _ZO_DOCTOR=0
       eval "$(direnv hook bash)"
       eval "$(zoxide init bash)"
