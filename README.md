@@ -26,9 +26,9 @@
         - where nixos modules are (kde plasma, hyprland, etc)
  - templates/
     - WIP : stores template .nix / project files that can easily be copied into another dir, should be generic
- flake.lock*
- flake.nix*
- README.md
+ flake.lock*
+ flake.nix*
+ README.md
 ```
 
 
