@@ -18,7 +18,7 @@
       incsearch = true;
 
       # Enable relative line numbers
-      number = true;
+      number = false;
       relativenumber = false;
 
       # Set tabs to 2 spaces

@@ -142,12 +142,12 @@
         action = "<CMD>Telescope find_files<CR>";
         options.desc = "Telescope Find Files";
       }
-      {
-        # Format file
-        key = "<leader>fm";
-        action = "<CMD>lua vim.lsp.buf.format()<CR>";
-        options.desc = "Format the current buffer";
-      }
+      #{
+      #  # Format file
+      #  key = "<leader>fm";
+      #  action = "<CMD>lua vim.lsp.buf.format()<CR>";
+      #  options.desc = "Format the current buffer";
+      #}
       {
         mode = "n";
         key = "<leader>co";

@@ -22,8 +22,8 @@
     #./git.nix
 
     ./lsp/lspsaga.nix
-     ./lsp/lsp.nix
-    ./lsp/fidget.nix
+    ./lsp/lsp.nix
+    #./lsp/fidget.nix
     ./lsp/cmp.nix
     ./lsp/conform.nix
     ./lsp/luasnip.nix
@@ -47,6 +47,28 @@
       telescope.enable = true;
       render-markdown.enable=true;
       todo-comments.enable = true;
+      project-nvim = {
+        enable = true;
+        enableTelescope = true;
+        settings ={
+          lsp={enabled= true;};
+          patterns= [
+          "flake.nix"
+          "README.md"
+          ".git"
+          "_darcs"
+          ".hg"
+          ".bzr"
+          ".svn"
+          "Makefile"
+          "package.json"
+          "pyproject.toml" 
+          ];
+          extraConfigVim = ''
+            require("project_nvim").setup {  }
+          '';
+        };
+      };
       #can add telescope options here if ya want with extraOptions.keymaps
       vimtex = {
         enable = true;
@@ -99,13 +121,13 @@
       #coc-nvim
       #coc-python
       #coc-pyright
-      {
-        plugin = vim-autoformat;
-        config = "au BufWrite * :Autoformat
-                let g:autoformat_autoindent=0
-                let g:autoformat_retab = 0
-                let g:autoformat_remove_trailing_spaces = 0";
-      }
+      #{
+      #  plugin = vim-autoformat;
+      #  #config = "au BufWrite * :Autoformat
+      #  #        let g:autoformat_autoindent=0
+      #  #        let g:autoformat_retab = 0
+      #  #        let g:autoformat_remove_trailing_spaces = 0";
+      #}
     ];
     extraConfigVim = ''
       " delete without yanking

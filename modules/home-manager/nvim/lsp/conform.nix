@@ -1,8 +1,8 @@
 {
   programs.nixvim.plugins.conform-nvim = {
-    enable = true;
+    enable = false;
     #format_on_save = {
-    #  lsp_fallback = true;
+    #  lsp_fallback = false;
     #  timeout_ms = 500;
     #};
     settings.notify_on_error = true;
