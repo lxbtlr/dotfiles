@@ -26,11 +26,12 @@
     # switch-events
     ############################################################
 
-
-    switch-events = {
-       lid-close.action.spawn = [ "niri" "msg" "output" "eDP-1" "off" ];
-       lid-open.action.spawn = [ "niri" "msg" "output" "eDP-1" "on" ];
-    };
+    # this is unsafe lmao
+    
+    # switch-events = {
+    #    lid-close.action.spawn = [ "niri" "msg" "output" "eDP-1" "off" ];
+    #    lid-open.action.spawn = [ "niri" "msg" "output" "eDP-1" "on" ];
+    # };
 
 
 
