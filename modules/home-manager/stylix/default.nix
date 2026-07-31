@@ -17,23 +17,24 @@
     # This is what keeps Plasma looking like Plasma.
     autoEnable = false;
 
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/black-metal.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/black-metal-gorgoroth.yaml";
     # Alternatives from the original config:
     #   black-metal-gorgoroth.yaml
     #   vesper.yaml
     #   rose-pine.yaml
     #   terracotta.yaml
-
+# black-metal.yaml
+    enableReleaseChecks = false;
     # Point this at the same file swaybg uses in your niri config, or the
     # wallpaper and the palette will disagree.
-    image = ./bg.jpg;
+    image = ../../../bg.jpg;
     polarity = "dark";
 
-    cursor = {
-      package = pkgs.volantes-cursors;
-      name = "volantes_cursors";
-      size = 24;
-    };
+    #cursor = {
+    #  package = pkgs.volantes-cursors;
+    #  name = "volantes_cursors";
+    #  size = 24;
+    #};
 
     fonts = {
       serif = {

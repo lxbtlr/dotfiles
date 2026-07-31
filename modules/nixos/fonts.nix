@@ -21,7 +21,7 @@
       roboto-mono
       jetbrains-mono
       hack-font
-      manrope
+      #manrope
     ];
     fontconfig.defaultFonts = {
       serif = ["DejaVu Serif" "Noto Color Emoji"];

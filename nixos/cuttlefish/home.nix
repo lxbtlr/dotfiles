@@ -1,20 +1,24 @@
 {
   inputs,
   outputs,
-
   lib,
   config,
   pkgs,
   ...
-}:
-{
+}: {
   imports = [
     # import other parts of home-manager config + other modules
+    inputs.stylix.homeModules.stylix
+    inputs.niri.homeModules.stylix
+
     ./../../modules/home-manager/direnv
     ./../../modules/home-manager/bash
     ./../../modules/home-manager/kitty
     ./../../modules/home-manager/starship
     ./../../modules/home-manager/nvim
+    ./../../modules/home-manager/vicinae
+    ./../../modules/home-manager/niri
+    ./../../modules/home-manager/niri/gather.nix
     ./../../modules/home-manager/tmux
     ./../../modules/home-manager/ghostty
     # notification system
@@ -62,17 +66,17 @@
     };
   };
 
-dconf.settings = {
-  "org/virt-manager/virt-manager/connections" = {
-    autoconnect = ["qemu:///system"];
-    uris = ["qemu:///system"];
+  dconf.settings = {
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = ["qemu:///system"];
+      uris = ["qemu:///system"];
+    };
   };
-};
-
 
   home = {
     username = "lxbtlr";
     homeDirectory = "/home/lxbtlr";
+    packages = [pkgs.emacs-pgtk pkgs.kanata];
   };
   # TODO: make this a machine specific thing (for bigfin)
   # set cursor size and dpi for 4k monitor

@@ -36,12 +36,24 @@
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    kwin-effects-forceblur = {
-      url = "github:taj-ny/kwin-effects-forceblur";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #kwin-effects-forceblur = {
+    #  url = "github:taj-ny/kwin-effects-forceblur";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
+    
     niri.url = "github:sodiboo/niri-flake";
     zen-browser.url = "github:0xc000022070/zen-browser-flake"; # OLD: "github:MarceColl/zen-browser-flake";
+
+    stylix = {
+      url = "github:danth/stylix/release-26.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    vicinae-extensions = {
+      url = "github:vicinaehq/extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # hyprland-plugins = {
     #   url = "github:hyprwm/hyprland-plugins";
     #   inputs.hyprland.follows = "hyprland";
@@ -60,6 +72,8 @@
   outputs = {
     self,
     niri,
+    stylix,
+    vicinae-extensions,
     nixpkgs,
     #nix-ld,
     home-manager,
@@ -114,6 +128,7 @@
         specialArgs = {inherit inputs outputs;};
         modules = [
           ./nixos/cuttlefish/configuration.nix
+          # stylix.nixosModules.stylix
           niri.nixosModules.niri
           {
             nixpkgs.overlays = [claude-code.overlays.default];

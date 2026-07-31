@@ -11,12 +11,13 @@
 # Trade-off: windows land on the target monitor's active workspace, so
 # grouping is not preserved. See niri-gather-named below if you want that.
 
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
   gather = pkgs.writeShellApplication {
     name = "niri-gather";
-    runtimeInputs = with pkgs; [ niri jq ];
+    runtimeInputs = [ config.programs.niri.package pkgs.jq ];
+    #runtimeInputs = with pkgs; [ niri jq ];
     text = ''
       target=$(niri msg -j focused-output | jq -r .name)
 
@@ -55,7 +56,7 @@ let
   # are unique across monitors while indices are not.
   gatherNamed = pkgs.writeShellApplication {
     name = "niri-gather-named";
-    runtimeInputs = with pkgs; [ niri jq ];
+    runtimeInputs = [ config.programs.niri.package pkgs.jq ];
     text = ''
       target=$(niri msg -j focused-output | jq -r .name)
 

@@ -1,7 +1,11 @@
-{ lib, pkgs, ... }:
+{ config,lib, pkgs, ... }:
 
 {
-  imports = [ ../vicinae ];
+  imports = [ 
+    ../vicinae
+    ../waybar
+    ../stylix
+    ];
 
   programs.niri.settings = {
 
@@ -15,7 +19,7 @@
     # kdl: screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
     # Only applies to niri's built-in capture (Alt+Print below); the grim binds
     # write their own paths.
-    screenshot-path = "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png";
+    screenshot-path = "~/Pictures/Screenshots/Screenshot_%Y-%m-%d %H-%M-%S.png";
 
     ############################################################
     # Input
@@ -25,7 +29,7 @@
       # kdl: input { keyboard { repeat-delay 200; repeat-rate 35 } }
       keyboard = {
         repeat-delay = 200;
-        repeat-rate = 35;
+        repeat-rate = 100;
         xkb.layout = "us";
       };
 
@@ -61,11 +65,17 @@
     layout = {
       gaps = 5;
 
+      # The tutorial hardcodes #7fc8ff / #505050. Pulled from the stylix palette
+      # instead so the ring tracks the scheme in ./stylix.nix.
+      #
+      # This has to be explicit: stylix.targets.niri sets border on and
+      # focus-ring OFF, both with mkDefault. Since the tutorial's look is the
+      # inverse, we override both here — otherwise stylix silently flips it.
       focus-ring = {
         enable = true;
         width = 1.5;
-        active.color = "#7fc8ff";
-        inactive.color = "#505050";
+        active.color = config.lib.stylix.colors.withHashtag.base0D;
+        inactive.color = config.lib.stylix.colors.withHashtag.base03;
       };
 
       # kdl: border { off }
@@ -79,8 +89,13 @@
     # noctalia-shell is dropped, so wallpaper handling falls back to swaybg.
     # kdl: spawn-sh-at-startup "swaybg -i ~/walls/wall1.png"
     spawn-at-startup = [
-      { argv = [ "swaybg" "-i" "/home/YOURUSER/walls/wall1.png" "-m" "fill" ]; }
+      { argv = [ "swaybg" "-i" "${config.stylix.image}" "-m" "fill" ]; }
       { argv = [ "xwayland-satellite" ]; }
+
+      # waybar runs here rather than as a user unit, which scopes it to niri.
+      # reset-failed first: waybar trips systemd's default start limit easily,
+      # and a latched failure persists across logins.
+      #{ sh = "systemctl --user reset-failed waybar.service 2>/dev/null; waybar"; }
     ];
 
     ############################################################
@@ -92,6 +107,9 @@
       #
       # No shorthand here: all four corners are required, and the type is
       # strictly float, so `4` fails to evaluate — it must be `4.0`.
+
+
+
       {
         geometry-corner-radius = {
           top-left = 4.0;
@@ -100,6 +118,16 @@
           bottom-left = 4.0;
         };
         clip-to-geometry = true;
+      }
+      {
+      matches = [
+        { app-id = "^harmonoid$"; }
+        { app-id = "^elisa$"; }
+        { app-id = "^telegram$"; }
+        { app-id = "^slack$"; }
+      ];
+      open-on-workspace = "media";
+
       }
 
       # kdl: window-rule { match title="Firefox"; open-on-workspace "c"; open-maximized true }
@@ -114,7 +142,10 @@
     ############################################################
     # Named workspaces (optional)
     ############################################################
-
+  
+    workspaces = {
+       "1-media" = { name = "media"; }; 
+    };
     # kdl: workspace "a" { } etc.
     #
     # Left commented because named workspaces are created first and occupy the
@@ -132,8 +163,35 @@
 
     binds =
       {
-        ##### Applications #####
 
+        # vertical wheel — workspaces
+        "Mod+WheelScrollDown" = {
+          cooldown-ms = 150;
+          action.focus-workspace-down = { };
+        };
+        "Mod+WheelScrollUp" = {
+          cooldown-ms = 150;
+          action.focus-workspace-up = { };
+        };
+        
+        # horizontal wheel — columns (windows) left/right
+        "Mod+WheelScrollRight".action.focus-column-right = { };
+        "Mod+WheelScrollLeft".action.focus-column-left = { };
+
+          "XF86MonBrightnessUp" = {
+            allow-when-locked = true;
+            action.spawn = [ "brightnessctl" "--class=backlight" "set" "+5%" ];
+          };
+          "XF86MonBrightnessDown" = {
+            allow-when-locked = true;
+            action.spawn = [ "brightnessctl" "--class=backlight" "set" "5%-" ];
+          };
+
+
+
+        ##### Applications #####
+        "Mod+M".action.focus-workspace = "music";
+        "Mod+Shift+M".action.move-column-to-workspace = "music";
         # kdl: Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
         "Mod+Return" = {
           hotkey-overlay.title = "Open a Terminal: ghostty";
@@ -142,7 +200,12 @@
 
         # kdl: Mod+D hotkey-overlay-title="Run an Application: fuzzel" { spawn "fuzzel"; }
         # vicinae is a client/server app: this toggles the running daemon.
-        "Mod+D" = {
+        "XF86Tools" = {
+          hotkey-overlay.title = "Run an Application: vicinae";
+          action.spawn = [ "vicinae" "toggle" ];
+        };
+
+        "F13" = {
           hotkey-overlay.title = "Run an Application: vicinae";
           action.spawn = [ "vicinae" "toggle" ];
         };

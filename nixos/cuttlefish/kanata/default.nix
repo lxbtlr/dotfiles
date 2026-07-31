@@ -9,13 +9,18 @@
       #   Esc      -> CapsLock
       config = ''
         (defsrc
-          caps esc
+          caps lmet
         )
-
+        
         (deflayer base
-          (tap-hold 200 200 esc lctl) caps
-        )
+          lctl
+          (tap-hold 200 200 f13 lmet)
+         )
       '';
     };
+  };
+  systemd.services.kanata-internal.serviceConfig = {
+    Restart = "always";
+    RestartSec = 2;
   };
 }
