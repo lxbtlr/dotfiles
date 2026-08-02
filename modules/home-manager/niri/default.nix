@@ -5,6 +5,7 @@
     ../vicinae
     ../waybar
     ../stylix
+    ../noctalia
     ];
 
   programs.niri.settings = {
@@ -105,7 +106,7 @@
     # noctalia-shell is dropped, so wallpaper handling falls back to swaybg.
     # kdl: spawn-sh-at-startup "swaybg -i ~/walls/wall1.png"
     spawn-at-startup = [
-      { argv = [ "swaybg" "-i" "${config.stylix.image}" "-m" "fill" ]; }
+      #{ argv = [ "swaybg" "-i" "${config.stylix.image}" "-m" "fill" ]; }
       { argv = [ "xwayland-satellite" ]; }
 
       # waybar runs here rather than as a user unit, which scopes it to niri.

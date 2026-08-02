@@ -10,6 +10,7 @@
     # import other parts of home-manager config + other modules
     inputs.stylix.homeModules.stylix
     inputs.niri.homeModules.stylix
+    inputs.noctalia.homeModules.default
 
     ./../../modules/home-manager/direnv
     ./../../modules/home-manager/bash
@@ -18,6 +19,8 @@
     ./../../modules/home-manager/nvim
     ./../../modules/home-manager/vicinae
     ./../../modules/home-manager/niri
+
+    ./../../modules/home-manager/noctalia
     ./../../modules/home-manager/niri/gather.nix
     ./../../modules/home-manager/tmux
     ./../../modules/home-manager/ghostty
