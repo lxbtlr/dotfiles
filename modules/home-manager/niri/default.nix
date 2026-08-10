@@ -1,4 +1,4 @@
-{ config,lib, pkgs, ... }:
+{ config, lib, inputs, pkgs, ... }:
 
 {
   imports = [ 
@@ -8,7 +8,11 @@
     ../noctalia
     ];
 
+  programs.niri.package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
+
   programs.niri.settings = {
+    
+
 
     ############################################################
     # Top-level flags
@@ -21,8 +25,6 @@
     # Only applies to niri's built-in capture (Alt+Print below); the grim binds
     # write their own paths.
     screenshot-path = "~/Pictures/Screenshots/Screenshot_%Y-%m-%d %H-%M-%S.png";
-
-
     ############################################################
     # switch-events
     ############################################################
@@ -33,10 +35,6 @@
     #    lid-close.action.spawn = [ "niri" "msg" "output" "eDP-1" "off" ];
     #    lid-open.action.spawn = [ "niri" "msg" "output" "eDP-1" "on" ];
     # };
-
-
-
-
 
     ############################################################
     # Input
@@ -70,29 +68,14 @@
     # Layout
     ############################################################
 
-    # kdl:
-    #   layout {
-    #       gaps 5
-    #       focus-ring { width 1.5; active-color "#7fc8ff"; inactive-color "#505050" }
-    #       border { off }
-    #   }
-    #
-    # Note the rename: KDL's `active-color` / `inactive-color` become `active` /
-    # `inactive`, each a <decoration> — an attrset tagged `color` or `gradient`.
     layout = {
       gaps = 5;
 
-      # The tutorial hardcodes #7fc8ff / #505050. Pulled from the stylix palette
-      # instead so the ring tracks the scheme in ./stylix.nix.
-      #
-      # This has to be explicit: stylix.targets.niri sets border on and
-      # focus-ring OFF, both with mkDefault. Since the tutorial's look is the
-      # inverse, we override both here — otherwise stylix silently flips it.
       focus-ring = {
         enable = true;
         width = 1.5;
-        active.color = config.lib.stylix.colors.withHashtag.base0D;
-        inactive.color = config.lib.stylix.colors.withHashtag.base03;
+        active.color = "82cfff";#config.lib.stylix.colors.withHashtag.base0D;
+        inactive.color = "161616";#config.lib.stylix.colors.withHashtag.base03;
       };
 
       # kdl: border { off }
@@ -109,9 +92,6 @@
       #{ argv = [ "swaybg" "-i" "${config.stylix.image}" "-m" "fill" ]; }
       { argv = [ "xwayland-satellite" ]; }
 
-      # waybar runs here rather than as a user unit, which scopes it to niri.
-      # reset-failed first: waybar trips systemd's default start limit easily,
-      # and a latched failure persists across logins.
       #{ sh = "systemctl --user reset-failed waybar.service 2>/dev/null; waybar"; }
     ];
 
@@ -124,9 +104,6 @@
       #
       # No shorthand here: all four corners are required, and the type is
       # strictly float, so `4` fails to evaluate — it must be `4.0`.
-
-
-
       {
         geometry-corner-radius = {
           top-left = 4.0;
@@ -237,9 +214,10 @@
         ##### Focus (vim keys + arrows) #####
 
         "Mod+H".action.focus-column-left = { };
-        "Mod+J".action.focus-window-down = { };
-        "Mod+K".action.focus-window-up = { };
         "Mod+L".action.focus-column-right = { };
+        
+        "Mod+J".action.focus-window-or-workspace-down = { };
+        "Mod+K".action.focus-window-or-workspace-up = { };
 
         "Mod+Left".action.focus-column-left = { };
         "Mod+Down".action.focus-window-down = { };

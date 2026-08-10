@@ -11,8 +11,55 @@
     systemd.enable = true;
 
     settings = {
+
+          plugins.enabled = [
+            "noctalia/wallhaven"
+          ];
+
+          idle.behavior = {
+            lock = {
+              timeout = 300;
+              action = "lock";
+              enabled = false;
+            };
+
+            "screen-off" = {
+              timeout = 600;
+              action = "screen_off";
+              enabled = true;
+            };
+
+            suspend = {
+              timeout = 600;
+              action = "suspend";
+              enabled = false;
+            };
+          };
+
+
+          shell.session.actions = [
+            {
+              action = "logout";
+              enabled = true;
+            }
+            {
+              action = "suspend";
+              enabled = true;
+            }
+            {
+              action = "reboot";
+              enabled = true;
+            }
+            {
+              action = "shutdown";
+              enabled = true;
+              variant = "destructive";
+            }
+          ];
+
+      enable_overdrive = false;
       shell = {
-        font_family = "Maple Mono";
+        font_family = "JetBrains Mono Medium Nerd Font Complete";
         settings_show_advanced = true;
         telemetry_enabled = false;
 
@@ -28,18 +75,42 @@
       };
 
       theme = {
+        templates = {
+          enable_builtin_templates = true;
+          builtin_ids = ["niri"];
+        };
+
         mode = "dark";
-        source = "builtin";
-        builtin = "Dracula"; # matches the waybar CSS you imported
+        source = "community_palette";
+        #builtin = "Dracula";
+        community_palette = "Oxocarbon"; 
       };
 
-      # ── Disabled: something else already does this ────────────────────────
 
-      # swaybg owns the wallpaper (see spawn-at-startup in niri-settings.nix).
-      wallpaper.enabled = true;
+      wallpaper = {
+        
+        enabled = true; 
+        fill_mode = "fill";
+        directory = "~/Pictures/wallpapers/ascii";
+        
+        transition = [ "fade" "wipe" "disc" "stripes" "zoom" "honeycomb" ];
+          transition_duration = 1500;
+          transition_on_startup = true;
+        
+        automation = {
+            enabled = true;
+            interval_seconds = 1800;
+            order = "random";        # or "alphabetical"
+            recursive = true;
+          };
+
+
+
+
+        };
 
       # swaylock is bound to Mod+Alt+L and wired into logind via swayidle.
-      lockscreen.enabled = false;
+      #lockscreen.enabled = true;
 
       # ── Bar ───────────────────────────────────────────────────────────────
       #
@@ -73,8 +144,6 @@
         ];
       };
 
-      # Launcher: vicinae is bound to Mod+D, so noctalia's is left out of the
-      # bar above. Its providers stay at defaults and cost nothing unused.
 
       notification.enable_daemon = true;
 
