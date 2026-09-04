@@ -10,7 +10,7 @@
       close_on_focus_loss = true;
       pop_to_root_on_close = true;
       font.normal = {
-        family = "Maple Nerd Font";
+        family = "JetBrains Mono Medium Nerd Font Complete";
         size = 12;
       };
       launcher_window.opacity = 0.98;
@@ -18,14 +18,13 @@
       providers.files.preferences = {
         autoIndexing = true;
         indexingPaths = [
-          "/home/lxbtlr/dotfiles"
           "/home/lxbtlr/projects"
+          "/home/lxbtlr/Downloads/"
           "/home/lxbtlr/Zotero/Storage"
         ];
         excludedIndexingPaths = [
           "/home/lxbtlr/projects/node_modules"
           "/home/lxbtlr/.cache"
-          "/home/lxbtlr/Downloads"
         ];
       };
     };

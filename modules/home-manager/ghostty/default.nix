@@ -7,6 +7,7 @@
     settings = {
       #theme="TokyoNight Moon";
       theme = "Oxo-Fixed";
+      #theme = "charmtone-dark";
       scrollback-limit = "4000";
       font-family = "JetBrains Mono Regular";
       font-size = 11;

@@ -21,6 +21,7 @@
     ./../../modules/home-manager/niri
 
     ./../../modules/home-manager/noctalia
+    ./../../modules/home-manager/noctalia/noctalia-mimir-patched.nix
     ./../../modules/home-manager/niri/gather.nix
     ./../../modules/home-manager/tmux
     ./../../modules/home-manager/ghostty

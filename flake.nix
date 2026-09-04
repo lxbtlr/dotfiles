@@ -8,7 +8,7 @@
     #nix-ld.url = "github:Mic92/nix-ld";
     # this line assume that you also have nixpkgs as an input
     #nix-ld.inputs.nixpkgs.follows = "nixpkgs";
-
+    llm-agents.url = "github:numtide/llm-agents.nix";
     noctalia.url = "github:noctalia-dev/noctalia-shell";
 
 
@@ -81,6 +81,7 @@
     self,
     niri,
     stylix,
+    llm-agents,
     vicinae-extensions,
     nixpkgs,
     #nix-ld,
@@ -142,8 +143,13 @@
             nixpkgs.overlays = [claude-code.overlays.default];
           }
           ({ pkgs, ... }: {
-          environment.systemPackages = [ 
-            eden.packages.${pkgs.system}.eden ];
+          environment.systemPackages = with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
+            claude-desktop
+            pi
+            dsh
+          ];
+          # environment.systemPackages = [ 
+          #   eden.packages.${pkgs.system}.eden ];
           })
 
           #nix-ld.nixosModules.nix-ld

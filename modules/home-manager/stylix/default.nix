@@ -62,7 +62,7 @@
       waybar.enable = true;
       ghostty.enable = true; # was kitty.enable in the original
       btop.enable = true;
-      tmux.enable = true;
+      tmux.enable = false;
 
       fish.enable = false;
       neovim.enable = false;

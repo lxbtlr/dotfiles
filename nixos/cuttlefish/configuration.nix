@@ -5,6 +5,7 @@
   inputs,
   outputs,
   config,
+  emaciated,
   pkgs,
   ...
 }:{
@@ -54,7 +55,6 @@
   
   virtualisation.spiceUSBRedirection.enable = true;
 
-  #home.packages = with pkgs; [
   #programs.virt-manager = {
   #  enable = true;
   #};
@@ -73,7 +73,7 @@
     #useGlobalPkgs = true;
     #useUserPackages = true;
     backupFileExtension = "backup";
-    extraSpecialArgs = {inherit inputs outputs;};
+    extraSpecialArgs = {inherit inputs outputs emaciated;};
     users = {
       # this is where we can add more hm-users / separate configs for user spaces
       lxbtlr = import ./home.nix;
@@ -81,6 +81,7 @@
   };
   nixpkgs.config.allowUnfree = true;
   environment = {
+
     plasma6.excludePackages = [pkgs.kdePackages.baloo];
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
@@ -92,6 +93,11 @@
       inputs.zen-browser.packages."${pkgs.system}".default
       #inputs.kwin-effects-forceblur.packages.${pkgs.system }.default # Wayland
       #inputs.quickshell.packages."${system}".default
+      
+      kdePackages.plasma-integration
+      kdePackages.breeze
+      kdePackages.breeze-icons
+
       slack
       #slack.override { nss = pkgs.nss_3_44; }
       vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
@@ -115,8 +121,15 @@
   nix.settings = {
     auto-optimise-store = true; # let the gc run automagically
     trusted-users = ["root" "lxbtlr"];
-    substituters = ["https://devenv.cachix.org" "https://aseipp-nix-cache.global.ssl.fastly.net"];
-    trusted-public-keys = ["devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="];
+    substituters = [
+                    "https://devenv.cachix.org" 
+                    "https://aseipp-nix-cache.global.ssl.fastly.net" 
+                    "https://vicinae.cachix.org"
+                    ];
+    trusted-public-keys = [
+                            "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw=" 
+                            "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
+                            ];
   };
 
   networking.hostName = "cuttlefish"; # Define your hostname.
@@ -190,6 +203,7 @@
     extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
       firefox
+
     ];
   };
 

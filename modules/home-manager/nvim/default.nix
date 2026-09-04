@@ -21,6 +21,7 @@
     #./git.nix
     #./git.nix
 
+    ./csv.nix
     ./lsp/lspsaga.nix
     ./lsp/lsp.nix
     #./lsp/fidget.nix

@@ -7,6 +7,7 @@
   nixpkgs,
   ...
 }: {
+
   home.packages = with pkgs; [
     bat
     glib
@@ -15,6 +16,9 @@
     marksman
     racket
     #claude-code
+    taskwarrior3
+    viddy
+    tauon
 
     brightnessctl
     gp-saml-gui
@@ -201,7 +205,7 @@
     wlogout
     wf-recorder
     slurp
-    mako
+    #mako
 
     alsa-utils
     mpd

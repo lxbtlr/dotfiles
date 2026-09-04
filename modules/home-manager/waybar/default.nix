@@ -13,7 +13,7 @@
 
 {
   programs.waybar = {
-    enable = true;
+    enable = false;
 
     # Launched from niri's spawn-at-startup instead of a user unit. See notes.
     systemd.enable = true;

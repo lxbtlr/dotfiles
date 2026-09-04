@@ -12,7 +12,10 @@
 
   programs.niri.settings = {
     
-
+    environment = {
+      QT_QPA_PLATFORMTHEME = "kde";
+      QT_QPA_PLATFORM = "wayland;xcb";
+    };
 
     ############################################################
     # Top-level flags

@@ -16,6 +16,15 @@
             "noctalia/wallhaven"
           ];
 
+          audio = {
+            enable_sounds = true;
+            sound_volume = 1.0;
+            notification_sound = "${./ping.wav}";   # empty = bundled sounds/notification.wav
+            enable_overdrive = false;
+          };
+
+
+
           idle.behavior = {
             lock = {
               timeout = 300;
@@ -145,7 +154,25 @@
       };
 
 
-      notification.enable_daemon = true;
+      notification = {
+        enable_daemon = true;
+        show_app_name = true;
+        show_actions = true;
+        layer = "top";
+        background_opacity = 0.97;
+        offset_x = 20;
+        offset_y = 8;
+
+        filter = {
+          music = {
+            enabled = true;
+            match = "tauonmb";
+            show_toast = false;
+          };
+        };
+
+
+        };
 
       system.monitor.enabled = true;
     };

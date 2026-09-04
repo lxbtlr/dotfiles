@@ -70,13 +70,31 @@
 
       #set-option -g status-left ' #[fg=white]#P #S  #W  #[fg=white] '
       set-option -g status-right ' ' #'#H #[fg=white]%I:%M #[fg=white]%m.%d.%Y'
-
-      set-option -g pane-active-border-style fg=blue
-      set-option -g status-position bottom
       
-      ##set -g default-terminal "xterm-256color"
+      #set-window-option -g window-status-current-style bg=black,fg=white
+     
+      set-window-option -g window-status-style "fg=#FFFFFF"
+      set-window-option -g window-status-last-style "fg=#FFFFFF, bg=#4FBEFE,bold"
+      setw -g window-status-format " #I:#W"
+      setw -g window-status-current-format "#[bg=#6B50FF,fg=#FFFFFF,bold] #I:#W #[default]"
+      setw -g window-status-format "#{?window_last_flag,#[bg=#2B55B3#,fg=#FFFFFF#,bold],#[fg=#FFFFFF#,bold]} #I:#W #[default]"
+      
+      set-option -g copy-mode-match-style "bg=#858392,fg=#201F26"
+      set-option -g copy-mode-current-match-style "bg=yellow,fg=black,bold"
+
+      #set-option -g pane-active-border-style fg=blue
+      set-option -g status-position bottom
+     
+
+      set -g default-terminal "tmux-256color"
+      set -as terminal-features ",xterm-ghostty:RGB"
+
+      # set -g default-terminal "tmux-256color"
+      # set -as terminal-features ",xterm-256color:RGB"
 
       set -g status-left-length 20
+      set -sg escape-time 0
+      set -g mouse on
 
       # Set Better default prefix
       unbind C-b
@@ -129,6 +147,99 @@
       bind-key -T copy-mode-vi 'v' send-keys -X begin-selection
       bind-key -T copy-mode-vi 'y' send-keys -X copy-pipe-and-cancel "wl-copy"
       bind C-p run "wl-paste --no-newline | tmux load-buffer - ; tmux paste-buffer"
+
+### CHARMTONE — raw values
+
+# Status bar base — BBQ ground, Smoke text
+set-option -g status-style bg=#2D2C36,fg=#BFBCC8
+
+# Inactive windows: plain, recessed
+set-window-option -g window-status-style bg=default,fg=#858392
+
+# Active window: Charple fill, white text
+set-window-option -g window-status-current-style bg=#6B50FF,fg=#FFFFFF,bold
+
+# Last window: subtle nod, no fill
+set-window-option -g window-status-last-style fg=#4FBEFE
+
+# Activity alert: Mustard
+set-window-option -g window-status-activity-style bg=#F5EF34,fg=#2D2C36
+
+# Bell: Bengal, distinct from the Charple active window
+set-window-option -g window-status-bell-style bg=#FF6E63,fg=#2D2C36,bold
+
+# Pane borders — Squid recedes, Charple marks focus
+set-option -g pane-border-style fg=#858392
+set-option -g pane-active-border-style fg=#6B50FF
+
+# Messages and prompt
+set-option -g message-style bg=#F5EF34,fg=#2D2C36,bold
+set-option -g message-command-style bg=#00A4FF,fg=#2D2C36,bold
+
+# Copy mode selection and search
+#set-window-option -g mode-style bg=#3A3943,fg=#F7F6FB
+#set-option -g copy-mode-match-style bg=#858392,fg=#2D2C36
+#set-option -g copy-mode-current-match-style bg=#F5EF34,fg=#2D2C36
+
+# Pane number display
+set-option -g display-panes-active-colour "#00A4FF"
+set-option -g display-panes-colour "#858392"
+
+# Clock
+set-window-option -g clock-mode-colour "#10B1AE"
+
+
+##      ### OXOCARBON
+##
+##      # Set the default statusbar color
+#      set-option -g status-style fg=white,bg=black # Dark background, light text
+##      
+##      # Set the default window title colors
+#      set-window-option -g window-status-style bg=colour6,fg=colour0 # Light blue background, dark text
+##      
+##      # Set the default window with an activity alert
+#      set-window-option -g window-status-activity-style bg=colour0,fg=colour7 # Dark background, light text
+##      
+##      # Active window title colors
+#      set-window-option -g window-status-current-style bg=colour1,fg=colour0 # Dark red background, light text
+##      
+##      # Pane border colors
+#      set-option -g pane-active-border-style fg=colour6 # Light blue
+#      set-option -g pane-border-style fg=colour0 # Dark text
+##      
+##      # Message info
+#      set-option -g message-style bg=colour8,fg=colour15 # Light background, light text
+##      
+##      # Writing commands inactive
+##      set-option -g message-command-style bg=colour6,fg=colour15 # Light background, light text
+##      
+##      # Pane number display
+#      set-option -g display-panes-active-colour colour6 # Light blue
+#      set-option -g display-panes-colour colour0 # Dark text
+##      
+##      # Clock
+##      set-window-option -g clock-mode-colour colour7 # Blue
+##      
+##      # Bell
+#      set-window-option -g window-status-bell-style bg=colour9,fg=colour15 # Red background, light text
+#      
+#      # Status bar settings
+#      set-option -g status-justify "left"
+#      set-option -g status-left-style none
+#      set-option -g status-left-length "80"
+#      set-option -g status-right-style none
+#      set-option -g status-right-length "80"
+#      set-window-option -g window-status-separator ""
+#      
+#      # Customize the status-left and status-right sections to your preference
+#      set-option -g status-left "#[bg=colour9,fg=colour0] #S #[bg=colour3,fg=colour9,nobold,noitalics,nounderscore]"
+#      set-option -g status-right "#[bg=colour3,fg=colour4 nobold, nounderscore, noitalics]#[bg=colour4,fg=colour6] %Y-%m-%d  %H:%M #[bg=colour4,fg=colour9,nobold,noitalics,nounderscore]#[bg=colour9,fg=colour3] #h "
+#      
+#      # Customize the window status formats
+#      #set-window-option -g window-status-current-format "#[bg=colour3,fg=colour9,nobold,noitalics,nounderscore]#[bg=colour3,fg=colour4] #I #[bg=colour3,fg=colour4,bold] #W #{?window_zoomed_flag,*Z,} #[bg=colour9,fg=colour3,nobold,noitalics,nounderscore]"
+#      #set-window-option -g window-status-format "#[bg=colour9,fg=colour3,noitalics]#[bg=colour9,fg=colour0] #I #[bg=colour9,fg=colour0] #W #[bg=colour3,fg=colour9,noitalics]"
+#      
+#      # vim: set ft=tmux tw=0 nowrap:
 
       # Fix NVIM  / tmux cursor problem
       set -g -a terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'
