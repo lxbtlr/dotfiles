@@ -1,3 +1,4 @@
+{pkgs, ...}:
 {
   programs.nixvim.plugins = {
     lsp-format = {enable = false;};
@@ -10,6 +11,20 @@
         marksman = {enable = false;};
         pyright = {enable = true;};
         yamlls = {enable = true;};
+        texlab.enable = true;
+
+        ltex_plus = {
+          enable = true;
+          package = pkgs.ltex-ls-plus;
+          settings = {
+            enabled = [ "bibtex" "latex" "markdown" "context" "rsweave" ];
+            language = "en-US";
+            dictionary."en-US" = [ "nixvim" "niri" "Wayland" "noctalia" ];
+            disabledRules."en-US" = [ ];
+            additionalRules.enablePickyRules = true;
+          };
+        };
+
       };
       keymaps = {
         silent = false;#true;

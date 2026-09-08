@@ -72,7 +72,7 @@
       };
       #can add telescope options here if ya want with extraOptions.keymaps
       vimtex = {
-        enable = true;
+        enable = false;
         settings = {
           compiler_method = "pdflatex";
           view_method = "sioyek";
