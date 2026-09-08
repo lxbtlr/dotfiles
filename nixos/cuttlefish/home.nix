@@ -45,7 +45,7 @@
   ];
   #TODO: move this to its own module
   services.xremap = {
-    enable = true;
+    enable = false;
     config = {
       modmap = [
         {
