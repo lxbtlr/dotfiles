@@ -10,8 +10,10 @@
     #nix-ld.inputs.nixpkgs.follows = "nixpkgs";
     llm-agents.url = "github:numtide/llm-agents.nix";
     noctalia.url = "github:noctalia-dev/noctalia-shell";
-
-
+    
+    piri.url = "github:Asthestarsfalll/piri";
+    piri.inputs.nixpkgs.follows = "nixpkgs";
+    
     noctalia-greeter = {
       url = "github:noctalia-dev/noctalia-greeter";
       inputs.nixpkgs.follows = "nixpkgs";

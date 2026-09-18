@@ -48,6 +48,18 @@
       telescope.enable = true;
       render-markdown.enable=true;
       todo-comments.enable = true;
+      diffview = {
+        enable = true;
+        #extraConfigLua = ''
+        #  require('diffview').setup {
+        #    view = {
+        #      default = { winbar_info = true },
+        #      file_history = { winbar_info = true },
+        #    },
+        #  }
+        #'';
+      };
+
       project-nvim = {
         enable = true;
         enableTelescope = true;

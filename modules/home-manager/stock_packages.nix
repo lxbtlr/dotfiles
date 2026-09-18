@@ -19,6 +19,9 @@
     taskwarrior3
     viddy
     tauon
+    solaar
+
+    nicotine-plus
 
     brightnessctl
     gp-saml-gui
@@ -213,4 +216,10 @@
     ncmpcpp
     networkmanagerapplet
   ];
+xdg.mimeApps = {
+  enable = true;
+  defaultApplications = {
+    "application/pdf" = [ "sioyek.desktop" ];
+  };
+};
 }
