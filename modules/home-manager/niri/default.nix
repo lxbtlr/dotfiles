@@ -8,7 +8,10 @@
     ../noctalia
     ];
 
-  programs.niri.package = inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable;
+  programs.niri.package = (inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable{
+    libdisplay-info_0_2 = pkgs.libdisplay-info; });
+
+  
 
   programs.niri.settings = {
     
