@@ -7,7 +7,7 @@
   ...
 }: {
   imports = [
-    inputs.nixvim.homeManagerModules.nixvim
+    inputs.nixvim.homeModules.nixvim
     ./dashboard.nix
     ./bufferline.nix
     ./lualine.nix
@@ -111,6 +111,8 @@
         };
       };
 
+      goyo.enable = true;
+
       gitsigns = {
         enable = true;
         settings = {
@@ -131,6 +133,10 @@
       vim-visual-multi
       nvim-web-devicons
       calendar-vim
+
+      # No nixvim module for limelight (goyo is under plugins.goyo).
+      limelight-vim
+
       #coc-nvim
       #coc-python
       #coc-pyright
@@ -154,12 +160,38 @@
       " replace currently selected text with default register
       " without yanking it
       vnoremap <leader>p "_dP
+
+      " Limelight dims everything but the current paragraph; tie it to Goyo
+      " so it turns on and off with :Goyo.
+      " Goyo blanks the status lines of its padding windows, but lualine
+      " redraws its own status line in every window once a second and puts
+      " them back. Pause lualine for the duration of Goyo, then re-hide the
+      " status line (laststatus=0) in case lualine had already re-enabled it.
+      " nocursorline: the cursor-line highlight paints over Goyo's background
+      " and Limelight's dimming. Goyo runs in its own tab, so this only hits
+      " the Goyo window and your normal windows keep cursorline.
+      autocmd! User GoyoEnter Limelight | setlocal nocursorline | lua require('lualine').hide(); vim.o.laststatus = 0
+      autocmd! User GoyoLeave Limelight! | lua require('lualine').hide({ unhide = true })
     '';
     extraConfigLua = ''
       require('glow').setup({
               style = "dark",
               width = 120,
               })
+
+      -- render-markdown draws inline `code` (and ==highlights==) with
+      -- RenderMarkdownCode, which by default just links to ColorColumn.
+      -- On :Goyo, Goyo repaints ColorColumn with fg = bg = background so
+      -- the colour column disappears, which also makes that text
+      -- invisible. Copy ColorColumn's real colours into the render-markdown
+      -- group so it no longer follows Goyo's change. Re-run on every
+      -- colourscheme load; Goyo reloads the colourscheme when you leave it.
+      local function pin_markdown_code_hl()
+        local cc = vim.api.nvim_get_hl(0, { name = 'ColorColumn', link = false })
+        vim.api.nvim_set_hl(0, 'RenderMarkdownCode', cc)
+      end
+      pin_markdown_code_hl()
+      vim.api.nvim_create_autocmd('ColorScheme', { callback = pin_markdown_code_hl })
     '';
   };
 }

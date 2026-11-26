@@ -30,6 +30,9 @@
       ngit = "nvim +Neogit";
       rst_nw = "pls modprobe -r mt7921e && pls modprobe mt7921e";
 
+      claude-work=''CLAUDE_CONFIG_DIR="$HOME/.claude-work" claude'';
+      claude-personal=''CLAUDE_CONFIG_DIR="$HOME/.claude-personal" claude'';
+
       intel = "less +34266g ~/Documents/intel_arch_x86.pdf";
       amd = "less +68030g ~/Documents/amd64_1_2_3_4_5.pdf";
       arm = "less +101645g ~/Documents/armv8.pdf";

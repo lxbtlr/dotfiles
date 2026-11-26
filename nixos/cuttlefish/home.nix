@@ -19,10 +19,12 @@
     ./../../modules/home-manager/nvim
     ./../../modules/home-manager/vicinae
     ./../../modules/home-manager/niri
+    ./../../modules/home-manager/niri/piri.nix
 
     ./../../modules/home-manager/noctalia
     ./../../modules/home-manager/noctalia/noctalia-mimir-patched.nix
     ./../../modules/home-manager/niri/gather.nix
+    ./../../modules/home-manager/shader-desk
     ./../../modules/home-manager/tmux
     ./../../modules/home-manager/ghostty
     # notification system
@@ -68,6 +70,9 @@
 
     config = {
       allowUnfree = true;
+      permittedInsecurePackages = [
+      "firefox-esr-140-bin-unwrapped-140.17.0esr"
+    ];
     };
   };
 

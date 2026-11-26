@@ -11,8 +11,17 @@
     llm-agents.url = "github:numtide/llm-agents.nix";
     noctalia.url = "github:noctalia-dev/noctalia-shell";
     
+    nixpkgs-2605.url = "github:NixOS/nixpkgs/nixos-26.05";   
+    
     piri.url = "github:Asthestarsfalll/piri";
     piri.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Interactive shader wallpaper engine (canonical home is
+    # gitea.com/SeeTheWall/shader-desk; its README points at this mirror).
+    shader-desk = {
+      url = "github:KMartianov/shader-desk";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     
     noctalia-greeter = {
       url = "github:noctalia-dev/noctalia-greeter";
@@ -32,7 +41,7 @@
       # unfollowing nixpkgs for compatibility with bash lsp
       #inputs.nixpkgs.follows = "nixpkgs";
     };
-    claude-code.url = "github:sadjow/claude-code-nix?ref=v2.1.71";
+    claude-code.url = "github:sadjow/claude-code-nix";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -3,7 +3,7 @@
     enable = true;
     theme = null;
     #iconsEnabled = true;
-    layout = let
+    settings.layout = let
       padding = val: {
         type = "padding";
         inherit val;

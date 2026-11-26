@@ -32,6 +32,9 @@
   users.groups.uinput.members = ["lxbtlr"];
   users.groups.input.members = ["lxbtlr"];
 
+  hardware.logitech.wireless.enable = true;
+  programs.solaar.enable = true; # was hardware.logitech.wireless.enableGraphical
+
   #programs.nix-ld.enable = true;
   services.envfs.enable = true;
   #TODO: finger print reader -- testing
@@ -49,6 +52,33 @@
       fuse3
   ];
 
+  # nixos/cuttlefish/configuration.nix
+programs.niri.package =
+  (inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable.override {
+    libdisplay-info_0_2 =
+      inputs.nixpkgs-2605.legacyPackages.${pkgs.stdenv.hostPlatform.system}.libdisplay-info_0_2;
+  }).overrideAttrs (old: {
+    postPatch = (old.postPatch or "") + ''
+      substituteInPlace src/layout/floating.rs \
+        --replace-fail 'f64::clamp(self.size.w / 4., 10., 75.)' '0.0_f64' \
+        --replace-fail 'f64::clamp(self.size.h / 4., 10., 75.)' '0.0_f64'
+
+      # Keep floating windows fully on screen when moved with the keyboard
+      # (move-column-left/right, move-window-up/down -> FloatingSpace::move_by).
+      # IPC moves (move-floating-window, which piri uses to hide scratchpads)
+      # go through move_window instead, so they can still go off-screen.
+      substituteInPlace src/layout/floating.rs \
+        --replace-fail \
+          '        let new_pos = self.data[idx].logical_pos + amount;' \
+          '        let data = &self.data[idx];
+        let area = self.working_area;
+        let mut new_pos = data.logical_pos + amount;
+        new_pos.x = new_pos.x.min(area.loc.x + area.size.w - data.size.w).max(area.loc.x);
+        new_pos.y = new_pos.y.min(area.loc.y + area.size.h - data.size.h).max(area.loc.y);'
+    '';
+  });
+
+
   users.groups.libvirtd.members = ["lxbtlr" "root"];
 
   virtualisation.libvirtd.enable = true;
@@ -58,6 +88,17 @@
   #programs.virt-manager = {
   #  enable = true;
   #};
+
+
+  services.udev.packages = [
+    (pkgs.writeTextFile {
+      name = "vial-udev-rules";
+      text = ''
+        KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{serial}=="*vial:f64c2b3c*", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+      '';
+      destination = "/etc/udev/rules.d/59-vial.rules";
+    })
+  ];
 
 
   programs.virt-manager.enable = true;
@@ -106,7 +147,8 @@
       wget
       curl
       git
-      dunst
+      # dunst -- removed: same notification-server race as swaync; noctalia
+      # handles notifications in niri, Plasma uses its own.
       xdg-desktop-portal-gtk
       libnotify
       gtk3
@@ -172,6 +214,10 @@
   };
   # Enable CUPS to print documents.
   #services.printing.enable = true;
+  
+  nixpkgs.config.permittedInsecurePackages = [
+                "firefox-esr-140-bin-unwrapped-140.17.0esr"
+              ];
 
   # Enable sound with pipewire.
   #sound.enable = true;
