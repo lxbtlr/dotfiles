@@ -9,9 +9,10 @@
     ];
 
 programs.niri.package =
-  (inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable.override {
-    libdisplay-info_0_2 = pkgs.libdisplay-info;
-  });
+  inputs.niri.packages.${pkgs.stdenv.hostPlatform.system}.niri-unstable.override {
+    libdisplay-info_0_2 =
+      inputs.nixpkgs-2605.legacyPackages.${pkgs.stdenv.hostPlatform.system}.libdisplay-info_0_2;
+  };
 
   
 
@@ -28,7 +29,6 @@ programs.niri.package =
 
     # kdl: prefer-no-csd
     prefer-no-csd = true;
-
     # kdl: screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
     # Only applies to niri's built-in capture (Alt+Print below); the grim binds
     # write their own paths.
@@ -50,6 +50,8 @@ programs.niri.package =
 
     input = {
       # kdl: input { keyboard { repeat-delay 200; repeat-rate 35 } }
+
+      warp-mouse-to-focus.enable = true;
       keyboard = {
         repeat-delay = 200;
         repeat-rate = 100;
@@ -88,6 +90,15 @@ programs.niri.package =
 
       # kdl: border { off }
       border.enable = false;
+
+      # Widths Mod+R cycles through, in this order. Setting this replaces
+      # niri's built-in 1/3, 1/2, 2/3, so those are restated after 1/4.
+      preset-column-widths = [
+        { proportion = 0.25; }
+        { proportion = 1.0 / 3.0; }
+        { proportion = 0.5; }
+        { proportion = 2.0 / 3.0; }
+      ];
     };
 
     ############################################################
@@ -122,13 +133,6 @@ programs.niri.package =
         clip-to-geometry = true;
       }
       {
-      matches = [
-        { app-id = "^harmonoid$"; }
-        { app-id = "^elisa$"; }
-        { app-id = "^telegram$"; }
-        { app-id = "^slack$"; }
-      ];
-      open-on-workspace = "media";
 
       }
 
@@ -192,8 +196,8 @@ programs.niri.package =
 
 
         ##### Applications #####
-        "Mod+M".action.focus-workspace = "music";
-        "Mod+Shift+M".action.move-column-to-workspace = "music";
+        #"Mod+M".action.focus-workspace = "music";
+        #"Mod+Shift+M".action.move-column-to-workspace = "music";
         # kdl: Mod+Return hotkey-overlay-title="Open a Terminal: alacritty" { spawn "alacritty"; }
         "Mod+Return" = {
           hotkey-overlay.title = "Open a Terminal: ghostty";
@@ -221,11 +225,14 @@ programs.niri.package =
 
         ##### Focus (vim keys + arrows) #####
 
-        "Mod+H".action.focus-column-left = { };
-        "Mod+L".action.focus-column-right = { };
+        #"Mod+H".action.focus-column-left = { };
+        #"Mod+L".action.focus-column-right = { };
         
         "Mod+J".action.focus-window-or-workspace-down = { };
         "Mod+K".action.focus-window-or-workspace-up = { };
+
+        "Mod+Shift+J".action.move-window-to-workspace-down = { };
+        "Mod+Shift+K".action.move-window-to-workspace-up = { };
 
         "Mod+Left".action.focus-column-left = { };
         "Mod+Down".action.focus-window-down = { };
@@ -238,6 +245,11 @@ programs.niri.package =
         "Mod+Ctrl+J".action.move-window-down = { };
         "Mod+Ctrl+K".action.move-window-up = { };
         "Mod+Ctrl+L".action.move-column-right = { };
+
+        ##### Switching between monitors
+        "Mod+H".action.focus-column-or-monitor-left = { };
+        "Mod+L".action.focus-column-or-monitor-right = { };
+
 
         "Mod+Home".action.focus-column-first = { };
         "Mod+End".action.focus-column-last = { };
@@ -252,6 +264,9 @@ programs.niri.package =
         "Mod+Minus".action.set-column-width = "-10%";
         "Mod+Equal".action.set-column-width = "+10%";
         "Mod+V".action.toggle-window-floating = { };
+        # Jump focus between the floating layer and the tiled columns, so a
+        # floating window can't trap focus.
+        "Mod+Shift+V".action.switch-focus-between-floating-and-tiling = { };
 
         ##### Screenshots (grim + slurp) #####
 

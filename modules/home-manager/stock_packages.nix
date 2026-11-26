@@ -10,6 +10,7 @@
 
   home.packages = with pkgs; [
     bat
+    vlc
     glib
     csvlens
     cmus
@@ -29,7 +30,7 @@
     harmonoid
     
 
-    antigravity-ide
+    vial
     rpi-imager
     # qt
     qt5.qtsvg         #: support for SVG image loading (bundled with most packages)
@@ -43,7 +44,7 @@
     #photo editor (FOSS lightroom)
     darktable
     
-    gemini-cli
+    # gemini-cli
 
     #music
     #tidal-hifi
@@ -134,8 +135,8 @@
     cowsay
     gsettings-desktop-schemas
     hyfetch
-    spotify
-    spotify-player
+    # spotify
+    # spotify-player
     nnn # terminal file manager
     fuzzel
     flameshot
@@ -181,7 +182,8 @@
     gnome-themes-extra
     nvidia-vaapi-driver
     gsettings-desktop-schemas
-    swaynotificationcenter
+    # swaynotificationcenter -- removed: D-Bus-activates and steals the
+    # notification server from noctalia when a notification beats it at login.
     wlr-randr
     ydotool
     #hyprland-share-picker
@@ -218,8 +220,23 @@
   ];
 xdg.mimeApps = {
   enable = true;
-  defaultApplications = {
-    "application/pdf" = [ "sioyek.desktop" ];
-  };
+  # mimeapps.list has no wildcards (audio/* doesn't work), so every type
+  # has to be listed. Anything left unlisted falls back to whichever
+  # installed app claims it, which is how harmonoid was winning.
+  defaultApplications =
+    {
+      "application/pdf" = [ "sioyek.desktop" ];
+    }
+    // lib.genAttrs [
+      # audio
+      "audio/mpeg" "audio/mp3" "audio/x-mp3" "audio/flac" "audio/x-flac"
+      "audio/ogg" "audio/x-vorbis+ogg" "audio/opus" "audio/x-opus+ogg"
+      "audio/wav" "audio/x-wav" "audio/aac" "audio/mp4" "audio/x-m4a"
+      "audio/webm" "audio/x-ms-wma" "audio/x-matroska" "audio/x-aiff"
+      # video
+      "video/mp4" "video/x-matroska" "video/webm" "video/mpeg" "video/ogg"
+      "video/quicktime" "video/x-msvideo" "video/x-flv" "video/x-ms-wmv"
+      "video/3gpp" "video/x-m4v" "video/mp2t"
+    ] (_: [ "vlc.desktop" ]);
 };
 }

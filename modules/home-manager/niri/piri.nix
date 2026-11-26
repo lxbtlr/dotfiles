@@ -19,6 +19,8 @@
 let
   piri = inputs.piri.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
+claude-desktop =
+    inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop;
   piriConfig = {
     piri.plugins = {
       scratchpads = true;
@@ -35,8 +37,8 @@ let
     };
 
     piri.scratchpad = {
-      default_size = "40% 60%";
-      default_margin = 50;
+      default_size = "30% 85%";
+      default_margin = 100;
       # Keeps hidden scratchpads out of the current workspace's stack.
       # move_to_workspace = "tmp";
     };
@@ -44,21 +46,31 @@ let
     scratchpads = {
       # Dropdown terminal. --class sets the app_id ghostty reports.
       term = {
-        direction = "fromTop";
+        direction = "fromBottom";
         command = "${pkgs.ghostty}/bin/ghostty --class=float.dropterm";
         # app_id is a REGEX, so the dot must be escaped.
         app_id = "float\\.dropterm";
         size = "70% 50%";
-        margin = 50;
+        margin = 100;
       };
 
       # Launcher-adjacent scratch note.
-      note = {
+      
+      claude = {
         direction = "fromRight";
-        command = "${pkgs.ghostty}/bin/ghostty --class=float.notes -e nvim ~/notes.md";
-        app_id = "float\\.notes";
+        command = "${claude-desktop}/bin/claude-desktop";
+        app_id = "com\\.anthropic\\.Claude";
         size = "50% 70%";
-        margin = 50;
+        margin = 100;
+      };
+
+
+      music = {
+        direction = "fromLeft";
+        command = "${pkgs.tauon}/bin/tauon";
+        app_id = "tauonmb";
+        size = "50% 70%";
+        margin = 100;
       };
     };
   };
@@ -80,6 +92,7 @@ in
       After = [ "graphical-session.target" ];
       # Scoped to niri, like waybar and vicinae.
       ConditionEnvironment = "XDG_CURRENT_DESKTOP=niri";
+      X-Restart-Triggers = [ "${config.xdg.configFile."niri/piri.toml".source}" ];
     };
     Service = {
       Type = "simple";
@@ -93,12 +106,18 @@ in
   # Binds. piri talks to the running daemon; these are plain spawns.
   programs.niri.settings.binds = {
     "Mod+Grave" = {
-      hotkey-overlay.title = "Toggle dropdown terminal";
+      hotkey-overlay.title = "Toggle easy terminal";
       action.spawn = [ "${piri}/bin/piri" "scratchpads" "term" "toggle" ];
     };
+
+    "Mod+M" = {
+      hotkey-overlay.title = "Toggle Tauon";
+      action.spawn = [ "${piri}/bin/piri" "scratchpads" "music" "toggle" ];
+    };
+
     "Mod+Shift+N" = {
-      hotkey-overlay.title = "Toggle scratch notes";
-      action.spawn = [ "${piri}/bin/piri" "scratchpads" "note" "toggle" ];
+      hotkey-overlay.title = "Toggle Claude";
+      action.spawn = [ "${piri}/bin/piri" "scratchpads" "claude" "toggle" ];
     };
     # Promote whatever is focused into an ad-hoc scratchpad.
     "Mod+Shift+Grave" = {
